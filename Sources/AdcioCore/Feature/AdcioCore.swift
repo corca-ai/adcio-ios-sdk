@@ -4,7 +4,9 @@ import UIKit
 class AdcioCore {
     
     public static let shared = AdcioCore()
-
+    
+    private init() {}
+    
     private var isInitialized: Bool = false
     private var clientIdValue: String = ""
     private var sessionIdValue: String = ""
