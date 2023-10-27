@@ -12,9 +12,15 @@ class AdcioCore {
     private var sessionIdValue: String = ""
     private var deviceIdValue: String = ""
 
-    public func initializeApp(with clientId: String) {
+    public func initializeApp(
+        clientId newClientId: String,
+        sessionId newSessionId: String? = nil,
+        deviceId newDeviceId : String? = nil
+    ) {
         self.isInitialized = true
-        self.clientIdValue = clientId
+        self.clientIdValue = newClientId
+        self.sessionIdValue = newSessionId ?? UUID().uuidString
+        self.deviceIdValue = newDeviceId ?? fetchDefaultDeviceId()
     }
     
     public var clientId: String {
@@ -31,22 +37,18 @@ class AdcioCore {
         }
     }
 
-    public func sessionId(_ newId: String? = nil) throws -> String {
+    public func sessionId(_ newId: String = "") throws -> String {
         try ensureInitialized()
-        guard let sessionIdValue = newId else {
-          sessionIdValue = UUID().uuidString
-          return sessionIdValue
+        if !newId.isEmpty {
+            sessionIdValue = newId
         }
         return sessionIdValue
     }
     
-    public func deviceId(_ newId: String? = nil) throws -> String {
+    public func deviceId(_ newId: String = "") throws -> String {
         try ensureInitialized()
-        guard let deviceIdValue = newId else {
-            if let buildId = UIDevice.current.identifierForVendor?.uuidString {
-                deviceIdValue = buildId
-            }
-            return deviceIdValue
+        if !newId.isEmpty {
+            sessionIdValue = newId
         }
         return deviceIdValue
     }
