@@ -31,7 +31,7 @@ class AdcioCore {
         }
     }
 
-    public func sessionId(newSessionId newId: String? = nil) throws -> String {
+    public func sessionId(_ newId: String? = nil) throws -> String {
         try ensureInitialized()
         guard let sessionIdValue = newId else {
           sessionIdValue = UUID().uuidString
@@ -40,7 +40,7 @@ class AdcioCore {
         return sessionIdValue
     }
     
-    public func deviceId(newDeviceId newId: String? = nil) throws -> String {
+    public func deviceId(_ newId: String? = nil) throws -> String {
         try ensureInitialized()
         guard let deviceIdValue = newId else {
             if let buildId = UIDevice.current.identifierForVendor?.uuidString {
