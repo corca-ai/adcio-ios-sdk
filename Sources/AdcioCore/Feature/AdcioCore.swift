@@ -33,22 +33,20 @@ class AdcioCore {
 
     public func sessionId(newSessionId newId: String? = nil) throws -> String {
         try ensureInitialized()
-        if let newId = newId {
-            sessionIdValue = newId
-        }
-        if sessionIdValue.isEmpty {
-            sessionIdValue = UUID().uuidString
+        guard let sessionIdValue = newId else {
+          sessionIdValue = UUID().uuidString
+          return sessionIdValue
         }
         return sessionIdValue
     }
     
     public func deviceId(newDeviceId newId: String? = nil) throws -> String {
         try ensureInitialized()
-        if let newId = newId {
-            deviceIdValue = newId
-        }
-        if deviceIdValue.isEmpty, let buildId = UIDevice.current.identifierForVendor?.uuidString {
-            deviceIdValue = buildId
+        guard let deviceIdValue = newId else {
+            if let buildId = UIDevice.current.identifierForVendor?.uuidString {
+                deviceIdValue = buildId
+            }
+            return deviceIdValue
         }
         return deviceIdValue
     }
