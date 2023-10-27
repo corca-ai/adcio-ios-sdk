@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "AdcioCore",
+    name: "AdcioOpenSDK",
     platforms: [
         .iOS(.v13)
     ],
