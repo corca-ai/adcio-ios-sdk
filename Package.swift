@@ -5,19 +5,45 @@ import PackageDescription
 
 let package = Package(
     name: "AdcioCore",
+    platforms: [
+        .iOS(.v13)
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
+        .library(
+            name: "AdcioSDK",
+            targets: ["AdcioCore", "AdcioAnalytics", "AdcioAgent", "AdcioPlacement"]),
         .library(
             name: "AdcioCore",
             targets: ["AdcioCore"]),
+        .library(
+            name: "AdcioAnalytics",
+            targets: ["AdcioAnalytics"]),
+        .library(
+            name: "AdcioAgent",
+            targets: ["AdcioAgent"]),
+        .library(
+            name: "AdcioPlacement",
+            targets: ["AdcioPlacement"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/Alamofire/Alamofire.git", Version(5,1,0)..<Version(6,0,0))
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "AdcioCore"),
-        .testTarget(
-            name: "AdcioCoreTests",
-            dependencies: ["AdcioCore"]),
+        .target(
+            name: "AdcioAnalytics",
+            dependencies: [
+                .product(name: "Alamofire", package: "Alamofire"),
+            ]
+        ),
+        .target(
+            name: "AdcioAgent"),
+        .target(
+            name: "AdcioPlacement",
+            dependencies: [
+                .product(name: "Alamofire", package: "Alamofire"),
+            ]
+        )
     ]
 )
