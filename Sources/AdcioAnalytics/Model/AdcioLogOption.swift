@@ -7,7 +7,12 @@
 
 import Foundation
 
-public struct AdcioLogOption: Equatable {
-    let requestId: String
-    let adsetId: String
+public struct AdcioLogOption {
+    public var requestId: String
+    public var adsetId: String
+    
+    public init(requestId: String, adsetId: String) {
+        self.requestId = requestId
+        self.adsetId = adsetId
+    }
 }
