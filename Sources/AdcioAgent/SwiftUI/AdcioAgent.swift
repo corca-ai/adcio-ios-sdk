@@ -29,4 +29,19 @@ public struct AdcioAgent: UIViewRepresentable {
     public func updateUIView(_ uiView: WKWebView, context: Context) {
         
     }
+    
+    public func isAgentStartPage() -> Bool {
+        if let url = webView.url, url.absoluteString.contains("start/") {
+            return true
+        }
+        return false
+    }
+
+    public func agentGoBack() -> Bool {
+        if webView.canGoBack {
+            webView.goBack()
+            return true
+        }
+        return false
+    }
 }
