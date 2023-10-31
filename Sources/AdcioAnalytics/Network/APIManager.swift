@@ -17,7 +17,7 @@ class APIManager {
         parameters: Parameters? = nil,
         headers: HTTPHeaders? = ["Content-Type": "application/json"],
         encoding: ParameterEncoding = JSONEncoding.default
-    ) {
+    ) throws {
         let request = AF.request(
             url,
             method: method,
@@ -25,32 +25,41 @@ class APIManager {
             encoding: encoding,
             headers: headers
         )
+                        
         request.responseData { response in
-            switch response.result {
-            case .success(let data):
-                do {
-                    let resultJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                    if let resultJSON = resultJSON {
-                        if let statusCode = resultJSON["statusCode"] as? Int {
-                            if (300...499).contains(statusCode) {
-                                debugPrint("\(Date()) - \(url) : \(method) Error request - statusCode(\(statusCode))")
-                            } else if (200...299).contains(statusCode) {
-                                debugPrint("\(Date()) - \(url) : \(method) request success - statusCode(\(statusCode))")
-                            }
-                        } else {
-                            if resultJSON.keys.contains("success") {
-                                debugPrint("\(Date()) - \(url) : \(method) request success")
-                            }
-                        }
-                        dump(resultJSON)
-                    }
-                } catch {
-                    debugPrint("Error while decoding response: \(error) from: \(data)")
+            if case .success(let data) = response.result {
+                
+                guard let statusCode = response.response?.statusCode else { // TODO: throw
+                    throw AdcioNetworkError.unregisteredIdError
                 }
-            
-            case .failure(let error):
-                debugPrint("\(Date()) - \(url) : \(method) Error request")
-                dump(error)
+                
+                // success case
+                if [200, 201].contains(statusCode) {
+                    return debugPrint("\(Date()) - \(url) : \(method) request success")
+                }
+                // error case
+                if (300...499).contains(statusCode) {
+                    var errorData: [String: Any]? = nil
+                    
+                    do {
+                        errorData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                    } catch {
+                        throw JsonError.failedParsingJsonError(message: "Json parsing failed.")
+                    }
+                    
+                    // resultJson non-nil
+                    guard let errorJson = errorData else {
+                        throw JsonError.noDataAvailable
+                    }
+                    
+                    throw AdcioNetworkError.platformError(
+                        statusCode: errorJson["statusCode"] as? Int ?? 400,
+                        message: errorJson["message"] as? String ?? "Unknown error occured.")
+                    
+                    debugPrint("\(Date()) - \(url) : \(method) Error request - statusCode(\(statusCode))")
+                }
+            } else if case .failure(let error) = response.result {
+                throw AdcioNetworkError.serverError
             }
         }
         
