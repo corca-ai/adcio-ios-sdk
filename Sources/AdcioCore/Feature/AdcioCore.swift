@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class AdcioCore {
+public final class AdcioCore {
     
     public static let shared = AdcioCore()
     
