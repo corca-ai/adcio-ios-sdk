@@ -22,10 +22,9 @@ public struct AdcioAgent: UIViewRepresentable {
     }
     
     public func makeUIView(context: Context) -> WKWebView {
-        let startPage = "start/"
-let agentUrlPath:String =  "\(baseUrl)/\(clientId)/start/?platform=ios&show_appbar=\(showAppBar)"
-let agentUrl: URL = URL(string: agentURL)!
-        webView.load(URLRequest(url: URL(string: agentURL)!))
+        let agentUrlPath: String = "\(baseUrl)/\(clientId)/start/?platform=ios&show_appbar=\(showAppBar)"
+        let agentUrl: URL = URL(string: agentUrlPath)!
+        webView.load(URLRequest(url: agentUrl))
         return webView
     }
     
