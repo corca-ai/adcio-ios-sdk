@@ -18,13 +18,13 @@ public struct AdcioAgent: UIViewRepresentable {
     ) throws {
         try AdcioCore.shared.clientId
         self.baseUrl = newURL.isEmpty ? baseUrl : newURL
-        self.clientId = clientId
+        self.clientId = try clientId ?? AdcioCore.shared.clientId
         self.showAppBar = showAppBar
     }
     
     public func makeUIView(context: Context) -> WKWebView {
         let startPage = "start/"
-        let agentURL = try? "\(baseUrl)/\(clientId ?? AdcioCore.shared.clientId)/\(startPage)?platform=ios&show_appbar=\(showAppBar)"
+        let agentURL = try? "\(baseUrl)/\(clientId)/\(startPage)?platform=ios&show_appbar=\(showAppBar)"
         webView.load(URLRequest(url: URL(string: agentURL ?? "")!))
         return webView
     }
