@@ -9,7 +9,7 @@ public struct AdcioAgent: UIViewRepresentable {
     private var clientId: String? = nil
     private var showAppBar: Bool = false
     
-    let webView = WKWebView()
+    private let webView = WKWebView()
     
     public init(
         baseUrl newURL: String = "",
