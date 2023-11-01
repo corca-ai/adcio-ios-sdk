@@ -12,12 +12,12 @@ public struct AdcioAgent: UIViewRepresentable {
     private let webView = WKWebView()
     
     public init(
-        baseUrl newBaseUrl: String = "",
-        clientId newClientId: String = "",
+        baseUrl: String = "",
+        clientId: String = "",
         showAppBar: Bool = false
     ) throws {
-        self.baseUrl = newBaseUrl.isEmpty ? baseUrl : newBaseUrl
-        self.clientId = try newClientId.isEmpty ? AdcioCore.shared.clientId : newClientId
+        self.baseUrl = baseUrl.isEmpty ? self.baseUrl : baseUrl
+        self.clientId = try clientId.isEmpty ? AdcioCore.shared.clientId : clientId
         self.showAppBar = showAppBar
     }
     
