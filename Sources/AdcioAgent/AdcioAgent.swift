@@ -5,7 +5,7 @@ import AdcioCore
 
 public struct AdcioAgent: UIViewRepresentable {
     
-    private var baseUrl: String? = "https://agent-dev.adcio.ai"
+    private var baseUrl: String? = "https://agent.adcio.ai"
     private var clientId: String? = nil
     private var showAppBar: Bool = false
     
