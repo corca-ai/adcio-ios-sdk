@@ -38,7 +38,11 @@ let package = Package(
             ]
         ),
         .target(
-            name: "AdcioAgent"),
+            name: "AdcioAgent",
+            dependencies: [
+                .target(name: "AdcioCore")
+            ]
+        ),
         .target(
             name: "AdcioPlacement",
             dependencies: [
