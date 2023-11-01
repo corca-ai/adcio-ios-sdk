@@ -5,27 +5,26 @@ import AdcioCore
 
 public struct AdcioAgent: UIViewRepresentable {
     
-    private var baseUrl: String? = "https://agent.adcio.ai"
-    private var clientId: String? = nil
+    private var baseUrl: String = "https://agent.adcio.ai"
+    private var clientId: String = ""
     private var showAppBar: Bool = false
     
     private let webView = WKWebView()
     
     public init(
-        baseUrl newURL: String = "",
-        clientId: String? = nil,
+        baseUrl newBaseUrl: String = "",
+        clientId newClientId: String = "",
         showAppBar: Bool = false
     ) throws {
-        try AdcioCore.shared.clientId
-        self.baseUrl = newURL.isEmpty ? baseUrl : newURL
-        self.clientId = try clientId ?? AdcioCore.shared.clientId
+        self.baseUrl = newBaseUrl.isEmpty ? baseUrl : newBaseUrl
+        self.clientId = try newClientId.isEmpty ? AdcioCore.shared.clientId : newClientId
         self.showAppBar = showAppBar
     }
     
     public func makeUIView(context: Context) -> WKWebView {
         let startPage = "start/"
-        let agentURL = try? "\(baseUrl)/\(clientId)/\(startPage)?platform=ios&show_appbar=\(showAppBar)"
-        webView.load(URLRequest(url: URL(string: agentURL ?? "")!))
+        let agentURL: String = "\(baseUrl)/\(clientId)/\(startPage)?platform=ios&show_appbar=\(showAppBar)"
+        webView.load(URLRequest(url: URL(string: agentURL)!))
         return webView
     }
     
