@@ -3,6 +3,7 @@
 
 import Foundation
 import AdcioCore
+import AdcioAnalytics
 
 private let BASE_URL = "https://api.adcio.ai/"
 
@@ -26,6 +27,8 @@ public final class AdcioPlacement {
         onSuccess: @escaping (Data) -> Void,
         onFailure: @escaping (Error) -> Void
     ) throws {
+        AdcioAnalytics.shared.clearImpressionHistory()
+        
         SuggestionAPI.shared.adcioCreateSuggestion(
             "\(baseUrl ?? BASE_URL)",
             sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
