@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "AdcioCore",
+    name: "AdcioOpenSDK",
     platforms: [
         .iOS(.v13)
     ],
@@ -26,7 +26,7 @@ let package = Package(
             targets: ["AdcioPlacement"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", Version(5,1,0)..<Version(6,0,0))
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.8.1"))
     ],
     targets: [
         .target(
@@ -35,6 +35,7 @@ let package = Package(
             name: "AdcioAnalytics",
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire"),
+                .target(name: "AdcioCore")
             ]
         ),
         .target(
