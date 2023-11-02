@@ -4,7 +4,7 @@
 import Foundation
 import AdcioCore
 
-private let BASE_URL = "https://receiver-dev.adcio.ai/"
+private let baseUrl = "https://receiver.adcio.ai/"
 
 public final class AdcioAnalytics {
     public static let shared = AdcioAnalytics()
@@ -19,12 +19,12 @@ public final class AdcioAnalytics {
     
     public func onClick(
         option: AdcioLogOption,
-        baseUrl: String? = nil,
+        baseUrl url: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
     ) {
         PerformanceAPI.shared.callPerformance(
-            "\(baseUrl ?? BASE_URL)performance/click",
+            "\(url ?? baseUrl)performance/click",
             requestId: option.requestId,
             adsetId: option.adsetId,
             onSuccess: { data in
@@ -40,14 +40,14 @@ public final class AdcioAnalytics {
     
     public func onImpression(
         option: AdcioLogOption,
-        baseUrl: String? = nil,
+        baseUrl url: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
     ) {
         impressionHistory.append(option.adsetId)
         
         PerformanceAPI.shared.callPerformance(
-            "\(baseUrl ?? BASE_URL)performance/impression",
+            "\(url ?? baseUrl)performance/impression",
             requestId: option.requestId,
             adsetId: option.adsetId,
             onSuccess: { data in
@@ -69,12 +69,12 @@ public final class AdcioAnalytics {
         deviceId: String? = nil,
         storeId: String? = nil,
         customerId: String? = nil,
-        baseUrl: String? = nil,
+        baseUrl url: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
     ) throws {
         EventAPI.shared.callPurchaseEvent(
-            "\(baseUrl ?? BASE_URL)events/purchase",
+            "\(url ?? baseUrl)events/purchase",
             sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
             deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
             storeId: try storeId ?? AdcioCore.shared.storeId,
@@ -102,12 +102,12 @@ public final class AdcioAnalytics {
         customerId: String? = nil,
         productIdOnStore: String? = nil,
         referrer: String? = nil,
-        baseUrl: String? = nil,
+        baseUrl url: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
     ) throws {
         EventAPI.shared.callPageViewEvent(
-            "\(baseUrl ?? BASE_URL)events/view",
+            "\(url ?? baseUrl)events/view",
             sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
             deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
             storeId: try storeId ?? AdcioCore.shared.storeId,
@@ -134,12 +134,12 @@ public final class AdcioAnalytics {
         deviceId: String? = nil,
         storeId: String? = nil,
         customerId: String? = nil,
-        baseUrl: String? = nil,
+        baseUrl url: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
     ) throws {
         EventAPI.shared.callAddToCartEvent(
-            "\(baseUrl ?? BASE_URL)events/add-to-cart",
+            "\(url ?? baseUrl)events/add-to-cart",
             sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
             deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
             cartId: cartId,
