@@ -21,7 +21,9 @@ final class EventAPI {
         customerId: String? = nil,
         productIdOnStore: String? = nil,
         title: String? = nil,
-        referrer: String? = nil
+        referrer: String? = nil,
+        onSuccess: ((Data) -> Void)? = nil,
+        onFailure: @escaping (Error) -> Void
     ) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionId
@@ -35,7 +37,19 @@ final class EventAPI {
         
         APIManager.request(
             url,
-            parameters: parameters
+            parameters: parameters,
+            completion: { result in
+                switch result {
+                case .success(let data):
+                    // success
+                    if let onSuccess = onSuccess {
+                        onSuccess(data)
+                    }
+                case .failure(let error):
+                    // error
+                    onFailure(error)
+                }
+            }
         )
     }
     
@@ -47,7 +61,9 @@ final class EventAPI {
         orderId: String,
         productIdOnStore: String,
         amount: Int,
-        customerId: String? = nil
+        customerId: String? = nil,
+        onSuccess: ((Data) -> Void)? = nil,
+        onFailure: @escaping (Error) -> Void
     ) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionId
@@ -60,7 +76,19 @@ final class EventAPI {
         
         APIManager.request(
             url,
-            parameters: parameters
+            parameters: parameters,
+            completion: { result in
+                switch result {
+                case .success(let data):
+                    // success
+                    if let onSuccess = onSuccess {
+                        onSuccess(data)
+                    }
+                case .failure(let error):
+                    // error
+                    onFailure(error)
+                }
+            }
         )
     }
     
@@ -71,7 +99,9 @@ final class EventAPI {
         cartId: String,
         storeId: String,
         productIdOnStore: String,
-        customerId: String? = nil
+        customerId: String? = nil,
+        onSuccess: ((Data) -> Void)? = nil,
+        onFailure: @escaping (Error) -> Void
     ) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionId
@@ -83,7 +113,19 @@ final class EventAPI {
         
         APIManager.request(
             url,
-            parameters: parameters
+            parameters: parameters,
+            completion: { result in
+                switch result {
+                case .success(let data):
+                    // success
+                    if let onSuccess = onSuccess {
+                        onSuccess(data)
+                    }
+                case .failure(let error):
+                    // error
+                    onFailure(error)
+                }
+            }
         )
     }
 }

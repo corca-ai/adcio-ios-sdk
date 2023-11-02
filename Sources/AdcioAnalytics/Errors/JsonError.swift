@@ -9,5 +9,5 @@ import Foundation
 
 public enum JsonError: Error {
     case failedParsingJsonError(message: String)
-    case noDataAvailable
+    case noDataAvailable(message: String)
 }

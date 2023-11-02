@@ -8,7 +8,7 @@
 import Foundation
 
 public enum AdcioNetworkError: Error {
-    case unregisteredIdError
     case serverError
     case platformError(statusCode: Int, message: String)
+    case emptyStatusCodeError(message: String)
 }

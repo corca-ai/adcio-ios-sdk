@@ -15,7 +15,9 @@ final class PerformanceAPI {
     func callPerformance(
         _ url: String,
         requestId: String,
-        adsetId: String
+        adsetId: String,
+        onSuccess: ((Data) -> Void)? = nil,
+        onFailure: @escaping (Error) -> Void
     ) {
         var parameters: [String : Any] = [:]
         parameters["requestId"] = requestId
@@ -23,7 +25,19 @@ final class PerformanceAPI {
         
         APIManager.request(
             url,
-            parameters: parameters
+            parameters: parameters,
+            completion: { result in
+                switch result {
+                case .success(let data):
+                    // success
+                    if let onSuccess = onSuccess {
+                        onSuccess(data)
+                    }
+                case .failure(let error):
+                    // error
+                    onFailure(error)
+                }
+            }
         )
     }
 }

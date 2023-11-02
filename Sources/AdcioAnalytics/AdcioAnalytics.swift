@@ -19,25 +19,45 @@ public final class AdcioAnalytics {
     
     public func onClick(
         option: AdcioLogOption,
-        baseUrl: String? = nil
+        baseUrl: String? = nil,
+        onSuccess: ((Data) -> Void)? = nil,
+        onFailure: @escaping (Error) -> Void
     ) {
         PerformanceAPI.shared.callPerformance(
             "\(baseUrl ?? BASE_URL)performance/click",
             requestId: option.requestId,
-            adsetId: option.adsetId
+            adsetId: option.adsetId,
+            onSuccess: { data in
+                if let onSuccess = onSuccess {
+                    onSuccess(data)
+                }
+            },
+            onFailure: { error in
+                onFailure(error)
+            }
         )
     }
     
     public func onImpression(
         option: AdcioLogOption,
-        baseUrl: String? = nil
+        baseUrl: String? = nil,
+        onSuccess: ((Data) -> Void)? = nil,
+        onFailure: @escaping (Error) -> Void
     ) {
         impressionHistory.append(option.adsetId)
         
         PerformanceAPI.shared.callPerformance(
             "\(baseUrl ?? BASE_URL)performance/impression",
             requestId: option.requestId,
-            adsetId: option.adsetId
+            adsetId: option.adsetId,
+            onSuccess: { data in
+                if let onSuccess = onSuccess {
+                    onSuccess(data)
+                }
+            },
+            onFailure: { error in
+                onFailure(error)
+            }
         )
     }
     
@@ -49,7 +69,9 @@ public final class AdcioAnalytics {
         deviceId: String? = nil,
         storeId: String? = nil,
         customerId: String? = nil,
-        baseUrl: String? = nil
+        baseUrl: String? = nil,
+        onSuccess: ((Data) -> Void)? = nil,
+        onFailure: @escaping (Error) -> Void
     ) {
         lazy var sessionIdValue: String = try! AdcioCore.shared.sessionId()
         lazy var deviceIdValue: String = try! AdcioCore.shared.deviceId()
@@ -63,7 +85,15 @@ public final class AdcioAnalytics {
             orderId: orderId,
             productIdOnStore: productIdOnStore,
             amount: amount,
-            customerId: customerId
+            customerId: customerId,
+            onSuccess: { data in
+                if let onSuccess = onSuccess {
+                    onSuccess(data)
+                }
+            },
+            onFailure: { error in
+                onFailure(error)
+            }
         )
     }
     
@@ -76,7 +106,9 @@ public final class AdcioAnalytics {
         customerId: String? = nil,
         productIdOnStore: String? = nil,
         referrer: String? = nil,
-        baseUrl: String? = nil
+        baseUrl: String? = nil,
+        onSuccess: ((Data) -> Void)? = nil,
+        onFailure: @escaping (Error) -> Void
     ) {
         lazy var sessionIdValue: String = try! AdcioCore.shared.sessionId()
         lazy var deviceIdValue: String = try! AdcioCore.shared.deviceId()
@@ -91,7 +123,15 @@ public final class AdcioAnalytics {
             customerId: customerId,
             productIdOnStore: productIdOnStore,
             title: title ?? path,
-            referrer: referrer
+            referrer: referrer,
+            onSuccess: { data in
+                if let onSuccess = onSuccess {
+                    onSuccess(data)
+                }
+            },
+            onFailure: { error in
+                onFailure(error)
+            }
         )
     }
     
@@ -102,7 +142,9 @@ public final class AdcioAnalytics {
         deviceId: String? = nil,
         storeId: String? = nil,
         customerId: String? = nil,
-        baseUrl: String? = nil
+        baseUrl: String? = nil,
+        onSuccess: ((Data) -> Void)? = nil,
+        onFailure: @escaping (Error) -> Void
     ) {
         lazy var sessionIdValue: String = try! AdcioCore.shared.sessionId()
         lazy var deviceIdValue: String = try! AdcioCore.shared.deviceId()
@@ -115,7 +157,15 @@ public final class AdcioAnalytics {
             cartId: cartId,
             storeId: storeId ?? storeIdValue,
             productIdOnStore: productIdOnStore,
-            customerId: customerId
+            customerId: customerId,
+            onSuccess: { data in
+                if let onSuccess = onSuccess {
+                    onSuccess(data)
+                }
+            },
+            onFailure: { error in
+                onFailure(error)
+            }
         )
     }
 }
