@@ -72,16 +72,12 @@ public final class AdcioAnalytics {
         baseUrl: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
-    ) {
-        lazy var sessionIdValue: String = try! AdcioCore.shared.sessionId()
-        lazy var deviceIdValue: String = try! AdcioCore.shared.deviceId()
-        lazy var storeIdValue: String = try! AdcioCore.shared.storeId
-        
+    ) throws {
         EventAPI.shared.callPurchaseEvent(
             "\(baseUrl ?? BASE_URL)events/purchase",
-            sessionId: sessionId ?? sessionIdValue,
-            deviceId: deviceId ?? deviceIdValue,
-            storeId: storeId ?? storeIdValue,
+            sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
+            deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
+            storeId: try storeId ?? AdcioCore.shared.storeId,
             orderId: orderId,
             productIdOnStore: productIdOnStore,
             amount: amount,
@@ -109,16 +105,12 @@ public final class AdcioAnalytics {
         baseUrl: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
-    ) {
-        lazy var sessionIdValue: String = try! AdcioCore.shared.sessionId()
-        lazy var deviceIdValue: String = try! AdcioCore.shared.deviceId()
-        lazy var storeIdValue: String = try! AdcioCore.shared.storeId
-        
+    ) throws {
         EventAPI.shared.callPageViewEvent(
             "\(baseUrl ?? BASE_URL)events/view",
-            sessionId: sessionId ?? sessionIdValue,
-            deviceId: deviceId ?? deviceIdValue,
-            storeId: storeId ?? storeIdValue,
+            sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
+            deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
+            storeId: try storeId ?? AdcioCore.shared.storeId,
             path: path,
             customerId: customerId,
             productIdOnStore: productIdOnStore,
@@ -145,17 +137,13 @@ public final class AdcioAnalytics {
         baseUrl: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
-    ) {
-        lazy var sessionIdValue: String = try! AdcioCore.shared.sessionId()
-        lazy var deviceIdValue: String = try! AdcioCore.shared.deviceId()
-        lazy var storeIdValue: String = try! AdcioCore.shared.storeId
-        
+    ) throws {
         EventAPI.shared.callAddToCartEvent(
             "\(baseUrl ?? BASE_URL)events/add-to-cart",
-            sessionId: sessionId ?? sessionIdValue,
-            deviceId: deviceId ?? deviceIdValue,
+            sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
+            deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
             cartId: cartId,
-            storeId: storeId ?? storeIdValue,
+            storeId: try storeId ?? AdcioCore.shared.storeId,
             productIdOnStore: productIdOnStore,
             customerId: customerId,
             onSuccess: { data in
