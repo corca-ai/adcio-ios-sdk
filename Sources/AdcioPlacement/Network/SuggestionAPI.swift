@@ -25,11 +25,11 @@ final class SuggestionAPI {
         age: String?,
         gender: Gender?,
         area: String?,
-        onSuccess: @escaping (Data) -> Void,
+        onSuccess: @escaping (AdcioSuggestionRawData) -> Void,
         onFailure: @escaping (Error) -> Void
     ) {
         var parameters: [String : Any] = [:]
-        parameters["seesionId"] = sessionId
+        parameters["sessionId"] = sessionId
         parameters["deviceId"] = deviceId
         parameters["placementId"] = placementId
         parameters["fromAgent"] = fromAgent
@@ -41,12 +41,12 @@ final class SuggestionAPI {
         if area != nil { parameters["area"] = area }
         
         APIManager.request(
-            url,
+            "\(url)suggestions",
             parameters: parameters,
             completion: { result in
                 switch result {
-                case .success(let data):
-                    onSuccess(data)
+                case .success(let adcioSuggestionRawData):
+                    onSuccess(adcioSuggestionRawData)
                 case .failure(let error):
                     onFailure(error)
                 }

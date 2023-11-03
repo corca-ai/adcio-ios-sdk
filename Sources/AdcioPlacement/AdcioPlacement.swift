@@ -24,7 +24,7 @@ public final class AdcioPlacement {
         sessionId: String? = nil,
         deviceId: String? = nil,
         baseUrl: String? = nil,
-        onSuccess: @escaping (Data) -> Void,
+        onSuccess: @escaping (AdcioSuggestionRawData) -> Void,
         onFailure: @escaping (Error) -> Void
     ) throws {
         AdcioAnalytics.shared.clearImpressionHistory()
@@ -41,8 +41,8 @@ public final class AdcioPlacement {
             age: age,
             gender: gender,
             area: area,
-            onSuccess: { data in
-                onSuccess(data)
+            onSuccess: { adcioSuggestionRawData in
+                onSuccess(adcioSuggestionRawData)
             },
             onFailure: { error in
                 onFailure(error)
