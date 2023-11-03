@@ -48,6 +48,8 @@ let package = Package(
             name: "AdcioPlacement",
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire"),
+                .target(name: "AdcioCore"),
+                .target(name: "AdcioAnalytics")
             ]
         )
     ]
