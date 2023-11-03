@@ -17,6 +17,7 @@ public struct Product : Codable {
     public let description: String
     public let image: String
     public let includeInRecommendation: Bool
+    // FIXME: data 타입 커버
     // public let data: [String : String]
     public let url: String?
     public let deepLink: String?
