@@ -5,7 +5,7 @@ import Foundation
 import AdcioCore
 import AdcioAnalytics
 
-private let BASE_URL = "https://api.adcio.ai/"
+private let baseUrl = "https://api.adcio.ai/"
 
 public final class AdcioPlacement {
     public static let shared = AdcioPlacement()
@@ -23,14 +23,14 @@ public final class AdcioPlacement {
         area: String? = nil,
         sessionId: String? = nil,
         deviceId: String? = nil,
-        baseUrl: String? = nil,
+        baseUrl url: String? = nil,
         onSuccess: @escaping (AdcioSuggestionRawData) -> Void,
         onFailure: @escaping (Error) -> Void
     ) throws {
         AdcioAnalytics.shared.clearImpressionHistory()
         
         SuggestionAPI.shared.adcioCreateSuggestion(
-            "\(baseUrl ?? BASE_URL)",
+            "\(url ?? baseUrl)",
             sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
             deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
             placementId: placementId,
