@@ -62,6 +62,14 @@ extension AdcioAgent {
         return false
     }
     
+    public func agentGoBack() -> Bool {
+        if webView.canGoBack {
+            webView.goBack()
+            return true
+        }
+        return false
+    }
+    
     func generateWKWebViewConfiguration() -> WKWebViewConfiguration {
 
         let preferences = WKPreferences()
