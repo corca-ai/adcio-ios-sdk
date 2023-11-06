@@ -18,6 +18,8 @@ public struct AdcioAgent: UIViewRepresentable {
     private var showAppBar: Bool = false
     let onClickProduct: (String) -> Void
     
+    private var webView: WKWebView = WKWebView()
+    
     public init(
         baseUrl: String = "",
         clientId: String = "",
@@ -28,6 +30,7 @@ public struct AdcioAgent: UIViewRepresentable {
         self.clientId = try clientId.isEmpty ? AdcioCore.shared.clientId : clientId
         self.showAppBar = showAppBar
         self.onClickProduct = onClickProduct
+        self.webView = WKWebView(frame: CGRect.zero, configuration: generateWKWebViewConfiguration())
     }
     
     public func makeCoordinator() -> AdcioCoordinator {
@@ -35,10 +38,8 @@ public struct AdcioAgent: UIViewRepresentable {
     }
 
     public func makeUIView(context: Context) -> WKWebView {
-
-        let webView = WKWebView(frame: CGRect.zero, configuration: generateWKWebViewConfiguration())
+        
         webView.navigationDelegate = context.coordinator
-
         
         let agentUrlPath: String = "\(baseUrl)/\(clientId)/start/?platform=ios&show_appbar=\(showAppBar)"
         let agentUrl: URL = URL(string: agentUrlPath)!
@@ -54,6 +55,13 @@ public struct AdcioAgent: UIViewRepresentable {
 
 extension AdcioAgent {
 
+    public func isAgentStartPage() -> Bool {
+        if let url = webView.url, url.absoluteString.contains("start/") {
+            return true
+        }
+        return false
+    }
+    
     func generateWKWebViewConfiguration() -> WKWebViewConfiguration {
 
         let preferences = WKPreferences()
