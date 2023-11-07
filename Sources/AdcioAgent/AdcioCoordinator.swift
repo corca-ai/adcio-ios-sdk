@@ -14,7 +14,7 @@ public class AdcioCoordinator: NSObject, WKNavigationDelegate, WKScriptMessageHa
     
     let onClickProduct: (String) -> Void
 
-    init(_ agent: AdcioAgent) {
+    internal init(_ agent: AdcioAgent) {
         self.onClickProduct = agent.onClickProduct
     }
     
