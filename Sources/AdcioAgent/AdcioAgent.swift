@@ -18,7 +18,7 @@ public struct AdcioAgent: UIViewRepresentable {
     private var showAppBar: Bool = false
     let onClickProduct: (String) -> Void
     
-    private var webView: WKWebView = WKWebView()
+    private var webView = WKWebView()
     
     public init(
         baseUrl: String = "",
@@ -70,11 +70,11 @@ extension AdcioAgent {
         return false
     }
     
-    func generateWKWebViewConfiguration() -> WKWebViewConfiguration {
+    private func generateWKWebViewConfiguration() -> WKWebViewConfiguration {
 
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = false
-
+     
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
 
