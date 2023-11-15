@@ -32,7 +32,7 @@ public final class AdcioAnalytics {
             sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
             deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
             storeId: try storeId ?? AdcioCore.shared.storeId,
-            customerId: customerId ?? "",
+            customerId: customerId,
             requestId: option.requestId,
             adsetId: option.adsetId,
             onSuccess: { data in
@@ -63,7 +63,7 @@ public final class AdcioAnalytics {
             sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
             deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
             storeId: try storeId ?? AdcioCore.shared.storeId,
-            customerId: customerId ?? "",
+            customerId: customerId,
             requestId: option.requestId,
             adsetId: option.adsetId,
             onSuccess: { data in

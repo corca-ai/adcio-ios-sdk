@@ -17,7 +17,7 @@ final class PerformanceAPI {
         sessionId: String,
         deviceId: String,
         storeId: String,
-        customerId: String,
+        customerId: String?,
         requestId: String,
         adsetId: String,
         onSuccess: ((Data) -> Void)? = nil,
