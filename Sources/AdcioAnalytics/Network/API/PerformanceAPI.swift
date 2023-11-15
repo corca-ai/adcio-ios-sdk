@@ -14,12 +14,20 @@ final class PerformanceAPI {
     
     func callPerformance(
         _ url: String,
+        sessionId: String,
+        deviceId: String,
+        storeId: String,
+        customerId: String,
         requestId: String,
         adsetId: String,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
     ) {
         var parameters: [String : Any] = [:]
+        parameters["sessionId"] = sessionId
+        parameters["deviceId"] = deviceId
+        parameters["storeId"] = storeId
+        parameters["customerId"] = customerId
         parameters["requestId"] = requestId
         parameters["adsetId"] = adsetId
         
