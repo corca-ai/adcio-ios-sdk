@@ -19,12 +19,20 @@ public final class AdcioAnalytics {
     
     public func onClick(
         option: AdcioLogOption,
+        sessionId: String? = nil,
+        deviceId: String? = nil,
+        storeId: String? = nil,
+        customerId: String? = nil,
         baseUrl url: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
-    ) {
+    ) throws {
         PerformanceAPI.shared.callPerformance(
             "\(url ?? baseUrl)performance/click",
+            sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
+            deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
+            storeId: try storeId ?? AdcioCore.shared.storeId,
+            customerId: customerId ?? "",
             requestId: option.requestId,
             adsetId: option.adsetId,
             onSuccess: { data in
@@ -40,14 +48,22 @@ public final class AdcioAnalytics {
     
     public func onImpression(
         option: AdcioLogOption,
+        sessionId: String? = nil,
+        deviceId: String? = nil,
+        storeId: String? = nil,
+        customerId: String? = nil,
         baseUrl url: String? = nil,
         onSuccess: ((Data) -> Void)? = nil,
         onFailure: @escaping (Error) -> Void
-    ) {
+    ) throws {
         impressionHistory.append(option.adsetId)
         
         PerformanceAPI.shared.callPerformance(
             "\(url ?? baseUrl)performance/impression",
+            sessionId: try sessionId ?? AdcioCore.shared.sessionId(),
+            deviceId: try deviceId ?? AdcioCore.shared.deviceId(),
+            storeId: try storeId ?? AdcioCore.shared.storeId,
+            customerId: customerId ?? "",
             requestId: option.requestId,
             adsetId: option.adsetId,
             onSuccess: { data in
