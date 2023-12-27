@@ -13,5 +13,5 @@ public enum HTTPClientResult {
 }
 
 public protocol HTTPClient {
-    func post(from url: URL, parameter: [String: Any], completion: @escaping (HTTPClientResult) -> Void)
+    func request(from url: URL, parameter: [String: Any], completion: @escaping (HTTPClientResult) -> Void)
 }

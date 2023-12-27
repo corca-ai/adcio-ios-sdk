@@ -9,14 +9,14 @@ import Foundation
 
 public class URLSessionHTTPClient: HTTPClient {
     private let session: URLSession
-    
+
     public init(session: URLSession = .shared) {
         self.session = session
     }
     
     private struct UnexpectedValuesRepresentation: Error {}
     
-    public func post(from url: URL, parameter: [String: Any], completion: @escaping (HTTPClientResult) -> Void) {
+    public func request(from url: URL, parameter: [String: Any], completion: @escaping (HTTPClientResult) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameter)
