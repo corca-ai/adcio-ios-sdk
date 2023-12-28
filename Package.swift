@@ -55,6 +55,9 @@ let package = Package(
             dependencies: ["AdcioAnalytics"]),
         .testTarget(
             name: "AdcioAgentTests",
-            dependencies: ["AdcioAgent"])
+            dependencies: ["AdcioAgent"]),
+        .testTarget(
+            name: "CoreTests",
+            dependencies: ["Core"]),
     ]
 )
