@@ -53,7 +53,11 @@ public struct Banner: Decodable {
     public let deletedAt: String?
 }
 
-public enum Gender: String {
-    case male = "male"
-    case female = "female"
+public enum Gender: CustomStringConvertible {
+    case male
+    case female
+    
+    public var description: String {
+        return "\(self)"
+    }
 }
