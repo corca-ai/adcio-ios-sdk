@@ -9,7 +9,7 @@ import Foundation
 import Core
 
 public final class PlacementClient {
-    private let baseUrl = "https://api.adcio.ai/suggestions"
+    private let url: URL
     private let client: HTTPClient
     private let loader: SessionLoader
     private let deviceId: String
@@ -18,11 +18,13 @@ public final class PlacementClient {
     public init(
         client: HTTPClient, 
         loader: SessionLoader = SessionClient.instance,
-        deviceId: String = DeviceIDLoader.indentifier
+        deviceId: String = DeviceIDLoader.indentifier,
+        url: URL = URL(string: "https://api.adcio.ai/suggestions")!
     ) {
         self.client = client
         self.loader = loader
         self.deviceId = deviceId
+        self.url = url
     }
     
     public enum Error: Swift.Error {
@@ -30,15 +32,15 @@ public final class PlacementClient {
         case invalidData
     }
     
-    func adcioCreateSuggestion(
+    public func adcioCreateSuggestion(
         placementId: String,
-        customerId: String?,
-        placementPositionX: Int?,
-        placementPositionY: Int?,
-        fromAgent: Bool,
-        age: String?,
-        gender: Gender?,
-        area: String?,
+        customerId: String? = nil,
+        placementPositionX: Int? = nil,
+        placementPositionY: Int? = nil,
+        fromAgent: Bool = false,
+        age: String? = nil,
+        gender: Gender? = nil,
+        area: String? = nil,
         completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
@@ -51,12 +53,10 @@ public final class PlacementClient {
         parameters["fromAgent"] = fromAgent
         if customerId != nil { parameters["customerId"] = customerId }
         if placementPositionX != nil { parameters["placementPositionX"] = placementPositionX }
-        if placementPositionY != nil { parameters["placementPositionY"] = placementPositionY }
+        if placementPositionY != nil { parameters["acementPositionY"] = placementPositionY }
         if age != nil { parameters["age"] = age }
         if gender != nil { parameters["gender"] = gender?.description }
         if area != nil { parameters["area"] = area }
-        
-        guard let url = URL(string: baseUrl) else { return }
         
         client.request(from: url,
                        parameter: parameters) { [weak self] result in
