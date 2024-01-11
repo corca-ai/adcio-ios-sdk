@@ -105,10 +105,6 @@ class AdcioPlacementTests: XCTestCase {
         return (sut, client)
     }
     
-    private func makeItem() -> (model: AdcioSuggestion, json: [String: Any]) {
-        let item = AdcioSuggestion()
-    }
-    
     private func failure(_ error: PlacementClient.Error) -> PlacementResult {
         return .failure(error)
     }
