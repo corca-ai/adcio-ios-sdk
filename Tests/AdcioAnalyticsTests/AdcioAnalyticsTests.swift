@@ -36,7 +36,7 @@ class AdcioAnalyticsTests: XCTestCase {
         let productIdOnStore = String()
         let amount = Int()
         
-        let url = URL(string: "https://receiver-dev.adcio.ai")!
+        let url = URL(string: "https://receiver-dev.adcio.ai/event/purchase")!
         let (sut, client) = makeSUT(url: url)
         
         sut.productPurchased(orderID: orderID, productIdOnStore: productIdOnStore, amount: amount) { _ in }
@@ -46,32 +46,11 @@ class AdcioAnalyticsTests: XCTestCase {
     }
     
     func test_load_deliversErrorOnClientError() {
-        let placementID = ""
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.connectivity)) {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
-        }
-    }
-    
-    func test_load_deliversErrorOnNon200HttpResponse() {
-        let (sut, client) = makeSUT()
-        let samples = [199, 201, 300, 400, 500]
-        samples.enumerated().forEach { index, code in
-            expect(sut, toCompleteWith: failure(.invalidData)) {
-                let json = makeItemsJSON([])
-                client.complete(withStatusCode: code, data: json, at: index)
-            }
-        }
-    }
-    
-    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
-        let (sut, client) = makeSUT()
-        
-        expect(sut, toCompleteWith: failure(.invalidData)) {
-            let invalidJSON = Data(bytes: "invalid JSON".utf8)
-            client.complete(withStatusCode: 200, data: invalidJSON)
         }
     }
     

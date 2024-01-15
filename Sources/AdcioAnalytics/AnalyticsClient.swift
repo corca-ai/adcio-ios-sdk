@@ -71,7 +71,7 @@ public class AnalyticsClient: AdcioAnalyzable {
         parameters["requestId"] = option.requestID
         parameters["adsetId"] = option.adsetID
         
-        guard let url = URL(string: baseURL.absoluteString + "performance/impression") else { return }
+        guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
                        parameter: parameters) { [weak self] result in
@@ -94,12 +94,7 @@ public class AnalyticsClient: AdcioAnalyzable {
         parameters["amount"] = amount
         parameters["customerId"] = nil
         
-        var components = URLComponents()
-        components.host = baseURL.absoluteString
-        components.path = baseURL.path + "event/purchase"
-        
-        print("####", components.url!)
-        guard let url = components.url else { return }
+        guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
                        parameter: parameters) { [weak self] result in
@@ -123,7 +118,7 @@ public class AnalyticsClient: AdcioAnalyzable {
         parameters["title"] = nil
         parameters["referrer"] = nil
         
-        guard let url = URL(string: baseURL.absoluteString + "event/purchase") else { return }
+        guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
                        parameter: parameters) { [weak self] result in
@@ -145,7 +140,7 @@ public class AnalyticsClient: AdcioAnalyzable {
         parameters["customerID"] = nil
         parameters["productIdOnStore"] = nil
         
-        guard let url = URL(string: baseURL.absoluteString + "event/addtocart") else { return }
+        guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
                        parameter: parameters) { [weak self] result in
@@ -164,6 +159,17 @@ public class AnalyticsClient: AdcioAnalyzable {
         } catch {
             return .failure(error)
         }
+    }
+    
+    private func makeRequestURL(with baseURL: URL) -> URL? {
+        var components = URLComponents()
+        components.scheme = baseURL.scheme
+        components.host = baseURL.host
+        components.path = baseURL.path
+        
+        guard let url = components.url else { return nil }
+        
+        return url
     }
 }
 
