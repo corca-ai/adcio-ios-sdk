@@ -8,7 +8,7 @@
 import Foundation
 import Core
 
-class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
+public class AnalyticsClient: AdcioAnalyzable {
     
     private let baseURL: URL
     private let apiClient: HTTPClient
@@ -16,8 +16,6 @@ class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
     private let deviceID: String
     private var sessionID: String?
     private let clientID: String
-    
-    private var impressionHistory: [String] = []
     
     public enum Error: Swift.Error {
         case connectivity
@@ -38,11 +36,7 @@ class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
         self.baseURL = baseURL
     }
     
-    func clear() {
-        impressionHistory.removeAll()
-    }
-    
-    func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
+   public func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
@@ -51,8 +45,12 @@ class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
         parameters["requestId"] = option.requestID
         parameters["adsetId"] = option.adsetID
         
-        guard let url = URL(string: baseURL.absoluteString + "performance/click") else { return }
-        
+       var components = URLComponents()
+       components.host = baseURL.absoluteString
+       components.path = "performance/click"
+       
+       guard let url = components.url else { return }
+       
         apiClient.request(from: url,
                        parameter: parameters) { [weak self] result in
             switch result {
@@ -64,7 +62,7 @@ class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
         }
     }
     
-    func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
+    public func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
@@ -86,7 +84,7 @@ class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
         }
     }
     
-    func productPurchased(orderID: String, productIdOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
+    public func productPurchased(orderID: String, productIdOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
@@ -96,7 +94,12 @@ class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
         parameters["amount"] = amount
         parameters["customerId"] = nil
         
-        guard let url = URL(string: baseURL.absoluteString + "event/purchase") else { return }
+        var components = URLComponents()
+        components.host = baseURL.absoluteString
+        components.path = baseURL.path + "event/purchase"
+        
+        print("####", components.url!)
+        guard let url = components.url else { return }
         
         apiClient.request(from: url,
                        parameter: parameters) { [weak self] result in
@@ -109,7 +112,7 @@ class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
         }
     }
     
-    func pageChanged(path: String, completion: @escaping (AnalyticsResult) -> Void) {
+    public func pageChanged(path: String, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
@@ -133,7 +136,7 @@ class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
         }
     }
     
-    func addToCart(cartId: String, productIdOnStore: String, completion: @escaping (AnalyticsResult) -> Void) {
+    public func addToCart(cartId: String, productIdOnStore: String, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
@@ -162,10 +165,6 @@ class AnalyticsClient: ImpressionHistoryManageable, AdcioAnalyzable {
             return .failure(error)
         }
     }
-}
-
-protocol ImpressionHistoryManageable {
-    func clear()
 }
 
 protocol AdcioAnalyzable {
