@@ -8,7 +8,21 @@
 import Foundation
 import Core
 
-public final class PlacementClient {
+public protocol PlacementRepogitory {
+    func adcioCreateSuggestion(
+        placementId: String,
+        customerId: String?,
+        placementPositionX: Int?,
+        placementPositionY: Int?,
+        fromAgent: Bool,
+        age: String?,
+        gender: Gender?,
+        area: String?,
+        completion: @escaping (PlacementResult) -> Void
+    )
+}
+
+public final class PlacementClient: PlacementRepogitory {
     private let url: URL
     private let client: HTTPClient
     private let loader: SessionLoader
@@ -16,7 +30,7 @@ public final class PlacementClient {
     private var sessionId: String?
     
     public init(
-        client: HTTPClient, 
+        client: HTTPClient = URLSessionHTTPClient(), 
         loader: SessionLoader = SessionClient.instance,
         deviceId: String = DeviceIDLoader.indentifier,
         url: URL = URL(string: "https://api.adcio.ai/suggestions")!

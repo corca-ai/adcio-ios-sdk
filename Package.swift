@@ -26,19 +26,24 @@ let package = Package(
         .library(
             name: "AdcioAgent",
             targets: ["AdcioAgent"]),
+        .library(
+            name: "Impression",
+            targets: ["Impression"]),
     ],
     targets: [
         .target(name: "Core"),
         .target(
             name: "AdcioPlacement",
             dependencies: [
-                .target(name: "Core")
+                .target(name: "Core"),
+                .target(name: "Impression")
             ]
         ),
         .target(
             name: "AdcioAnalytics",
             dependencies: [
-                .target(name: "Core")
+                .target(name: "Core"),
+                .target(name: "Impression")
             ]
         ),
         .target(
@@ -46,6 +51,10 @@ let package = Package(
             dependencies: [
                 .target(name: "Core")
             ]
+        ),
+        .target(
+            name: "Impression",
+            dependencies: []
         ),
         .testTarget(
             name: "AdcioPlacementTests",

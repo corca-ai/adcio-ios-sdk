@@ -8,7 +8,15 @@
 import Foundation
 import Core
 
-public class AnalyticsClient: AdcioAnalyzable {
+public protocol AnalyticsRepogitory {
+    func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
+    func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
+    func productPurchased(orderID: String, productIdOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
+    func pageChanged(path: String, completion: @escaping (AnalyticsResult) -> Void)
+    func addToCart(cartId: String, productIdOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
+}
+
+public class AnalyticsClient: AnalyticsRepogitory {
     
     private let baseURL: URL
     private let apiClient: HTTPClient
@@ -24,7 +32,7 @@ public class AnalyticsClient: AdcioAnalyzable {
     
     public init(
         clientID: String,
-        apiClient: HTTPClient,
+        apiClient: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
         deviceId: String = DeviceIDLoader.indentifier,
         baseURL: URL = URL(string: "https://receiver.adcio.ai/")!
@@ -171,12 +179,4 @@ public class AnalyticsClient: AdcioAnalyzable {
         
         return url
     }
-}
-
-protocol AdcioAnalyzable {
-    func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
-    func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
-    func productPurchased(orderID: String, productIdOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
-    func pageChanged(path: String, completion: @escaping (AnalyticsResult) -> Void)
-    func addToCart(cartId: String, productIdOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
 }
