@@ -126,7 +126,11 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["title"] = nil
         parameters["referrer"] = nil
         
-        guard let url = makeRequestURL(with: baseURL) else { return }
+        var components = URLComponents()
+        components.host = baseURL.absoluteString
+        components.path = "events/view"
+        
+        guard let url = components.url else { return }
         
         apiClient.request(from: url,
                        parameter: parameters) { [weak self] result in
