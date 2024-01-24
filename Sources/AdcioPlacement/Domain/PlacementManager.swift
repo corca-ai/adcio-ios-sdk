@@ -37,7 +37,7 @@ public final class PlacementManager: PlacementManageable {
                                       fromAgent: Bool, age: String? = nil,
                                       gender: Gender? = nil, area: String? = nil,
                                       completion: @escaping (PlacementResult) -> Void) {
-        client.adcioCreateSuggestion(placementId: placementID, customerId: customerID,
+        client.adcioCreateSuggestion(placementID: placementID, customerID: customerID,
                                      placementPositionX: placementPositionX, placementPositionY: placementPositionY,
                                      fromAgent: fromAgent, age: age,
                                      gender: gender, area: area, completion: completion)

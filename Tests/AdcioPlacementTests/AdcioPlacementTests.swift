@@ -24,7 +24,7 @@ class AdcioPlacementTests: XCTestCase {
         
         let (sut, client) = makeSUT(url: url)
         
-        sut.adcioCreateSuggestion(placementId: placementID) { _ in }
+        sut.adcioCreateSuggestion(placementID: placementID) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -35,8 +35,8 @@ class AdcioPlacementTests: XCTestCase {
         let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
         
-        sut.adcioCreateSuggestion(placementId: placementID) { _ in }
-        sut.adcioCreateSuggestion(placementId: placementID) { _ in }
+        sut.adcioCreateSuggestion(placementID: placementID) { _ in }
+        sut.adcioCreateSuggestion(placementID: placementID) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
@@ -119,7 +119,7 @@ class AdcioPlacementTests: XCTestCase {
         let placementID = ""
         let exp = expectation(description: "Wait for load completion")
         
-        sut.adcioCreateSuggestion(placementId: placementID) { receivedResult in
+        sut.adcioCreateSuggestion(placementID: placementID) { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedItems), .success(expectedItems)):
                 XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)

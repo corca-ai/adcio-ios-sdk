@@ -26,7 +26,7 @@ class AdcioAnalyticsTests: XCTestCase {
         let url = URL(string: "https://receiver-dev.adcio.ai/event/purchase")!
         let (sut, client) = makeSUT(url: url)
         
-        sut.productPurchased(orderID: orderID, productIdOnStore: productIdOnStore, amount: amount) { _ in }
+        sut.productPurchased(orderID: orderID, productIDOnStore: productIdOnStore, amount: amount) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -39,8 +39,8 @@ class AdcioAnalyticsTests: XCTestCase {
         let url = URL(string: "https://receiver-dev.adcio.ai/event/purchase")!
         let (sut, client) = makeSUT(url: url)
         
-        sut.productPurchased(orderID: orderID, productIdOnStore: productIdOnStore, amount: amount) { _ in }
-        sut.productPurchased(orderID: orderID, productIdOnStore: productIdOnStore, amount: amount) { _ in }
+        sut.productPurchased(orderID: orderID, productIDOnStore: productIdOnStore, amount: amount) { _ in }
+        sut.productPurchased(orderID: orderID, productIDOnStore: productIdOnStore, amount: amount) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
@@ -104,7 +104,7 @@ class AdcioAnalyticsTests: XCTestCase {
         let amount = Int()
         let exp = expectation(description: "Wait for load completion")
         
-        sut.productPurchased(orderID: orderID, productIdOnStore: productIdOnStore, amount: amount) { receivedResult in
+        sut.productPurchased(orderID: orderID, productIDOnStore: productIdOnStore, amount: amount) { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedItems), .success(expectedItems)):
                 XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)

@@ -10,8 +10,8 @@ import Core
 
 public protocol PlacementRepogitory {
     func adcioCreateSuggestion(
-        placementId: String,
-        customerId: String?,
+        placementID: String,
+        customerID: String?,
         placementPositionX: Int?,
         placementPositionY: Int?,
         fromAgent: Bool,
@@ -26,18 +26,18 @@ public final class PlacementClient: PlacementRepogitory {
     private let url: URL
     private let client: HTTPClient
     private let loader: SessionLoader
-    private let deviceId: String
-    private var sessionId: String?
+    private let deviceID: String
+    private var sessionID: String?
     
     public init(
         client: HTTPClient = URLSessionHTTPClient(), 
         loader: SessionLoader = SessionClient.instance,
-        deviceId: String = DeviceIDLoader.indentifier,
+        deviceID: String = DeviceIDLoader.indentifier,
         url: URL = URL(string: "https://api.adcio.ai/suggestions")!
     ) {
         self.client = client
         self.loader = loader
-        self.deviceId = deviceId
+        self.deviceID = deviceID
         self.url = url
     }
     
@@ -47,8 +47,8 @@ public final class PlacementClient: PlacementRepogitory {
     }
     
     public func adcioCreateSuggestion(
-        placementId: String,
-        customerId: String? = nil,
+        placementID: String,
+        customerID: String? = nil,
         placementPositionX: Int? = nil,
         placementPositionY: Int? = nil,
         fromAgent: Bool = false,
@@ -59,13 +59,13 @@ public final class PlacementClient: PlacementRepogitory {
     ) {
         var parameters: [String : Any] = [:]
         loader.loadSession { id in
-            sessionId = id
+            sessionID = id
         }
-        parameters["sessionId"] = sessionId
-        parameters["deviceId"] = deviceId
-        parameters["placementId"] = placementId
+        parameters["sessionId"] = sessionID
+        parameters["deviceId"] = deviceID
+        parameters["placementId"] = placementID
         parameters["fromAgent"] = fromAgent
-        if customerId != nil { parameters["customerId"] = customerId }
+        if customerID != nil { parameters["customerId"] = customerID }
         if placementPositionX != nil { parameters["placementPositionX"] = placementPositionX }
         if placementPositionY != nil { parameters["acementPositionY"] = placementPositionY }
         if age != nil { parameters["age"] = age }

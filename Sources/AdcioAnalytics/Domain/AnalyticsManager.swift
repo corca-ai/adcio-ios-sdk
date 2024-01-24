@@ -11,7 +11,7 @@ import Impression
 public protocol AnalyticsManageable {
     func impressable(with adSetID: AdSetID) -> Bool
     func append(with adSetID: AdSetID)
-    func addToCart(cartID: String, productIdOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
+    func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
     func pageChanged(path: String, completion: @escaping (AnalyticsResult) -> Void)
     func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productPurchased(orderID: String,productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
@@ -35,8 +35,8 @@ public final class AnalyticsManager: AnalyticsManageable {
         impressionManager.append(with: adSetID)
     }
     
-    public func addToCart(cartID: String, productIdOnStore: String, completion: @escaping (AnalyticsResult) -> Void) {
-        client.addToCart(cartId: cartID, productIdOnStore: productIdOnStore, completion: completion)
+    public func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void) {
+        client.addToCart(cartID: cartID, productIDOnStore: productIDOnStore, completion: completion)
     }
     
     public func pageChanged(path: String, completion: @escaping (AnalyticsResult) -> Void) {
@@ -48,7 +48,7 @@ public final class AnalyticsManager: AnalyticsManageable {
     }
     
     public func productPurchased(orderID: String,productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
-        client.productPurchased(orderID: orderID, productIdOnStore: productIDOnStore, amount: amount, completion: completion)
+        client.productPurchased(orderID: orderID, productIDOnStore: productIDOnStore, amount: amount, completion: completion)
     }
     
     public func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
