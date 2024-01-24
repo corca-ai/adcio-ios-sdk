@@ -116,8 +116,9 @@ public class AnalyticsClient: AnalyticsRepogitory {
     }
     
     public func pageChanged(path: String, customerID: String? = nil, productIDOnStore: String? = nil, title: String? = nil, referrer: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
+        print("##SessionID", sessionID)
+        
         var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
         parameters["path"] = path
@@ -125,6 +126,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["productIdOnStore"] = productIDOnStore
         parameters["title"] = title
         parameters["referrer"] = referrer
+        parameters["sessionId"] = sessionID
         
         var components = URLComponents()
         components.scheme = "https"
