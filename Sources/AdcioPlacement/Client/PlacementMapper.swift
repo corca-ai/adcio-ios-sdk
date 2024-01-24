@@ -12,7 +12,7 @@ internal final class PlacementMapper {
         public let suggestions: [AdcioSuggestion]
     }
     
-    private static var OK_200: Int { return 200 }
+    private static var OK_200: Int { return 201 }
     
     internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> [AdcioSuggestion] {
         guard response.statusCode == OK_200,
