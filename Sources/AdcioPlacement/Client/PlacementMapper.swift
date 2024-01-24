@@ -12,11 +12,11 @@ internal final class PlacementMapper {
         public let suggestions: [AdcioSuggestion]
     }
     
-    private static var OK_200: Int { return 201 }
+    private static var OK_201: Int { return 201 }
     
     internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> [AdcioSuggestion] {
         
-        guard response.statusCode == OK_200,
+        guard response.statusCode == OK_201,
             let root = try? JSONDecoder().decode(Root.self, from: data) else {
             throw PlacementClient.Error.invalidData
         }

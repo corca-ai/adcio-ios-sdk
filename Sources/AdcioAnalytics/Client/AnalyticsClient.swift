@@ -1,6 +1,6 @@
 //
 //  AnalyticsClient.swift
-//  
+//
 //
 //  Created by 유현명 on 1/11/24.
 //
@@ -44,7 +44,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         self.baseURL = baseURL
     }
     
-   public func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
+    public func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
@@ -53,14 +53,14 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["requestId"] = option.requestID
         parameters["adsetId"] = option.adsetID
         
-       var components = URLComponents()
-       components.host = baseURL.absoluteString
-       components.path = "performance/click"
-       
-       guard let url = components.url else { return }
-       
+        var components = URLComponents()
+        components.host = baseURL.absoluteString
+        components.path = "performance/click"
+        
+        guard let url = components.url else { return }
+        
         apiClient.request(from: url,
-                       parameter: parameters) { result in
+                          parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
@@ -82,7 +82,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
-                       parameter: parameters) { result in
+                          parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
@@ -105,7 +105,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
-                       parameter: parameters) { result in
+                          parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
@@ -132,8 +132,10 @@ public class AnalyticsClient: AnalyticsRepogitory {
         
         guard let url = components.url else { return }
         
+        print("##1 url", url)
+        
         apiClient.request(from: url,
-                       parameter: parameters) { result in
+                          parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
@@ -155,7 +157,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
-                       parameter: parameters) { result in
+                          parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
@@ -165,11 +167,29 @@ public class AnalyticsClient: AnalyticsRepogitory {
         }
     }
     
+    private struct Root: Decodable {
+        public let isSuccess: Bool
+    }
+    
+    private static var OK_201: Int { return 201 }
+    
     private static func map(_ data: Data, from response: HTTPURLResponse) -> AnalyticsResult {
+        
         do {
-            return .success(true)
+            let isSuccess = try AnalyticsMapper.map(data, from: response)
+            return .success(isSuccess)
         } catch {
             return .failure(error)
+        }
+    }
+    
+    struct AnalyticsMapper {
+        internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> Bool {
+            guard response.statusCode == OK_201, let root = try? JSONDecoder().decode(Root.self, from: data) else {
+                throw AnalyticsClient.Error.invalidData
+            }
+            
+            return root.isSuccess
         }
     }
     
