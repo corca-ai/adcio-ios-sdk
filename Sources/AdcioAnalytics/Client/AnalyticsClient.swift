@@ -131,6 +131,8 @@ public class AnalyticsClient: AnalyticsRepogitory {
         components.host = baseURL.absoluteString
         components.path = "events/view"
         
+        print("##00", components.url!)
+        
         guard let url = components.url?.absoluteURL else {
             print("##0")
             return
