@@ -121,7 +121,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
         parameters["path"] = path
-        parameters["customerID"] = customerID
+        parameters["customerId"] = customerID
         parameters["productIdOnStore"] = productIDOnStore
         parameters["title"] = title
         parameters["referrer"] = referrer
