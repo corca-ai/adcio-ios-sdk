@@ -18,6 +18,8 @@ public class URLSessionHTTPClient: HTTPClient {
     
     public func request(from url: URL, parameter: [String: Any], completion: @escaping (HTTPClientResult) -> Void) {
         var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameter)
         
