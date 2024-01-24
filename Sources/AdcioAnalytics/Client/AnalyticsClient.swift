@@ -54,10 +54,13 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["adsetId"] = option.adsetID
         
         var components = URLComponents()
+        components.scheme = "https"
         components.host = baseURL.absoluteString
-        components.path = "performance/click"
+        components.path = "/performance/click"
         
-        guard let url = components.url else { return }
+        guard let url = components.url?.absoluteURL else {
+            return
+        }
         
         apiClient.request(from: url,
                           parameter: parameters) { result in
@@ -79,7 +82,14 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["requestId"] = option.requestID
         parameters["adsetId"] = option.adsetID
         
-        guard let url = makeRequestURL(with: baseURL) else { return }
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = baseURL.absoluteString
+        components.path = "/performance/impression"
+        
+        guard let url = components.url?.absoluteURL else {
+            return
+        }
         
         apiClient.request(from: url,
                           parameter: parameters) { result in
@@ -102,7 +112,14 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["amount"] = amount
         parameters["customerId"] = nil
         
-        guard let url = makeRequestURL(with: baseURL) else { return }
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = baseURL.absoluteString
+        components.path = "/events/purchase"
+        
+        guard let url = components.url?.absoluteURL else {
+            return
+        }
         
         apiClient.request(from: url,
                           parameter: parameters) { result in
@@ -116,7 +133,6 @@ public class AnalyticsClient: AnalyticsRepogitory {
     }
     
     public func pageChanged(path: String, customerID: String? = nil, productIDOnStore: String? = nil, title: String? = nil, referrer: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
-        print("##SessionID", sessionID)
         
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID()
@@ -136,8 +152,6 @@ public class AnalyticsClient: AnalyticsRepogitory {
         guard let url = components.url?.absoluteURL else {
             return
         }
-        
-        print("##parameter", parameters)
         
         apiClient.request(from: url,
                           parameter: parameters) { result in
@@ -159,7 +173,14 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["customerID"] = nil
         parameters["productIdOnStore"] = nil
         
-        guard let url = makeRequestURL(with: baseURL) else { return }
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = baseURL.absoluteString
+        components.path = "/events/add-to-cart"
+        
+        guard let url = components.url?.absoluteURL else {
+            return
+        }
         
         apiClient.request(from: url,
                           parameter: parameters) { result in
@@ -200,13 +221,11 @@ public class AnalyticsClient: AnalyticsRepogitory {
     
     struct AnalyticsMapper {
         internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> Bool {
-            print("#####response", response.statusCode)
             
             guard response.statusCode == OK_201, let root = try? JSONDecoder().decode(Root.self, from: data) else {
                 throw AnalyticsClient.Error.invalidData
             }
             
-            print("#####")
             return root.success
         }
     }
