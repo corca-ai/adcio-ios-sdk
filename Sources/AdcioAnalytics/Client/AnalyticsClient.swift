@@ -127,10 +127,11 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["referrer"] = nil
         
         var components = URLComponents()
+        components.scheme = baseURL.scheme
         components.host = baseURL.absoluteString
         components.path = "events/view"
         
-        guard let url = components.url else {
+        guard let url = components.url?.absoluteURL else {
             print("##0")
             return
         }
