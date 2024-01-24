@@ -169,7 +169,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
     }
     
     private struct Root: Decodable {
-        public let isSuccess: Bool
+        public let success: Bool
     }
     
     private static var OK_201: Int { return 201 }
@@ -190,7 +190,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
                 throw AnalyticsClient.Error.invalidData
             }
             
-            return root.isSuccess
+            return root.success
         }
     }
     
