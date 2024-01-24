@@ -79,8 +79,6 @@ public final class PlacementClient: PlacementRepogitory {
                        parameter: parameters) { result in
             switch result {
             case let .success(data, response):
-                print("###parameters", parameters)
-                print("###url", response.url)
                 completion(PlacementClient.map(data, from: response))
             case .failure:
                 completion(.failure(PlacementClient.Error.connectivity))

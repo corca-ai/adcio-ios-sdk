@@ -21,7 +21,12 @@ public class URLSessionHTTPClient: HTTPClient {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: parameter)
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameter, options: []) else { return }
+        
+        request.httpBody = httpBody
+        
+        print("###request", request.httpBody)
         
         session.dataTask(with: request) { data, response, error in
             if let error = error {
