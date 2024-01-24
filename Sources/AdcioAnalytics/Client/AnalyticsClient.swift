@@ -135,6 +135,8 @@ public class AnalyticsClient: AnalyticsRepogitory {
             return
         }
         
+        print("##parameter", parameters)
+        
         apiClient.request(from: url,
                           parameter: parameters) { result in
             switch result {
