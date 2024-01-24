@@ -12,7 +12,7 @@ public protocol AnalyticsRepogitory {
     func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productPurchased(orderID: String, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
-    func pageChanged(path: String, completion: @escaping (AnalyticsResult) -> Void)
+    func pageChanged(path: String, customerID: String?, productIDOnStore: String?, title: String?, referrer: String?, completion: @escaping (AnalyticsResult) -> Void)
     func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
 }
 
@@ -115,32 +115,25 @@ public class AnalyticsClient: AnalyticsRepogitory {
         }
     }
     
-    public func pageChanged(path: String, completion: @escaping (AnalyticsResult) -> Void) {
+    public func pageChanged(path: String, customerID: String? = nil, productIDOnStore: String? = nil, title: String? = nil, referrer: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
         parameters["path"] = path
-        parameters["customerID"] = nil
-        parameters["productIdOnStore"] = nil
-        parameters["title"] = nil
-        parameters["referrer"] = nil
+        parameters["customerID"] = customerID
+        parameters["productIdOnStore"] = productIDOnStore
+        parameters["title"] = title
+        parameters["referrer"] = referrer
         
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
         components.path = "/events/view"
         
-        print("##00", baseURL.scheme)
-        print("##01", baseURL.absoluteString)
-        print("##02", components.path)
-        
         guard let url = components.url?.absoluteURL else {
-            print("##0")
             return
         }
-        
-        print("##1 url", url)
         
         apiClient.request(from: url,
                           parameter: parameters) { result in
