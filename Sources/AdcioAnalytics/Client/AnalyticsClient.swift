@@ -186,6 +186,8 @@ public class AnalyticsClient: AnalyticsRepogitory {
     
     struct AnalyticsMapper {
         internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> Bool {
+            print("#####response", response.statusCode)
+            
             guard response.statusCode == OK_201, let root = try? JSONDecoder().decode(Root.self, from: data) else {
                 throw AnalyticsClient.Error.invalidData
             }
