@@ -190,6 +190,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
                 throw AnalyticsClient.Error.invalidData
             }
             
+            print("#####")
             return root.success
         }
     }
