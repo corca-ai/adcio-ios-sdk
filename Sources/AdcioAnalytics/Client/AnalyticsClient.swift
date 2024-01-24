@@ -22,7 +22,6 @@ public class AnalyticsClient: AnalyticsRepogitory {
     private let apiClient: HTTPClient
     private let loader: SessionLoader
     private let deviceID: String
-    private var sessionID: String?
     private let clientID: String
     
     public enum Error: Swift.Error {
@@ -45,8 +44,9 @@ public class AnalyticsClient: AnalyticsRepogitory {
     }
     
     public func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
+    
         var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
+        parameters["sessionId"] = sessionID()
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
         parameters["customerId"] = nil
@@ -72,7 +72,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
     
     public func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
+        parameters["sessionId"] = sessionID()
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
         parameters["customerId"] = nil
@@ -94,7 +94,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
     
     public func productPurchased(orderID: String, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
+        parameters["sessionId"] = sessionID()
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
         parameters["orderId"] = orderID
@@ -119,6 +119,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         print("##SessionID", sessionID)
         
         var parameters: [String : Any] = [:]
+        parameters["sessionId"] = sessionID()
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
         parameters["path"] = path
@@ -126,7 +127,6 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["productIdOnStore"] = productIDOnStore
         parameters["title"] = title
         parameters["referrer"] = referrer
-        parameters["sessionId"] = sessionID
         
         var components = URLComponents()
         components.scheme = "https"
@@ -152,7 +152,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
     
     public func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
+        parameters["sessionId"] = sessionID()
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
         parameters["path"] = cartID
@@ -170,6 +170,16 @@ public class AnalyticsClient: AnalyticsRepogitory {
                 completion(.failure(AnalyticsClient.Error.connectivity))
             }
         }
+    }
+    
+    private func sessionID() -> SessionID {
+        var sessionID = String()
+        
+        loader.loadSession { id in
+            sessionID = id
+        }
+        
+        return sessionID
     }
     
     private struct Root: Decodable {
