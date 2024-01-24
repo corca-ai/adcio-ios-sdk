@@ -60,7 +60,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
        guard let url = components.url else { return }
        
         apiClient.request(from: url,
-                       parameter: parameters) { [weak self] result in
+                       parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
@@ -82,7 +82,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
-                       parameter: parameters) { [weak self] result in
+                       parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
@@ -105,7 +105,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
-                       parameter: parameters) { [weak self] result in
+                       parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
@@ -133,7 +133,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         guard let url = components.url else { return }
         
         apiClient.request(from: url,
-                       parameter: parameters) { [weak self] result in
+                       parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
@@ -155,7 +155,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         guard let url = makeRequestURL(with: baseURL) else { return }
         
         apiClient.request(from: url,
-                       parameter: parameters) { [weak self] result in
+                       parameter: parameters) { result in
             switch result {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
