@@ -171,7 +171,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["storeId"] = clientID
         parameters["cartId"] = cartID
         parameters["customerId"] = nil
-        parameters["productIdOnStore"] = nil
+        parameters["productIdOnStore"] = productIDOnStore
         
         var components = URLComponents()
         components.scheme = "https"
