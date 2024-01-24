@@ -35,7 +35,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         apiClient: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
         deviceId: String = DeviceIDLoader.indentifier,
-        baseURL: URL = URL(string: "https://receiver.adcio.ai/")!
+        baseURL: URL = URL(string: "receiver.adcio.ai")!
     ) {
         self.clientID = clientID
         self.apiClient = apiClient
@@ -129,7 +129,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         var components = URLComponents()
         components.scheme = baseURL.scheme
         components.host = baseURL.absoluteString
-        components.path = "events/view"
+        components.path = "/events/view"
         
         print("##00", baseURL.scheme)
         print("##01", baseURL.absoluteString)
