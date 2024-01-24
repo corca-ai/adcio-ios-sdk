@@ -100,6 +100,9 @@ public enum Gender: CustomStringConvertible, Equatable {
     case female
     
     public var description: String {
-        return "\(self)"
+        switch self {
+        case .male: return "male"
+        case .female: return "female"
+        }
     }
 }
