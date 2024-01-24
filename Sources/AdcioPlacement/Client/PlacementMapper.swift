@@ -9,7 +9,7 @@ import Foundation
 
 internal final class PlacementMapper {
     private struct Root: Decodable {
-        public let items: [AdcioSuggestion]
+        public let suggestions: [AdcioSuggestion]
     }
     
     private static var OK_200: Int { return 200 }
@@ -21,6 +21,6 @@ internal final class PlacementMapper {
             throw PlacementClient.Error.invalidData
         }
         
-        return root.items
+        return root.suggestions
     }
 }
