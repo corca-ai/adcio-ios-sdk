@@ -170,7 +170,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
         parameters["cartId"] = cartID
-        parameters["customerID"] = nil
+        parameters["customerId"] = nil
         parameters["productIdOnStore"] = nil
         
         var components = URLComponents()
