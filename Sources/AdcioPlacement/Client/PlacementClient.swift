@@ -76,9 +76,10 @@ public final class PlacementClient: PlacementRepogitory {
         if categoryIdOnStore != nil { parameters["categoryIdOnStore"] = categoryIdOnStore }
         
         client.request(from: url,
-                       parameter: parameters) { [weak self] result in
+                       parameter: parameters) { result in
             switch result {
             case let .success(data, response):
+                print("###10", response)
                 completion(PlacementClient.map(data, from: response))
             case .failure:
                 completion(.failure(PlacementClient.Error.connectivity))
