@@ -178,6 +178,8 @@ public class AnalyticsClient: AnalyticsRepogitory {
         components.host = baseURL.absoluteString
         components.path = "/events/add-to-cart"
         
+        print("##parame", parameters)
+        
         guard let url = components.url?.absoluteURL else {
             return
         }
