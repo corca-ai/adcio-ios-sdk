@@ -19,7 +19,7 @@ internal final class PlacementMapper {
         
         guard response.statusCode == OK_200,
             let root = try? JSONDecoder().decode(Root.self, from: data) else {
-            print("###6")
+            print("###6root")
             throw PlacementClient.Error.invalidData
         }
         

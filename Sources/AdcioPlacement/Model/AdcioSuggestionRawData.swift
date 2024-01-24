@@ -8,8 +8,11 @@
 import Foundation
 
 public struct AdcioSuggestionRawData: Decodable, Equatable {
+    let placement: Placement?
     public let suggestions: [AdcioSuggestion]
 }
+
+struct Placement: Decodable, Equatable {}
 
 public struct AdcioSuggestion: Decodable, Equatable {
     public let logOptions: LogOptions
@@ -34,7 +37,6 @@ public struct LogOptions: Decodable, Equatable {
 }
 
 public struct Product: Decodable, Equatable {
-    public let data: Data?
     public let id: String
     public let idOnStore: String
     public let storeId: String
@@ -50,8 +52,7 @@ public struct Product: Decodable, Equatable {
     public let createdAt: String
     public let updatedAt: String
     
-    public init(data: Data?, id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Int, description: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, createdAt: String, updatedAt: String) {
-        self.data = data
+    public init(id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Int, description: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, createdAt: String, updatedAt: String) {
         self.id = id
         self.idOnStore = idOnStore
         self.storeId = storeId
