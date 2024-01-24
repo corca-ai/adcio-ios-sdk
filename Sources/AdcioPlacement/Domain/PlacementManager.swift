@@ -12,9 +12,9 @@ public protocol PlacementManageable {
     func clearImpresstionHisstory()
     func adcioCreateSuggestion(placementID: String, customerID: String?,
                                 placementPositionX: Int?, placementPositionY: Int?,
-                                fromAgent: Bool, age: String?,
+                                fromAgent: Bool, birthYear: Int?,
                                 gender: Gender?, area: String?,
-                                completion: @escaping (PlacementResult) -> Void)
+                                categoryIdOnStore: String?, completion: @escaping (PlacementResult) -> Void)
 }
 
 public final class PlacementManager: PlacementManageable {
@@ -34,12 +34,13 @@ public final class PlacementManager: PlacementManageable {
     /// ADCIO Suggestion을 생성하는 메서드
     public func adcioCreateSuggestion(placementID: String, customerID: String? = nil,
                                       placementPositionX: Int? = nil, placementPositionY: Int? = nil,
-                                      fromAgent: Bool, age: String? = nil,
+                                      fromAgent: Bool, birthYear: Int? = nil,
                                       gender: Gender? = nil, area: String? = nil,
-                                      completion: @escaping (PlacementResult) -> Void) {
+                                      categoryIdOnStore: String? = nil, completion: @escaping (PlacementResult) -> Void) {
         client.adcioCreateSuggestion(placementID: placementID, customerID: customerID,
                                      placementPositionX: placementPositionX, placementPositionY: placementPositionY,
-                                     fromAgent: fromAgent, age: age,
-                                     gender: gender, area: area, completion: completion)
+                                     fromAgent: fromAgent, birthYear: birthYear,
+                                     gender: gender, area: area,
+                                     categoryIdOnStore: categoryIdOnStore, completion: completion)
     }
 }

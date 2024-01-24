@@ -15,9 +15,10 @@ public protocol PlacementRepogitory {
         placementPositionX: Int?,
         placementPositionY: Int?,
         fromAgent: Bool,
-        age: String?,
+        birthYear: Int?,
         gender: Gender?,
         area: String?,
+        categoryIdOnStore: String?,
         completion: @escaping (PlacementResult) -> Void
     )
 }
@@ -52,9 +53,10 @@ public final class PlacementClient: PlacementRepogitory {
         placementPositionX: Int? = nil,
         placementPositionY: Int? = nil,
         fromAgent: Bool = false,
-        age: String? = nil,
+        birthYear: Int? = nil,
         gender: Gender? = nil,
         area: String? = nil,
+        categoryIdOnStore: String? = nil,
         completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
@@ -68,9 +70,10 @@ public final class PlacementClient: PlacementRepogitory {
         if customerID != nil { parameters["customerId"] = customerID }
         if placementPositionX != nil { parameters["placementPositionX"] = placementPositionX }
         if placementPositionY != nil { parameters["acementPositionY"] = placementPositionY }
-        if age != nil { parameters["age"] = age }
+        if birthYear != nil { parameters["birthYear"] = birthYear }
         if gender != nil { parameters["gender"] = gender?.description }
         if area != nil { parameters["area"] = area }
+        if categoryIdOnStore != nil { parameters["categoryIdOnStore"] = categoryIdOnStore }
         
         client.request(from: url,
                        parameter: parameters) { [weak self] result in
