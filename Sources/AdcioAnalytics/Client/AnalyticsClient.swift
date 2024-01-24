@@ -127,7 +127,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["referrer"] = nil
         
         var components = URLComponents()
-        components.scheme = baseURL.scheme
+        components.scheme = "https"
         components.host = baseURL.absoluteString
         components.path = "/events/view"
         
