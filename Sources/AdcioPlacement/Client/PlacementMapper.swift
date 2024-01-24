@@ -17,6 +17,7 @@ internal final class PlacementMapper {
     internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> [AdcioSuggestion] {
         guard response.statusCode == OK_200,
             let root = try? JSONDecoder().decode(Root.self, from: data) else {
+            print("###6")
             throw PlacementClient.Error.invalidData
         }
         

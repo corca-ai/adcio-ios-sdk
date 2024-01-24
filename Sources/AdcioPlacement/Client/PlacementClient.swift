@@ -88,9 +88,11 @@ public final class PlacementClient: PlacementRepogitory {
     
     private static func map(_ data: Data, from response: HTTPURLResponse) -> PlacementResult {
         do {
+            print("###4")
             let items = try PlacementMapper.map(data, from: response)
             return .success(items)
         } catch {
+            print("###5")
             return .failure(error)
         }
     }
