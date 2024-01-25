@@ -40,9 +40,8 @@ public struct AdcioAgent: UIViewRepresentable {
         var clientID = String()
         loader.loadSession { clientID = $0 }
         webView.navigationDelegate = context.coordinator
-        let agentUrlPath: String = "\(baseURL)/\(clientID)/start/?platform=ios&show_appbar=\(showAppBar)"
-        guard let url: URL = URL(string: agentUrlPath) else { return WKWebView()}
-        print("####url", url)
+        let agentUrlPath: String = "\(baseURL)/f8f2e298-c168-4412-b82d-98fc5b4a114a/start/?platform=ios&show_appbar=\(showAppBar)"
+        guard let url: URL = URL(string: agentUrlPath) else { return WKWebView() }
         let request = URLRequest(url: url)
         
         webView.load(request)

@@ -193,6 +193,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         }
     }
     
+    // MARK: - Private Inferface
     private func sessionID() -> SessionID {
         var sessionID = String()
         
@@ -203,30 +204,12 @@ public class AnalyticsClient: AnalyticsRepogitory {
         return sessionID
     }
     
-    private struct Root: Decodable {
-        public let success: Bool
-    }
-    
-    private static var OK_201: Int { return 201 }
-    
     private static func map(_ data: Data, from response: HTTPURLResponse) -> AnalyticsResult {
-        
         do {
             let isSuccess = try AnalyticsMapper.map(data, from: response)
             return .success(isSuccess)
         } catch {
             return .failure(error)
-        }
-    }
-    
-    struct AnalyticsMapper {
-        internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> Bool {
-            
-            guard response.statusCode == OK_201, let root = try? JSONDecoder().decode(Root.self, from: data) else {
-                throw AnalyticsClient.Error.invalidData
-            }
-            
-            return root.success
         }
     }
     
