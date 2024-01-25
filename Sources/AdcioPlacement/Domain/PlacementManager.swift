@@ -8,7 +8,7 @@
 import Foundation
 import Impression
 
-public protocol PlacementManageable {
+protocol PlacementManageable {
     func clearImpresstionHisstory()
     func adcioCreateSuggestion(placementID: String, customerID: String?,
                                 placementPositionX: Int?, placementPositionY: Int?,
@@ -26,11 +26,6 @@ public final class PlacementManager: PlacementManageable {
         self.client = PlacementClient()
     }
     
-    /// Impresstion 히스토리를 모두 삭제하는 메서드
-    public func clearImpresstionHisstory() {
-        impressionManager.clear()
-    }
-    
     /// ADCIO Suggestion을 생성하는 메서드
     public func adcioCreateSuggestion(placementID: String, customerID: String? = nil,
                                       placementPositionX: Int? = nil, placementPositionY: Int? = nil,
@@ -42,5 +37,9 @@ public final class PlacementManager: PlacementManageable {
                                      fromAgent: fromAgent, birthYear: birthYear,
                                      gender: gender, area: area,
                                      categoryIdOnStore: categoryIdOnStore, completion: completion)
+    }
+
+    internal func clearImpresstionHisstory() {
+        impressionManager.clear()
     }
 }
