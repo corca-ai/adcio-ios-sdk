@@ -9,8 +9,6 @@ import Foundation
 import Impression
 
 public protocol AnalyticsManageable {
-    func impressable(with adSetID: AdSetID) -> Bool
-    func append(with adSetID: AdSetID)
     func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
     func pageChanged(path: String, customerID: String?, productIDOnStore: String?, title: String?, referrer: String?, completion: @escaping (AnalyticsResult) -> Void)
     func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
@@ -27,14 +25,6 @@ public final class AnalyticsManager: AnalyticsManageable {
         self.client = AnalyticsClient(clientID: clientID)
     }
     
-    public func impressable(with adSetID: AdSetID) -> Bool {
-        return impressionManager.impressable(with: adSetID)
-    }
-    
-    public func append(with adSetID: AdSetID) {
-        impressionManager.append(with: adSetID)
-    }
-    
     public func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void) {
         client.addToCart(cartID: cartID, productIDOnStore: productIDOnStore, completion: completion)
     }
@@ -44,6 +34,9 @@ public final class AnalyticsManager: AnalyticsManageable {
     }
     
     public func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
+        guard impressable(with: option.adsetID) else { return }
+        
+        append(with: option.adsetID)
         client.productImpressed(option: option, completion: completion)
     }
     
@@ -53,5 +46,13 @@ public final class AnalyticsManager: AnalyticsManageable {
     
     public func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
         client.productTapped(option: option, completion: completion)
+    }
+    
+    private func impressable(with adSetID: AdSetID) -> Bool {
+        return impressionManager.impressable(with: adSetID)
+    }
+    
+    private func append(with adSetID: AdSetID) {
+        impressionManager.append(with: adSetID)
     }
 }

@@ -8,8 +8,7 @@
 import Foundation
 import Impression
 
-protocol PlacementManageable {
-    func clearImpresstionHisstory()
+public protocol PlacementManageable {
     func adcioCreateSuggestion(placementID: String, customerID: String?,
                                 placementPositionX: Int?, placementPositionY: Int?,
                                 fromAgent: Bool, birthYear: Int?,
@@ -32,6 +31,8 @@ public final class PlacementManager: PlacementManageable {
                                       fromAgent: Bool, birthYear: Int? = nil,
                                       gender: Gender? = nil, area: String? = nil,
                                       categoryIdOnStore: String? = nil, completion: @escaping (PlacementResult) -> Void) {
+        clearImpresstionHisstory()
+        
         client.adcioCreateSuggestion(placementID: placementID, customerID: customerID,
                                      placementPositionX: placementPositionX, placementPositionY: placementPositionY,
                                      fromAgent: fromAgent, birthYear: birthYear,
@@ -39,7 +40,7 @@ public final class PlacementManager: PlacementManageable {
                                      categoryIdOnStore: categoryIdOnStore, completion: completion)
     }
 
-    internal func clearImpresstionHisstory() {
+    private func clearImpresstionHisstory() {
         impressionManager.clear()
     }
 }
