@@ -7,7 +7,6 @@
 
 import SwiftUI
 import WebKit
-import Core
 
 public struct AdcioAgent: UIViewRepresentable {
     private var baseURL: String
