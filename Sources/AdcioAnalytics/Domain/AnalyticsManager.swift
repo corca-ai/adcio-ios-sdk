@@ -38,7 +38,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     }
     
     public func viewChanged(path: String, customerID: String, completion: @escaping (AnalyticsResult) -> Void) {
-        client.viewChanged(path: path, customerID: customerID, productIDOnStore: "1", title: nil, referrer: nil, completion: completion)
+        client.viewChanged(path: path, customerID: customerID, productIDOnStore: nil, title: "", referrer: nil, completion: completion)
     }
     
     public func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
