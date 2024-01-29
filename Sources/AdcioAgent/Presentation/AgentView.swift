@@ -11,19 +11,19 @@ import Core
 
 public struct AdcioAgent: UIViewRepresentable {
     private var baseURL: String
-    private let loader: SessionLoader
+    private let clientID: String
     private var showAppBar: Bool = false
     private var webView = WKWebView()
     let action: (String) -> Void
     
     public init(
         baseURL: String = "https://agent.adcio.ai",
-        loader: SessionLoader = SessionClient.instance,
+        clientID: String,
         showAppBar: Bool = false,
         action: @escaping (String) -> Void
     ) {
         self.baseURL = baseURL
-        self.loader = loader
+        self.clientID = clientID
         self.showAppBar = showAppBar
         self.action = action
         self.webView = WKWebView(frame: CGRect.zero, configuration: makeWKWebViewConfiguration())
@@ -37,10 +37,8 @@ public struct AdcioAgent: UIViewRepresentable {
     }
 
     public func makeUIView(context: Context) -> WKWebView {
-        var clientID = String()
-        loader.loadSession { clientID = $0 }
         webView.navigationDelegate = context.coordinator
-        let agentUrlPath: String = "\(baseURL)/f8f2e298-c168-4412-b82d-98fc5b4a114a/start/?platform=ios&show_appbar=\(showAppBar)"
+        let agentUrlPath: String = "\(baseURL)/\(clientID)/start/?platform=ios&show_appbar=\(showAppBar)"
         guard let url: URL = URL(string: agentUrlPath) else { return WKWebView() }
         let request = URLRequest(url: url)
         
