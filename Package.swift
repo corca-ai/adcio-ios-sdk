@@ -41,9 +41,7 @@ let package = Package(
         ),
         .target(
             name: "AdcioAgent",
-            dependencies: [
-                .target(name: "Core")
-            ]
+            dependencies: []
         ),
         .target(
             name: "Impression",
