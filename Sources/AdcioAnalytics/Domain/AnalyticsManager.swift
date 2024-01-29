@@ -47,6 +47,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
             return
         }
         
+        print("## append")
         append(with: option.adsetID)
         client.productImpressed(option: option, completion: completion)
     }
