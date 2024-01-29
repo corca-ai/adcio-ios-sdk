@@ -43,11 +43,9 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     
     public func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
         guard !impressable(with: option.adsetID) else {
-            print("## 이미 등록됨")
             return
         }
         
-        print("## append")
         append(with: option.adsetID)
         client.productImpressed(option: option, completion: completion)
     }
