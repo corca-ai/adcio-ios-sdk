@@ -15,7 +15,7 @@ public protocol AnalyticsProductManageable {
 }
 
 public protocol AnalyticsViewManageable {
-    func viewChanged(path: String, customerID: String, completion: @escaping (AnalyticsResult) -> Void)
+    func viewChanged(path: String, completion: @escaping (AnalyticsResult) -> Void)
     func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
 }
@@ -37,8 +37,8 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         client.viewChanged(path: path, customerID: customerID, productIDOnStore: productIDOnStore, title: title, referrer: referrer, completion: completion)
     }
     
-    public func viewChanged(path: String, customerID: String, completion: @escaping (AnalyticsResult) -> Void) {
-        client.viewChanged(path: path, customerID: customerID, productIDOnStore: nil, title: "", referrer: nil, completion: completion)
+    public func viewChanged(path: String, completion: @escaping (AnalyticsResult) -> Void) {
+        client.viewChanged(path: path, customerID: nil, productIDOnStore: nil, title: "", referrer: nil, completion: completion)
     }
     
     public func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {

@@ -14,9 +14,6 @@ let package = Package(
                     "AdcioAgent"
                  ]),
         .library(
-            name: "Core",
-            targets: ["Core"]),
-        .library(
             name: "AdcioPlacement",
             targets: ["AdcioPlacement"]),
         .library(
@@ -25,9 +22,6 @@ let package = Package(
         .library(
             name: "AdcioAgent",
             targets: ["AdcioAgent"]),
-        .library(
-            name: "Impression",
-            targets: ["Impression"]),
     ],
     targets: [
         .target(name: "Core"),
