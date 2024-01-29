@@ -9,7 +9,6 @@ let package = Package(
     products: [
         .library(name: "AdcioSDK",
                  targets: [
-                    "Core",
                     "AdcioPlacement",
                     "AdcioAnalytics",
                     "AdcioAgent"

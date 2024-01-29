@@ -8,15 +8,19 @@
 import Foundation
 import Impression
 
-public protocol AnalyticsManageable {
-    func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
-    func pageChanged(path: String, customerID: String?, productIDOnStore: String?, title: String?, referrer: String?, completion: @escaping (AnalyticsResult) -> Void)
-    func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
+public protocol AnalyticsProductManageable {
+    func viewChanged(path: String, customerID: String, productIDOnStore: String, title: String?, referrer: String?, completion: @escaping (AnalyticsResult) -> Void)
     func productPurchased(orderID: String,productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
+    func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
+}
+
+public protocol AnalyticsViewManageable {
+    func viewChanged(path: String, customerID: String, completion: @escaping (AnalyticsResult) -> Void)
+    func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
 }
 
-public final class AnalyticsManager: AnalyticsManageable {
+public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewManageable {
     private let impressionManager: ImpressionManageable
     private let client: AnalyticsRepogitory
     
@@ -29,8 +33,12 @@ public final class AnalyticsManager: AnalyticsManageable {
         client.addToCart(cartID: cartID, productIDOnStore: productIDOnStore, completion: completion)
     }
     
-    public func pageChanged(path: String, customerID: String? = nil, productIDOnStore: String? = nil, title: String? = nil, referrer: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
-        client.pageChanged(path: path, customerID: customerID, productIDOnStore: productIDOnStore, title: title, referrer: referrer, completion: completion)
+    public func viewChanged(path: String, customerID: String, productIDOnStore: String, title: String?, referrer: String?, completion: @escaping (AnalyticsResult) -> Void) {
+        client.viewChanged(path: path, customerID: customerID, productIDOnStore: productIDOnStore, title: title, referrer: referrer, completion: completion)
+    }
+    
+    public func viewChanged(path: String, customerID: String, completion: @escaping (AnalyticsResult) -> Void) {
+        client.viewChanged(path: path, customerID: customerID, productIDOnStore: nil, title: nil, referrer: nil, completion: completion)
     }
     
     public func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
