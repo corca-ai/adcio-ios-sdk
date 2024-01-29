@@ -33,14 +33,17 @@ public final class ImpressionManager: ImpressionManageable {
     public func clear() {
         if !histores.isEmpty {
             histores.removeAll()
+            print("###clear", self.histores)
         }
     }
     
     public func append(with adSetID: AdSetID) {
         histores.append(adSetID)
+        print("###append", self.histores)
     }
     
     public func impressable(with adSetID: AdSetID) -> Bool {
+        print("###impressable", histores.contains(adSetID))
         return histores.contains(adSetID)
     }
 }
