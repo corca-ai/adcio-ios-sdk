@@ -44,7 +44,6 @@ public class AnalyticsClient: AnalyticsRepogitory {
     }
     
     public func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
-    
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID()
         parameters["deviceId"] = deviceID

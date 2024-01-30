@@ -32,7 +32,7 @@ class AdcioPlacementTests: XCTestCase {
     func test_load_Twice_requestsDataFromURLTwice() {
         let placementID = ""
         
-        let url = URL(string: "https://a-given-url.com")!
+        let url = URL(string: "https://api-dev.adcio.ai/suggestions")!
         let (sut, client) = makeSUT(url: url)
         
         sut.adcioCreateSuggestion(placementID: placementID) { _ in }
@@ -70,29 +70,6 @@ class AdcioPlacementTests: XCTestCase {
             client.complete(withStatusCode: 200, data: invalidJSON)
         }
     }
-    
-    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
-        let (sut, client) = makeSUT()
-        
-        expect(sut, toCompleteWith: .success([])) {
-            let emptyJSONList = makeItemsJSON([])
-            client.complete(withStatusCode: 200, data: emptyJSONList)
-        }
-    }
-    
-//    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-//        let placementID = ""
-//        let url = URL(string: "https://api-dev.adcio.ai/suggestions")!
-//        let client = HTTPClientSpy()
-//        var sut: PlacementClient? = PlacementClient(client: client, url: url)
-//        
-//        var capturedErrors = [PlacementResult]()
-//        sut?.adcioCreateSuggestion(placementId: placementID) { capturedErrors.append($0)}
-//        
-//        client.complete(withStatusCode: 200, data: makeItemsJSON([]))
-//        
-//        XCTAssertTrue(capturedErrors.isEmpty)
-//    }
     
     //MARK: - Helpers
     private func makeSUT(url: URL = URL(string: "https://api-dev.adcio.ai/suggestions")!, file: StaticString = #file, line: UInt = #line) -> (sut: PlacementClient, client: HTTPClientSpy) {

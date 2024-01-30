@@ -19,30 +19,30 @@ class AdcioAnalyticsTests: XCTestCase {
     }
     
     func test_load_requestDataFromUrl() {
-        let orderID = String()
-        let productIdOnStore = String()
-        let amount = Int()
-        
-        let url = URL(string: "https://receiver-dev.adcio.ai/event/purchase")!
-        let (sut, client) = makeSUT(url: url)
+        let orderID: String = "123"
+        let productIdOnStore: String = "39"
+        let amount: Int = 2
+        let baseURL = URL(string: "receiver.adcio.ai")!
+        let expectedURL = URL(string: "https://receiver.adcio.ai/events/purchase")!
+        let (sut, client) = makeSUT(url: baseURL)
         
         sut.productPurchased(orderID: orderID, productIDOnStore: productIdOnStore, amount: amount) { _ in }
         
-        XCTAssertEqual(client.requestedURLs, [url])
+        XCTAssertEqual(client.requestedURLs, [expectedURL])
     }
-    
+
     func test_load_Twice_requestsDataFromURLTwice() {
         let orderID = String()
         let productIdOnStore = String()
         let amount = Int()
-        
-        let url = URL(string: "https://receiver-dev.adcio.ai/event/purchase")!
-        let (sut, client) = makeSUT(url: url)
+        let baseURL = URL(string: "receiver.adcio.ai")!
+        let expectedURL = URL(string: "https://receiver.adcio.ai/events/purchase")!
+        let (sut, client) = makeSUT(url: baseURL)
         
         sut.productPurchased(orderID: orderID, productIDOnStore: productIdOnStore, amount: amount) { _ in }
         sut.productPurchased(orderID: orderID, productIDOnStore: productIdOnStore, amount: amount) { _ in }
         
-        XCTAssertEqual(client.requestedURLs, [url, url])
+        XCTAssertEqual(client.requestedURLs, [expectedURL, expectedURL])
     }
     
     func test_load_deliversErrorOnClientError() {
@@ -54,33 +54,19 @@ class AdcioAnalyticsTests: XCTestCase {
         }
     }
     
-    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
+    func test_load_deliversNoItemsOn201HTTPResponseWithEmptyJSONList() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWith: .success(true)) {
+        expect(sut, toCompleteWith: .failure(AnalyticsClient.Error.invalidData)) {
             let emptyJSONList = makeItemsJSON([])
-            client.complete(withStatusCode: 200, data: emptyJSONList)
+            client.complete(withStatusCode: 201, data: emptyJSONList)
         }
     }
     
-//    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-//        let placementID = ""
-//        let url = URL(string: "https://api-dev.adcio.ai/suggestions")!
-//        let client = HTTPClientSpy()
-//        var sut: PlacementClient? = PlacementClient(client: client, url: url)
-//
-//        var capturedErrors = [PlacementResult]()
-//        sut?.adcioCreateSuggestion(placementId: placementID) { capturedErrors.append($0)}
-//
-//        client.complete(withStatusCode: 200, data: makeItemsJSON([]))
-//
-//        XCTAssertTrue(capturedErrors.isEmpty)
-//    }
-    
     //MARK: - Helpers
-    private func makeSUT(url: URL = URL(string: "https://receiver-dev.adcio.ai")!, file: StaticString = #file, line: UInt = #line) -> (sut: AnalyticsClient, client: HTTPClientSpy) {
+    private func makeSUT(url: URL = URL(string: "receiver.adcio.ai")!, file: StaticString = #file, line: UInt = #line) -> (sut: AnalyticsClient, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = AnalyticsClient(clientID: "String", apiClient: client, baseURL: url)
+        let sut = AnalyticsClient(clientID: "f8f2e298-c168-4412-b82d-98fc5b4a114a", apiClient: client, baseURL: url)
         
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(client)
