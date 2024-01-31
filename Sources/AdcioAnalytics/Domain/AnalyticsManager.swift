@@ -59,6 +59,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     }
     
     private func impressable(with adSetID: AdSetID) -> Bool {
+        print("#### AdSetID", adSetID)
         return impressionManager.impressable(with: adSetID)
     }
     
