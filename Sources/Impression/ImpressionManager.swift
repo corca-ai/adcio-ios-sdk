@@ -39,9 +39,9 @@ public final class ImpressionManager: ImpressionManageable {
     }
     
     public func append(with adSetID: AdSetID) {
+        histores.append(adSetID)
         print("##3-1", adSetID)
         print("##3-2", histores)
-        histores.append(adSetID)
     }
     
     public func impressable(with adSetID: AdSetID) -> Bool {
