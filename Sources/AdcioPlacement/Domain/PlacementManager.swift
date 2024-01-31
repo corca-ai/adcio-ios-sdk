@@ -21,7 +21,7 @@ public final class PlacementManager: PlacementManageable {
     private let client: PlacementRepogitory
     
     public init() {
-        self.impressionManager = ImpressionManager()
+        self.impressionManager = ImpressionManager.instance
         self.client = PlacementClient()
     }
     
