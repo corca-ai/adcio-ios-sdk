@@ -31,7 +31,9 @@ public final class ImpressionManager: ImpressionManageable {
     }
     
     public func clear() {
+        print("###1", histores)
         if !histores.isEmpty {
+            print("###2", histores)
             histores.removeAll()
         }
     }
