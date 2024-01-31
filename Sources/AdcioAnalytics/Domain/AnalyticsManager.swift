@@ -25,7 +25,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     private let client: AnalyticsRepogitory
     
     public init(clientID: String) {
-        self.impressionManager = ImpressionManager()
+        self.impressionManager = ImpressionManager.instance
         self.client = AnalyticsClient(clientID: clientID)
     }
     
