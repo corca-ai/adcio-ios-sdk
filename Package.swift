@@ -4,53 +4,60 @@
 import PackageDescription
 
 let package = Package(
-    name: "AdcioOpenSDK",
-    platforms: [
-        .iOS(.v13)
-    ],
+    name: "Adcio-iOS-SDK",
+    platforms: [.iOS(.v15)],
     products: [
+        .library(name: "AdcioSDK",
+                 targets: [
+                    "AdcioPlacement",
+                    "AdcioAnalytics",
+                    "AdcioAgent"
+                 ]),
         .library(
-            name: "AdcioSDK",
-            targets: ["AdcioCore", "AdcioAnalytics", "AdcioAgent", "AdcioPlacement"]),
-        .library(
-            name: "AdcioCore",
-            targets: ["AdcioCore"]),
+            name: "AdcioPlacement",
+            targets: ["AdcioPlacement"]),
         .library(
             name: "AdcioAnalytics",
             targets: ["AdcioAnalytics"]),
         .library(
             name: "AdcioAgent",
             targets: ["AdcioAgent"]),
-        .library(
-            name: "AdcioPlacement",
-            targets: ["AdcioPlacement"])
-    ],
-    dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.8.1"))
     ],
     targets: [
+        .target(name: "Core"),
         .target(
-            name: "AdcioCore"),
+            name: "AdcioPlacement",
+            dependencies: [
+                .target(name: "Core"),
+                .target(name: "Impression")
+            ]
+        ),
         .target(
             name: "AdcioAnalytics",
             dependencies: [
-                .product(name: "Alamofire", package: "Alamofire"),
-                .target(name: "AdcioCore")
+                .target(name: "Core"),
+                .target(name: "Impression")
             ]
         ),
         .target(
             name: "AdcioAgent",
-            dependencies: [
-                .target(name: "AdcioCore")
-            ]
+            dependencies: []
         ),
         .target(
-            name: "AdcioPlacement",
-            dependencies: [
-                .product(name: "Alamofire", package: "Alamofire"),
-                .target(name: "AdcioCore"),
-                .target(name: "AdcioAnalytics")
-            ]
-        )
+            name: "Impression",
+            dependencies: []
+        ),
+        .testTarget(
+            name: "AdcioPlacementTests",
+            dependencies: ["AdcioPlacement"]),
+        .testTarget(
+            name: "AdcioAnalyticsTests",
+            dependencies: ["AdcioAnalytics"]),
+        .testTarget(
+            name: "AdcioAgentTests",
+            dependencies: ["AdcioAgent"]),
+        .testTarget(
+            name: "CoreTests",
+            dependencies: ["Core"]),
     ]
 )

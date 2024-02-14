@@ -1,21 +1,18 @@
 //
-//  AdcioLogOption.swift
+//  File.swift
+//  
 //
-//
-//  Created by 최민재 on 10/26/23.
+//  Created by 유현명 on 1/11/24.
 //
 
 import Foundation
 
-public struct AdcioLogOption {
-    public var requestId: String
-    public var adsetId: String
+public struct AdcioLogOption: Decodable, Equatable {
+    public let requestID: String
+    public let adsetID: String
     
-    public init(
-        requestId: String,
-        adsetId: String
-    ) {
-        self.requestId = requestId
-        self.adsetId = adsetId
+    public init(requestID: String, adsetID: String) {
+        self.requestID = requestID
+        self.adsetID = adsetID
     }
 }
