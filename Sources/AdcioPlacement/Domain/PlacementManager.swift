@@ -13,7 +13,7 @@ public protocol PlacementManageable {
                                 placementPositionX: Int?, placementPositionY: Int?,
                                 fromAgent: Bool, birthYear: Int?,
                                 gender: Gender?, area: String?,
-                                categoryIdOnStore: String?, completion: @escaping (PlacementResult) -> Void)
+                                completion: @escaping (PlacementResult) -> Void)
 }
 
 public final class PlacementManager: PlacementManageable {
@@ -30,7 +30,7 @@ public final class PlacementManager: PlacementManageable {
                                       placementPositionX: Int? = nil, placementPositionY: Int? = nil,
                                       fromAgent: Bool, birthYear: Int? = nil,
                                       gender: Gender? = nil, area: String? = nil,
-                                      categoryIdOnStore: String? = nil, completion: @escaping (PlacementResult) -> Void) {
+                                      completion: @escaping (PlacementResult) -> Void) {
         clearImpresstionHisstory()
         
         client.adcioCreateSuggestion(placementID: placementID, customerID: customerID,
