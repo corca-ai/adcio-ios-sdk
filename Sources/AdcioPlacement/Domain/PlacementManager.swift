@@ -37,7 +37,7 @@ public final class PlacementManager: PlacementManageable {
                                      placementPositionX: placementPositionX, placementPositionY: placementPositionY,
                                      fromAgent: fromAgent, birthYear: birthYear,
                                      gender: gender, area: area,
-                                     categoryIdOnStore: categoryIdOnStore, completion: completion)
+                                     completion: completion)
     }
 
     private func clearImpresstionHisstory() {

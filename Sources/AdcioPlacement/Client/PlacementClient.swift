@@ -18,7 +18,6 @@ public protocol PlacementRepogitory {
         birthYear: Int?,
         gender: Gender?,
         area: String?,
-        categoryIdOnStore: String?,
         completion: @escaping (PlacementResult) -> Void
     )
 }
@@ -56,7 +55,6 @@ public final class PlacementClient: PlacementRepogitory {
         birthYear: Int? = nil,
         gender: Gender? = nil,
         area: String? = nil,
-        categoryIdOnStore: String? = nil,
         completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
@@ -73,7 +71,6 @@ public final class PlacementClient: PlacementRepogitory {
         if birthYear != nil { parameters["birthYear"] = birthYear }
         if gender != nil { parameters["gender"] = gender?.description }
         if area != nil { parameters["area"] = area }
-        if categoryIdOnStore != nil { parameters["categoryIdOnStore"] = categoryIdOnStore }
         
         client.request(from: url,
                        parameter: parameters) { result in

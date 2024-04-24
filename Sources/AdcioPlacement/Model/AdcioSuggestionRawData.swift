@@ -43,7 +43,7 @@ public struct Product: Decodable, Equatable {
     public let sellerId: String
     public let name: String
     public let price: Int
-    public let description: String
+    public let summary: String
     public let image: String
     public let includeInRecommendation: Bool
     public let url: String?
@@ -52,14 +52,14 @@ public struct Product: Decodable, Equatable {
     public let createdAt: String
     public let updatedAt: String
     
-    public init(id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Int, description: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, createdAt: String, updatedAt: String) {
+    public init(id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Int, summary: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, createdAt: String, updatedAt: String) {
         self.id = id
         self.idOnStore = idOnStore
         self.storeId = storeId
         self.sellerId = sellerId
         self.name = name
         self.price = price
-        self.description = description
+        self.summary = summary
         self.image = image
         self.includeInRecommendation = includeInRecommendation
         self.url = url
