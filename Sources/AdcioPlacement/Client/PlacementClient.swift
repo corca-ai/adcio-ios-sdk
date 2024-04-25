@@ -103,11 +103,13 @@ public final class PlacementClient: PlacementRepogitory {
             return
         }
         
+        print("#1", url)
+        print("#1-1", components.url)
+        
         client.request(from: url,
                        parameter: parameters) { result in
             switch result {
             case let .success(data, response):
-                print("#1")
                 completion(PlacementClient.mapWithProduct(data, from: response))
             case .failure:
                 completion(.failure(PlacementClient.Error.connectivity))
