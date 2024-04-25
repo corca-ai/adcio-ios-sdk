@@ -42,7 +42,7 @@ public struct Product: Decodable, Equatable {
     public let name: String
     public let price: Int
     public let discountPrice: Int?
-    public let additionalInformation: [String]?
+    public let additionalInformation: [AdditionalInformation]?
     public let summary: String
     public let image: String
     public let includeInRecommendation: Bool
@@ -55,7 +55,7 @@ public struct Product: Decodable, Equatable {
     public let updatedAt: String
     public let deletedAt: String
     
-    public init(id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Int, discountPrice: Int?, additionalInformation: [String]?, summary: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, additionalImages: [String]?, decorationImages: [String]?, createdAt: String, updatedAt: String, deletedAt: String) {
+    public init(id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Int, discountPrice: Int?, additionalInformation: [AdditionalInformation]?, summary: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, additionalImages: [String]?, decorationImages: [String]?, createdAt: String, updatedAt: String, deletedAt: String) {
         self.id = id
         self.idOnStore = idOnStore
         self.storeId = storeId
@@ -76,6 +76,12 @@ public struct Product: Decodable, Equatable {
         self.updatedAt = updatedAt
         self.deletedAt = deletedAt
     }
+}
+
+public struct AdditionalInformation: Decodable, Equatable {
+    public let key: String
+    public let name: String
+    public let value: String
 }
 
 public enum Gender: CustomStringConvertible, Equatable {
