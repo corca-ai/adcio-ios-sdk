@@ -9,11 +9,24 @@ import Foundation
 import Impression
 
 public protocol PlacementManageable {
-    func adcioCreateSuggestion(placementID: String, customerID: String?,
+    func adcioAdvertisementsProducts(clientID: String, excludingProductIDs: [String]?,
+                               categoryID: String?, placementID: String, customerID: String?,
                                 placementPositionX: Int?, placementPositionY: Int?,
                                 fromAgent: Bool, birthYear: Int?,
                                 gender: Gender?, area: String?,
-                                completion: @escaping (PlacementResult) -> Void)
+                                completion: @escaping (AdvertisementProductResult) -> Void)
+    
+    func adcioAdvertisementsBanners(
+        placementID: String,
+        customerID: String?,
+        placementPositionX: Int?,
+        placementPositionY: Int?,
+        fromAgent: Bool,
+        birthYear: Int?,
+        gender: Gender?,
+        area: String?,
+        completion: @escaping (AdvertisementBannerResult) -> Void
+    )
 }
 
 public final class PlacementManager: PlacementManageable {
@@ -25,20 +38,34 @@ public final class PlacementManager: PlacementManageable {
         self.client = PlacementClient()
     }
     
-    /// ADCIO Suggestion을 생성하는 메서드
-    public func adcioCreateSuggestion(placementID: String, customerID: String? = nil,
-                                      placementPositionX: Int? = nil, placementPositionY: Int? = nil,
-                                      fromAgent: Bool, birthYear: Int? = nil,
-                                      gender: Gender? = nil, area: String? = nil,
-                                      completion: @escaping (PlacementResult) -> Void) {
+    /// create Advertisements Products method
+    public func adcioAdvertisementsProducts(clientID: String, excludingProductIDs: [String]? = nil,
+                                      categoryID: String? = nil, placementID: String,
+                                      customerID: String? = nil, placementPositionX: Int? = nil,
+                                      placementPositionY: Int? = nil, fromAgent: Bool,
+                                      birthYear: Int? = nil, gender: Gender? = nil,
+                                      area: String? = nil, completion: @escaping (AdvertisementProductResult) -> Void) {
         clearImpresstionHisstory()
         
-        client.adcioCreateSuggestion(placementID: placementID, customerID: customerID,
-                                     placementPositionX: placementPositionX, placementPositionY: placementPositionY,
-                                     fromAgent: fromAgent, birthYear: birthYear,
-                                     gender: gender, area: area,
-                                     completion: completion)
+        client.adcioAdvertisementsProducts(clientID: clientID, excludingProductIDs: excludingProductIDs,
+                                     categoryID: categoryID, placementID: placementID,
+                                     customerID: customerID, placementPositionX: placementPositionX,
+                                     placementPositionY: placementPositionY, fromAgent: fromAgent,
+                                     birthYear: birthYear, gender: gender,
+                                     area: area, completion: completion)
     }
+    
+    public func adcioAdvertisementsBanners(placementID: String, customerID: String?, 
+                                           placementPositionX: Int?, placementPositionY: Int?,
+                                           fromAgent: Bool, birthYear: Int?,
+                                           gender: Gender?, area: String?,
+                                           completion: @escaping (AdvertisementBannerResult) -> Void) {
+        client.adcioAdvertisementsBanners(placementID: placementID, customerID: customerID,
+                                          placementPositionX: placementPositionX, placementPositionY: placementPositionY,
+                                          fromAgent: fromAgent, birthYear: birthYear,
+                                          gender: gender, area: area, completion: completion)
+    }
+    
 
     private func clearImpresstionHisstory() {
         impressionManager.clear()
