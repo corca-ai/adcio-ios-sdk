@@ -101,17 +101,13 @@ public final class PlacementClient: PlacementRepogitory {
         components.path = "/advertisements/products"
         
         guard let url = components.url?.absoluteURL else {
-            print("#0")
             return
         }
-        
-        print("#1", url)
         
         client.request(from: url,
                        parameter: parameters) { result in
             switch result {
             case let .success(data, response):
-                print("#2", response)
                 completion(PlacementClient.mapWithProduct(data, from: response))
             case .failure:
                 completion(.failure(PlacementClient.Error.connectivity))
