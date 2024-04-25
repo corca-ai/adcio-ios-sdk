@@ -9,12 +9,12 @@ import Foundation
 
 public struct AdcioSuggestionRawData: Decodable, Equatable {
     let placement: Placement?
-    public let suggestions: [AdvertisementProduct]
+    public let suggestions: [AdcioSuggestion]
 }
 
 public struct Placement: Decodable, Equatable {}
 
-public struct AdvertisementProduct: Decodable, Equatable {
+public struct AdcioSuggestion: Decodable, Equatable {
     public let logOptions: LogOptions
     public let product: Product
 

@@ -8,7 +8,7 @@
 import Foundation
 
 public enum PlacementResult {
-    case success([AdvertisementProduct])
+    case success([AdcioSuggestion])
     case failure(Error)
 }
 
