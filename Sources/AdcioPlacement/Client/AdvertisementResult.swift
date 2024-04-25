@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum AdvertisementProductResult {
+public enum PlacementResult {
     case success([AdvertisementProduct])
     case failure(Error)
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AdvertisementProductRawData: Decodable, Equatable {
+public struct AdcioSuggestionRawData: Decodable, Equatable {
     let placement: Placement?
     public let suggestions: [AdvertisementProduct]
 }

@@ -9,7 +9,7 @@ import Foundation
 import Core
 
 public protocol PlacementRepogitory {
-    func adcioAdvertisementsProducts(
+    func adcioCreateSuggestion(
         clientID: String,
         excludingProductIDs: [String]?,
         categoryID: String?,
@@ -21,20 +21,20 @@ public protocol PlacementRepogitory {
         birthYear: Int?,
         gender: Gender?,
         area: String?,
-        completion: @escaping (AdvertisementProductResult) -> Void
+        completion: @escaping (PlacementResult) -> Void
     )
     
-    func adcioAdvertisementsBanners(
-        placementID: String,
-        customerID: String?,
-        placementPositionX: Int?,
-        placementPositionY: Int?,
-        fromAgent: Bool,
-        birthYear: Int?,
-        gender: Gender?,
-        area: String?,
-        completion: @escaping (AdvertisementBannerResult) -> Void
-    )
+//    func adcioAdvertisementsBanners(
+//        placementID: String,
+//        customerID: String?,
+//        placementPositionX: Int?,
+//        placementPositionY: Int?,
+//        fromAgent: Bool,
+//        birthYear: Int?,
+//        gender: Gender?,
+//        area: String?,
+//        completion: @escaping (AdvertisementBannerResult) -> Void
+//    )
 }
 
 public final class PlacementClient: PlacementRepogitory {
@@ -61,7 +61,7 @@ public final class PlacementClient: PlacementRepogitory {
         case invalidData
     }
     
-    public func adcioAdvertisementsProducts(
+    public func adcioCreateSuggestion(
         clientID: String,
         excludingProductIDs: [String]? = nil,
         categoryID: String? = nil,
@@ -73,7 +73,7 @@ public final class PlacementClient: PlacementRepogitory {
         birthYear: Int? = nil,
         gender: Gender? = nil,
         area: String? = nil,
-        completion: @escaping (AdvertisementProductResult) -> Void
+        completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
         loader.loadSession { id in
@@ -114,7 +114,7 @@ public final class PlacementClient: PlacementRepogitory {
         }
     }
     
-    private static func mapWithProduct(_ data: Data, from response: HTTPURLResponse) -> AdvertisementProductResult {
+    private static func mapWithProduct(_ data: Data, from response: HTTPURLResponse) -> PlacementResult {
         do {
             let items = try AdvertisementProductMapper.map(data, from: response)
             return .success(items)
