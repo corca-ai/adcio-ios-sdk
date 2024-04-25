@@ -107,6 +107,7 @@ public final class PlacementClient: PlacementRepogitory {
                        parameter: parameters) { result in
             switch result {
             case let .success(data, response):
+                print("#1")
                 completion(PlacementClient.mapWithProduct(data, from: response))
             case .failure:
                 completion(.failure(PlacementClient.Error.connectivity))
@@ -117,8 +118,11 @@ public final class PlacementClient: PlacementRepogitory {
     private static func mapWithProduct(_ data: Data, from response: HTTPURLResponse) -> AdvertisementProductResult {
         do {
             let items = try AdvertisementProductMapper.map(data, from: response)
+            print("#2")
+            print("#2", items)
             return .success(items)
         } catch {
+            print("#3")
             return .failure(error)
         }
     }
