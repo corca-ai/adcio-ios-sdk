@@ -85,7 +85,7 @@ public final class PlacementClient: PlacementRepogitory {
         parameters["fromAgent"] = fromAgent
         if customerID != nil { parameters["customerId"] = customerID }
         if placementPositionX != nil { parameters["placementPositionX"] = placementPositionX }
-        if placementPositionY != nil { parameters["acementPositionY"] = placementPositionY }
+        if placementPositionY != nil { parameters["placementPositionY"] = placementPositionY }
         if birthYear != nil { parameters["birthYear"] = birthYear }
         if gender != nil { parameters["gender"] = gender?.description }
         if area != nil { parameters["area"] = area }
