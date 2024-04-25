@@ -92,7 +92,7 @@ public final class PlacementClient: PlacementRepogitory {
         parameters["clientId"] = clientID
         if area != nil { parameters["area"] = area }
         if excludingProductIDs != nil { parameters["excludingProductIds"] = excludingProductIDs }
-        if categoryID != nil { parameters["categoryID"] = categoryID }
+        if categoryID != nil { parameters["categoryId"] = categoryID }
         
         var components = URLComponents()
         components.scheme = "https"
