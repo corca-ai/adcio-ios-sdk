@@ -103,9 +103,6 @@ public final class PlacementClient: PlacementRepogitory {
             return
         }
         
-        print("#1", url)
-        print("#2", parameters)
-        
         client.request(from: url,
                        parameter: parameters) { result in
             switch result {
@@ -120,11 +117,8 @@ public final class PlacementClient: PlacementRepogitory {
     private static func mapWithProduct(_ data: Data, from response: HTTPURLResponse) -> AdvertisementProductResult {
         do {
             let items = try AdvertisementProductMapper.map(data, from: response)
-            print("#2")
-            print("#2", items)
             return .success(items)
         } catch {
-            print("#3")
             return .failure(error)
         }
     }
@@ -185,20 +179,3 @@ public final class PlacementClient: PlacementRepogitory {
         }
     }
 }
-/*
- {
-     "fromAgent": false,
-     "acementPositionY": 80,
-     "placementId": "67592c00-a230-4c31-902e-82ae4fe71866",
-     "area": "Vietnam",
-     "birthYear": 2000,
-     "gender": "male",
-     "categoryId": "2017",
-     "clientId": "47d88123-a709-4802-8c72-c9e3c4812345",
-     "sessionId": "5C7BB984-F7A3-450F-94EF-F32BF93D0FF2",
-     "customerId": "corca0302",
-     "excludingProductIds": ["1321"],
-     "placementPositionX": 80,
-     "deviceId": "F2148174-D723-4E34-81CC-13C05BBA3BAC"
- }
- */
