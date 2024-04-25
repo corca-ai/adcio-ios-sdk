@@ -18,6 +18,7 @@ internal final class AdvertisementProductMapper {
         
         guard response.statusCode == OK_201,
             let root = try? JSONDecoder().decode(Root.self, from: data) else {
+            print("#4")
             throw PlacementClient.Error.invalidData
         }
         
