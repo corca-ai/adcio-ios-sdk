@@ -11,3 +11,8 @@ public enum PlacementResult {
     case success([AdcioSuggestion])
     case failure(Error)
 }
+
+public enum AdvertisementBannerResult {
+    case success([AdvertisementBanner])
+    case failure(Error)
+}

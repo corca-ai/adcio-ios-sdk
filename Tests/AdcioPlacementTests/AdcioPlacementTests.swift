@@ -82,7 +82,7 @@ class AdcioPlacementTests: XCTestCase {
         return (sut, client)
     }
     
-    private func failure(_ error: PlacementClient.Error) -> PlacementResult {
+    private func failure(_ error: PlacementClient.Error) -> AdvertisementProductResult {
         return .failure(error)
     }
     
@@ -91,7 +91,7 @@ class AdcioPlacementTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func expect(_ sut: PlacementClient, toCompleteWith expectedResult: PlacementResult, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: PlacementClient, toCompleteWith expectedResult: AdvertisementProductResult, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         
         let placementID = ""
         let exp = expectation(description: "Wait for load completion")
