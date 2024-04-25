@@ -75,7 +75,6 @@ public final class PlacementClient: PlacementRepogitory {
         area: String? = nil,
         completion: @escaping (AdvertisementProductResult) -> Void
     ) {
-        print("#-1")
         var parameters: [String : Any] = [:]
         loader.loadSession { id in
             sessionID = id
