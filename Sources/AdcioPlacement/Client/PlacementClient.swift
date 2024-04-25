@@ -104,7 +104,7 @@ public final class PlacementClient: PlacementRepogitory {
         }
         
         print("#1", url)
-        print("#1-1", components.url)
+        print("#2", parameters)
         
         client.request(from: url,
                        parameter: parameters) { result in
