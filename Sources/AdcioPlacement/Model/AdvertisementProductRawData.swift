@@ -53,9 +53,9 @@ public struct Product: Decodable, Equatable {
     public let decorationImages: [String]?
     public let createdAt: String
     public let updatedAt: String
-    public let deletedAt: String
+    public let deletedAt: String?
     
-    public init(id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Int, discountPrice: Int?, additionalInformation: [AdditionalInformation]?, summary: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, additionalImages: [String]?, decorationImages: [String]?, createdAt: String, updatedAt: String, deletedAt: String) {
+    public init(id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Int, discountPrice: Int?, additionalInformation: [AdditionalInformation]?, summary: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, additionalImages: [String]?, decorationImages: [String]?, createdAt: String, updatedAt: String, deletedAt: String?) {
         self.id = id
         self.idOnStore = idOnStore
         self.storeId = storeId
