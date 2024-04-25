@@ -48,7 +48,7 @@ public final class PlacementClient: PlacementRepogitory {
         client: HTTPClient = URLSessionHTTPClient(), 
         loader: SessionLoader = SessionClient.instance,
         deviceID: String = DeviceIDLoader.indentifier,
-        baseURL: URL = URL(string: "api.adcio.ai")!
+        baseURL: URL = URL(string: "api-dev.adcio.ai")!
     ) {
         self.client = client
         self.loader = loader
