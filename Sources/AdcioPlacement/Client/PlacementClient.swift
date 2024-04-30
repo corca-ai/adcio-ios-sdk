@@ -15,8 +15,6 @@ public protocol PlacementRepogitory {
         categoryID: String?,
         placementID: String,
         customerID: String?,
-//        placementPositionX: Int?,
-//        placementPositionY: Int?,
         fromAgent: Bool,
         birthYear: Int?,
         gender: Gender?,
@@ -67,8 +65,6 @@ public final class PlacementClient: PlacementRepogitory {
         categoryID: String? = nil,
         placementID: String,
         customerID: String? = nil,
-//        placementPositionX: Int? = nil,
-//        placementPositionY: Int? = nil,
         fromAgent: Bool = false,
         birthYear: Int? = nil,
         gender: Gender? = nil,
@@ -84,8 +80,6 @@ public final class PlacementClient: PlacementRepogitory {
         parameters["placementId"] = placementID
         parameters["fromAgent"] = fromAgent
         if customerID != nil { parameters["customerId"] = customerID }
-//        if placementPositionX != nil { parameters["placementPositionX"] = placementPositionX }
-//        if placementPositionY != nil { parameters["placementPositionY"] = placementPositionY }
         if birthYear != nil { parameters["birthYear"] = birthYear }
         if gender != nil { parameters["gender"] = gender?.description }
         if area != nil { parameters["area"] = area }

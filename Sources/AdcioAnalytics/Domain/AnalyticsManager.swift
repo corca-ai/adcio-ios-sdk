@@ -15,7 +15,6 @@ public protocol AnalyticsProductManageable {
 }
 
 public protocol AnalyticsViewManageable {
-//    func viewChanged(path: String, completion: @escaping (AnalyticsResult) -> Void)
     func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
 }
