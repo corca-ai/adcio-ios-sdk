@@ -9,13 +9,13 @@ import Foundation
 import Impression
 
 public protocol AnalyticsProductManageable {
-    func viewChanged(path: String, customerID: String, productIDOnStore: String, title: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func viewChanged(customerID: String?, productIDOnStore: String, title: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func productPurchased(orderID: String,productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
     func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
 }
 
 public protocol AnalyticsViewManageable {
-    func viewChanged(path: String, completion: @escaping (AnalyticsResult) -> Void)
+//    func viewChanged(path: String, completion: @escaping (AnalyticsResult) -> Void)
     func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
 }
@@ -33,12 +33,8 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         client.addToCart(cartID: cartID, productIDOnStore: productIDOnStore, completion: completion)
     }
     
-    public func viewChanged(path: String, customerID: String, productIDOnStore: String, title: String?, completion: @escaping (AnalyticsResult) -> Void) {
-        client.viewChanged(path: path, customerID: customerID, productIDOnStore: productIDOnStore, title: title, referrer: nil, completion: completion)
-    }
-    
-    public func viewChanged(path: String, completion: @escaping (AnalyticsResult) -> Void) {
-        client.viewChanged(path: path, customerID: nil, productIDOnStore: nil, title: "", referrer: nil, completion: completion)
+    public func viewChanged(customerID: String?, productIDOnStore: String, title: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void) {
+        client.viewChanged(customerID: customerID, productIDOnStore: productIDOnStore, title: title, reqeustID: requestID, adsetID: adsetID, categoryIDOnStore: categoryIDOnStore, completion: completion)
     }
     
     public func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
