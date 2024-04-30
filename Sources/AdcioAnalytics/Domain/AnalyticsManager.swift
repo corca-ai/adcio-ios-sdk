@@ -33,7 +33,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         client.addToCart(cartID: cartID, productIDOnStore: productIDOnStore, completion: completion)
     }
     
-    public func viewChanged(customerID: String?, productIDOnStore: String, title: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void) {
+    public func viewChanged(customerID: String? = nil, productIDOnStore: String, title: String? = nil, requestID: String? = nil, adsetID: String? = nil, categoryIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
         client.viewChanged(customerID: customerID, productIDOnStore: productIDOnStore, title: title, reqeustID: requestID, adsetID: adsetID, categoryIDOnStore: categoryIDOnStore, completion: completion)
     }
     
