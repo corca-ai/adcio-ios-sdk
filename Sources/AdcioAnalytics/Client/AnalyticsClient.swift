@@ -12,7 +12,7 @@ public protocol AnalyticsRepogitory {
     func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productPurchased(orderID: String, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
-    func viewChanged(path: String, customerID: String?, productIDOnStore: String?, title: String?, referrer: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func viewChanged(customerID: String?, productIDOnStore: String, title: String?, reqeustID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
 }
 
@@ -131,17 +131,17 @@ public class AnalyticsClient: AnalyticsRepogitory {
         }
     }
     
-    public func viewChanged(path: String, customerID: String? = nil, productIDOnStore: String? = nil, title: String? = nil, referrer: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
+    public func viewChanged(customerID: String? = nil, productIDOnStore: String, title: String? = nil, reqeustID: String? = nil, adsetID: String? = nil, categoryIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
         
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID()
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
-        parameters["path"] = path
         parameters["customerId"] = customerID
         parameters["productIdOnStore"] = productIDOnStore
-        parameters["title"] = title
-        parameters["referrer"] = referrer
+        parameters["requestId"] = reqeustID
+        parameters["adsetId"] = adsetID
+        parameters["categoryIdOnStore"] = categoryIDOnStore
         
         var components = URLComponents()
         components.scheme = "https"

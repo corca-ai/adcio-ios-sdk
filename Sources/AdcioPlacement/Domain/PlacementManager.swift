@@ -11,7 +11,7 @@ import Impression
 public protocol PlacementManageable {
     func adcioCreateSuggestion(clientID: String, excludingProductIDs: [String]?,
                                categoryID: String?, placementID: String, customerID: String?,
-                                placementPositionX: Int?, placementPositionY: Int?,
+//                                placementPositionX: Int?, placementPositionY: Int?,
                                 fromAgent: Bool, birthYear: Int?,
                                 gender: Gender?, area: String?,
                                 completion: @escaping (PlacementResult) -> Void)
@@ -41,16 +41,14 @@ public final class PlacementManager: PlacementManageable {
     /// create Advertisements Products method
     public func adcioCreateSuggestion(clientID: String, excludingProductIDs: [String]? = nil,
                                       categoryID: String? = nil, placementID: String,
-                                      customerID: String? = nil, placementPositionX: Int? = nil,
-                                      placementPositionY: Int? = nil, fromAgent: Bool,
+                                      customerID: String? = nil, fromAgent: Bool,
                                       birthYear: Int? = nil, gender: Gender? = nil,
                                       area: String? = nil, completion: @escaping (PlacementResult) -> Void) {
         clearImpresstionHisstory()
         
         client.adcioCreateSuggestion(clientID: clientID, excludingProductIDs: excludingProductIDs,
                                      categoryID: categoryID, placementID: placementID,
-                                     customerID: customerID, placementPositionX: placementPositionX,
-                                     placementPositionY: placementPositionY, fromAgent: fromAgent,
+                                     customerID: customerID, fromAgent: fromAgent,
                                      birthYear: birthYear, gender: gender,
                                      area: area, completion: completion)
     }
