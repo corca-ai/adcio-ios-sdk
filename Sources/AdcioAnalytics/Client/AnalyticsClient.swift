@@ -55,7 +55,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
-        components.path = "/performance/click"
+        components.path = "/events/impression"
         
         guard let url = components.url?.absoluteURL else {
             return
@@ -84,7 +84,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
-        components.path = "/performance/impression"
+        components.path = "/events/impression"
         
         guard let url = components.url?.absoluteURL else {
             return
