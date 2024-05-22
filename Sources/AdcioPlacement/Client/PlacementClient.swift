@@ -10,6 +10,7 @@ import Core
 
 public protocol PlacementRepogitory {
     var sessionID: SessionID { get }
+    var deviceID: SessionID { get }
     
     func adcioCreateSuggestion(
         clientID: String,
@@ -29,7 +30,7 @@ public final class PlacementClient: PlacementRepogitory {
     private let baseURL: URL
     private let client: HTTPClient
     private let loader: SessionLoader
-    private let deviceID: String
+    public private(set) var deviceID: String
     public private(set) var sessionID: SessionID
     
     public init(

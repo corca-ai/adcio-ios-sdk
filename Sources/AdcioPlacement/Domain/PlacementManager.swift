@@ -11,22 +11,9 @@ import Impression
 public protocol PlacementManageable {
     func adcioCreateSuggestion(clientID: String, excludingProductIDs: [String]?,
                                categoryID: String?, placementID: String, customerID: String?,
-//                                placementPositionX: Int?, placementPositionY: Int?,
-                                fromAgent: Bool, birthYear: Int?,
-                                gender: Gender?, area: String?,
-                                completion: @escaping (PlacementResult) -> Void)
-    
-//    func adcioAdvertisementsBanners(
-//        placementID: String,
-//        customerID: String?,
-//        placementPositionX: Int?,
-//        placementPositionY: Int?,
-//        fromAgent: Bool,
-//        birthYear: Int?,
-//        gender: Gender?,
-//        area: String?,
-//        completion: @escaping (AdvertisementBannerResult) -> Void
-//    )
+                               fromAgent: Bool, birthYear: Int?,
+                               gender: Gender?, area: String?,
+                               completion: @escaping (PlacementResult) -> Void)
 }
 
 public final class PlacementManager: PlacementManageable {
@@ -53,18 +40,6 @@ public final class PlacementManager: PlacementManageable {
                                      area: area, completion: completion)
     }
     
-//    public func adcioAdvertisementsBanners(placementID: String, customerID: String?, 
-//                                           placementPositionX: Int?, placementPositionY: Int?,
-//                                           fromAgent: Bool, birthYear: Int?,
-//                                           gender: Gender?, area: String?,
-//                                           completion: @escaping (AdvertisementBannerResult) -> Void) {
-//        client.adcioAdvertisementsBanners(placementID: placementID, customerID: customerID,
-//                                          placementPositionX: placementPositionX, placementPositionY: placementPositionY,
-//                                          fromAgent: fromAgent, birthYear: birthYear,
-//                                          gender: gender, area: area, completion: completion)
-//    }
-    
-
     private func clearImpresstionHisstory() {
         impressionManager.clear()
     }
