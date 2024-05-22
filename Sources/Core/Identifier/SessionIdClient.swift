@@ -10,12 +10,13 @@ import Foundation
 public typealias SessionID = String
 
 public protocol SessionLoader {
-    func loadSession(completion: ((SessionID) -> Void))
+//    func loadSession(completion: ((SessionID) -> Void))
+    var identifier: SessionID { get }
 }
 
 public final class SessionClient: SessionLoader {
     public static let instance = SessionClient()
-    private var identifier: String
+    public private(set) var identifier: String
     
     public init() {
         self.identifier = UUID().uuidString
