@@ -10,7 +10,7 @@ import Core
 
 public protocol PlacementRepogitory {
     var sessionID: SessionID { get }
-    var deviceID: SessionID { get }
+    var deviceID: String { get }
     
     func adcioCreateSuggestion(
         clientID: String,

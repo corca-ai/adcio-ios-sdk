@@ -12,6 +12,9 @@ public protocol AnalyticsProductManageable {
     func viewChanged(customerID: String?, productIDOnStore: String, title: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func productPurchased(orderID: String,productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
     func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
+    
+    var sessionID: String { get }
+    var deviceID: String { get }
 }
 
 public protocol AnalyticsViewManageable {
@@ -22,10 +25,14 @@ public protocol AnalyticsViewManageable {
 public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewManageable {
     private let impressionManager: ImpressionManageable
     private let client: AnalyticsRepogitory
+    public private(set) var sessionID: String
+    public private(set) var deviceID: String
     
     public init(clientID: String) {
         self.impressionManager = ImpressionManager.instance
         self.client = AnalyticsClient(clientID: clientID)
+        self.sessionID = self.client.sessionID
+        self.deviceID = self.client.deviceID
     }
     
     public func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void) {

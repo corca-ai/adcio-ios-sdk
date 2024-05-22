@@ -14,15 +14,22 @@ public protocol PlacementManageable {
                                fromAgent: Bool, birthYear: Int?,
                                gender: Gender?, area: String?,
                                completion: @escaping (PlacementResult) -> Void)
+    
+    var sessionID: String { get }
+    var deviceID: String { get }
 }
 
 public final class PlacementManager: PlacementManageable {
     private let impressionManager: ImpressionManageable
     private let client: PlacementRepogitory
+    public private(set) var sessionID: String
+    public private(set) var deviceID: String
     
     public init() {
         self.impressionManager = ImpressionManager.instance
         self.client = PlacementClient()
+        self.sessionID = self.client.sessionID
+        self.deviceID = self.client.deviceID
     }
     
     /// create Advertisements Products method
