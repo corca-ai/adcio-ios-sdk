@@ -10,6 +10,7 @@ import Core
 
 public protocol AnalyticsRepogitory {
     var sessionID: SessionID { get }
+    var deviceID: SessionID { get }
     
     func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
     func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
@@ -23,7 +24,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
     private let baseURL: URL
     private let apiClient: HTTPClient
     private let loader: SessionLoader
-    private let deviceID: String
+    public private(set) var deviceID: String
     private let clientID: String
     public private(set) var sessionID: SessionID
     
