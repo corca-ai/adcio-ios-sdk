@@ -10,10 +10,11 @@ import Core
 
 public protocol AnalyticsRepogitory {
     var sessionID: SessionID { get }
+    var deviceID: String { get }
     
-    func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
-    func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void)
-    func productPurchased(orderID: String, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
+    func productTapped(option: AdcioLogOption, customerID: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func productImpressed(option: AdcioLogOption, customerID: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func productPurchased(orderID: String, customerID: String?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
     func viewChanged(customerID: String?, productIDOnStore: String, title: String?, reqeustID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func addToCart(cartID: String, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
 }
@@ -23,7 +24,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
     private let baseURL: URL
     private let apiClient: HTTPClient
     private let loader: SessionLoader
-    private let deviceID: String
+    public private(set) var deviceID: String
     private let clientID: String
     public private(set) var sessionID: SessionID
     
@@ -47,12 +48,12 @@ public class AnalyticsClient: AnalyticsRepogitory {
         self.sessionID = loader.identifier
     }
     
-    public func productTapped(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
+    public func productTapped(option: AdcioLogOption, customerID: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
-        parameters["customerId"] = nil
+        parameters["customerId"] = customerID
         parameters["requestId"] = option.requestID
         parameters["adsetId"] = option.adsetID
         
@@ -76,19 +77,19 @@ public class AnalyticsClient: AnalyticsRepogitory {
         }
     }
     
-    public func productImpressed(option: AdcioLogOption, completion: @escaping (AnalyticsResult) -> Void) {
+    public func productImpressed(option: AdcioLogOption, customerID: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
         parameters["storeId"] = clientID
-        parameters["customerId"] = nil
+        parameters["customerId"] = customerID
         parameters["requestId"] = option.requestID
         parameters["adsetId"] = option.adsetID
         
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
-        components.path = "/events/impression"
+        components.path = "/events/click"
         
         guard let url = components.url?.absoluteURL else {
             return
@@ -105,7 +106,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         }
     }
     
-    public func productPurchased(orderID: String, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
+    public func productPurchased(orderID: String, customerID: String? = nil, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
@@ -113,7 +114,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["orderId"] = orderID
         parameters["productIdOnStore"] = productIDOnStore
         parameters["amount"] = amount
-        parameters["customerId"] = nil
+        parameters["customerId"] = customerID
         
         var components = URLComponents()
         components.scheme = "https"
