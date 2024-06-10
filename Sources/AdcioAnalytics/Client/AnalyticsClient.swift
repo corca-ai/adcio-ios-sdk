@@ -13,7 +13,7 @@ public protocol AnalyticsRepogitory {
     var deviceID: String { get }
     
     func productTapped(option: AdcioLogOption, customerID: String?, completion: @escaping (AnalyticsResult) -> Void)
-    func productImpressed(option: AdcioLogOption, customerID: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func productPurchased(orderID: String, customerID: String?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
     func viewChanged(customerID: String?, productIDOnStore: String, title: String?, reqeustID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func addToCart(cartID: String?, customerID: String?, productIDOnStore: String, completion: @escaping (AnalyticsResult) -> Void)
@@ -77,7 +77,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         }
     }
     
-    public func productImpressed(option: AdcioLogOption, customerID: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onImpression(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
@@ -85,6 +85,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["customerId"] = customerID
         parameters["requestId"] = option.requestID
         parameters["adsetId"] = option.adsetID
+        parameters["productIdOnStore"] = productIDOnStore
         
         var components = URLComponents()
         components.scheme = "https"

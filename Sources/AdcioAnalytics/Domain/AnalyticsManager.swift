@@ -18,7 +18,7 @@ public protocol AnalyticsProductManageable {
 }
 
 public protocol AnalyticsViewManageable {
-    func productImpressed(option: AdcioLogOption, customerID: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func productTapped(option: AdcioLogOption, customerID: String?, completion: @escaping (AnalyticsResult) -> Void)
 }
 
@@ -43,13 +43,13 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         client.viewChanged(customerID: customerID, productIDOnStore: productIDOnStore, title: title, reqeustID: requestID, adsetID: adsetID, categoryIDOnStore: categoryIDOnStore, completion: completion)
     }
     
-    public func productImpressed(option: AdcioLogOption, customerID: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onImpression(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
         guard !impressable(with: option.adsetID) else {
             return
         }
         
         append(with: option.adsetID)
-        client.productImpressed(option: option, customerID: customerID, completion: completion)
+        client.onImpression(option: option, customerID: customerID, productIDOnStore: productIDOnStore, completion: completion)
     }
     
     public func productPurchased(orderID: String, customerID: String? = nil, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
