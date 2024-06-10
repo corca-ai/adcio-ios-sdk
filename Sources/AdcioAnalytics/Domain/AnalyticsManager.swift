@@ -11,7 +11,7 @@ import Impression
 public protocol AnalyticsProductManageable {
     func onView(customerID: String?, productIDOnStore: String, title: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Int?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
-    func onAddToCart(cartID: String?, customerID: String?, productIDOnStore: String, reqeustID: String?, adsetID: String?, categoryIdOnStore: String?, quantity: Int?, completion: @escaping (AnalyticsResult) -> Void)
+    func onAddToCart(cartID: String?, customerID: String?, productIDOnStore: String?, reqeustID: String?, adsetID: String?, categoryIdOnStore: String?, quantity: Int?, completion: @escaping (AnalyticsResult) -> Void)
     
     var sessionID: String { get }
     var deviceID: String { get }
@@ -35,7 +35,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         self.deviceID = self.client.deviceID
     }
     
-    public func onAddToCart(cartID: String? = nil, customerID: String? = nil, productIDOnStore: String, reqeustID: String? = nil, adsetID: String? = nil, categoryIdOnStore: String? = nil, quantity: Int? = nil, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onAddToCart(cartID: String? = nil, customerID: String? = nil, productIDOnStore: String? = nil, reqeustID: String? = nil, adsetID: String? = nil, categoryIdOnStore: String? = nil, quantity: Int? = nil, completion: @escaping (AnalyticsResult) -> Void) {
         client.onAddToCart(cartID: cartID, customerID: customerID, productIDOnStore: productIDOnStore, reqeustID: reqeustID, adsetID: adsetID, categoryIdOnStore: categoryIdOnStore, quantity: quantity, completion: completion)
     }
     
