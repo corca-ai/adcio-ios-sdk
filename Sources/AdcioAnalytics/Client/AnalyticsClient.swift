@@ -14,7 +14,7 @@ public protocol AnalyticsRepogitory {
     
     func onClick(option: AdcioLogOption, customerID: String?, completion: @escaping (AnalyticsResult) -> Void)
     func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
-    func productPurchased(orderID: String, customerID: String?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
+    func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Int?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
     func onView(customerID: String?, productIDOnStore: String, title: String?, reqeustID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func onAddToCart(cartID: String?, customerID: String?, productIDOnStore: String, reqeustID: String?, adsetID: String?, categoryIdOnStore: String?, quantity: Int?, completion: @escaping (AnalyticsResult) -> Void)
 }
@@ -107,7 +107,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         }
     }
     
-    public func productPurchased(orderID: String, customerID: String? = nil, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onPurchase(orderID: String, customerID: String? = nil, requestID: String? = nil, adsetID: String? = nil, categoryIDOnStore: String? = nil, quantity: Int? = nil, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
         var parameters: [String : Any] = [:]
         parameters["sessionId"] = sessionID
         parameters["deviceId"] = deviceID
@@ -116,6 +116,10 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["productIdOnStore"] = productIDOnStore
         parameters["amount"] = amount
         parameters["customerId"] = customerID
+        parameters["requestId"] = requestID
+        parameters["adsetId"] = adsetID
+        parameters["categoryIdOnStore"] = categoryIDOnStore
+        parameters["quantity"] = quantity
         
         var components = URLComponents()
         components.scheme = "https"
@@ -177,8 +181,8 @@ public class AnalyticsClient: AnalyticsRepogitory {
         parameters["cartId"] = cartID
         parameters["customerId"] = customerID
         parameters["productIdOnStore"] = productIDOnStore
-        parameters["reqeustID"] = reqeustID
-        parameters["adsetID"] = adsetID
+        parameters["reqeustId"] = reqeustID
+        parameters["adsetId"] = adsetID
         parameters["categoryIdOnStore"] = categoryIdOnStore
         parameters["quantity"] = quantity
         

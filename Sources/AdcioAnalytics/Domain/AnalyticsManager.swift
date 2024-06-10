@@ -10,7 +10,7 @@ import Impression
 
 public protocol AnalyticsProductManageable {
     func onView(customerID: String?, productIDOnStore: String, title: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
-    func productPurchased(orderID: String, customerID: String?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
+    func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Int?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
     func onAddToCart(cartID: String?, customerID: String?, productIDOnStore: String, reqeustID: String?, adsetID: String?, categoryIdOnStore: String?, quantity: Int?, completion: @escaping (AnalyticsResult) -> Void)
     
     var sessionID: String { get }
@@ -52,8 +52,8 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         client.onImpression(option: option, customerID: customerID, productIDOnStore: productIDOnStore, completion: completion)
     }
     
-    public func productPurchased(orderID: String, customerID: String? = nil, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
-        client.productPurchased(orderID: orderID, customerID: customerID, productIDOnStore: productIDOnStore, amount: amount, completion: completion)
+    public func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Int?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
+        client.onPurchase(orderID: orderID, customerID: customerID, requestID: requestID, adsetID: adsetID, categoryIDOnStore: categoryIDOnStore, quantity: quantity, productIDOnStore: productIDOnStore, amount: amount, completion: completion)
     }
     
     public func onClick(option: AdcioLogOption, customerID: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
