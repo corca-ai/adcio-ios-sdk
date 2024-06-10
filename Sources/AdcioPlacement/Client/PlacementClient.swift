@@ -12,17 +12,27 @@ public protocol PlacementRepogitory {
     var sessionID: SessionID { get }
     var deviceID: String { get }
     
-    func adcioCreateSuggestion(
+    func createAdvertisementProducts(
         clientID: String,
         excludingProductIDs: [String]?,
         categoryID: String?,
         placementID: String,
         customerID: String?,
-        fromAgent: Bool,
+        fromAgent: Bool?,
         birthYear: Int?,
         gender: Gender?,
-        area: String?,
         completion: @escaping (PlacementResult) -> Void
+    )
+    
+    func createAdvertisementBanners(
+        placementID: String,
+        customerID: String?,
+        placementPositionX: Int?,
+        placementPositionY: Int?,
+        fromAgent: Bool?,
+        birthYear: Int?,
+        gender: Gender?,
+        completion: @escaping (AdvertisementBannerResult) -> Void
     )
 }
 
@@ -50,17 +60,16 @@ public final class PlacementClient: PlacementRepogitory {
         case connectivity
         case invalidData
     }
-    
-    public func adcioCreateSuggestion(
+
+    public func createAdvertisementProducts(
         clientID: String,
         excludingProductIDs: [String]? = nil,
         categoryID: String? = nil,
         placementID: String,
         customerID: String? = nil,
-        fromAgent: Bool = false,
+        fromAgent: Bool? = false,
         birthYear: Int? = nil,
         gender: Gender? = nil,
-        area: String? = nil,
         completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
@@ -71,9 +80,7 @@ public final class PlacementClient: PlacementRepogitory {
         if customerID != nil { parameters["customerId"] = customerID }
         if birthYear != nil { parameters["birthYear"] = birthYear }
         if gender != nil { parameters["gender"] = gender?.description }
-        if area != nil { parameters["area"] = area }
         parameters["clientId"] = clientID
-        if area != nil { parameters["area"] = area }
         if excludingProductIDs != nil { parameters["excludingProductIds"] = excludingProductIDs }
         if categoryID != nil { parameters["categoryId"] = categoryID }
         
@@ -106,15 +113,14 @@ public final class PlacementClient: PlacementRepogitory {
         }
     }
     
-    public func adcioAdvertisementsBanners(
+    public func createAdvertisementBanners(
         placementID: String,
         customerID: String? = nil,
         placementPositionX: Int? = nil,
         placementPositionY: Int? = nil,
-        fromAgent: Bool = false,
+        fromAgent: Bool? = false,
         birthYear: Int? = nil,
         gender: Gender? = nil,
-        area: String? = nil,
         completion: @escaping (AdvertisementBannerResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
@@ -127,8 +133,6 @@ public final class PlacementClient: PlacementRepogitory {
         if placementPositionY != nil { parameters["placementPositionY"] = placementPositionY }
         if birthYear != nil { parameters["birthYear"] = birthYear }
         if gender != nil { parameters["gender"] = gender?.description }
-        if area != nil { parameters["area"] = area }
-        if area != nil { parameters["area"] = area }
         
         var components = URLComponents()
         components.scheme = "https"
