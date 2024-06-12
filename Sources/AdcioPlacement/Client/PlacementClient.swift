@@ -21,7 +21,7 @@ public protocol PlacementRepogitory {
         fromAgent: Bool?,
         birthYear: Int?,
         gender: Gender?,
-        filters: Filter?,
+        filters: [String: Filter]?,
         completion: @escaping (PlacementResult) -> Void
     )
     
@@ -69,7 +69,7 @@ public final class PlacementClient: PlacementRepogitory {
     public private(set) var sessionID: SessionID
     
     public init(
-        client: HTTPClient = URLSessionHTTPClient(), 
+        client: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
         deviceID: String = DeviceIDLoader.indentifier,
         baseURL: URL = URL(string: "api-dev.adcio.ai")!
@@ -85,7 +85,7 @@ public final class PlacementClient: PlacementRepogitory {
         case connectivity
         case invalidData
     }
-
+    
     public func createAdvertisementProducts(
         clientID: String,
         excludingProductIDs: [String]? = nil,
@@ -95,7 +95,7 @@ public final class PlacementClient: PlacementRepogitory {
         fromAgent: Bool? = false,
         birthYear: Int? = nil,
         gender: Gender? = nil,
-        filters: Filter? = nil,
+        filters: [String: Filter]? = nil,
         completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
@@ -110,37 +110,26 @@ public final class PlacementClient: PlacementRepogitory {
         if excludingProductIDs != nil { parameters["excludingProductIds"] = excludingProductIDs }
         if categoryID != nil { parameters["categoryId"] = categoryID }
         
-        if filters?.provinceID.contains != nil { parameters["filters"] = [
-            [
-                "province_id": [
-                    "equalTo": filters?.provinceID.equalTo
-                ]
-            ]
-        ]}
-        
-        if filters?.provinceID.contains != nil { parameters["filters"] = [
-            [
-                "province_id": [
-                    "contains": filters?.provinceID.contains
-                ]
-            ]
-        ]}
-        
-        if filters?.provinceID.in != nil { parameters["filters"] = [
-            [
-                "province_id": [
-                    "in": filters?.provinceID.in
-                ]
-            ]
-        ]}
-        
-        if filters?.provinceID.not != nil { parameters["filters"] = [
-            [
-                "province_id": [
-                    "not": filters?.provinceID.not
-                ]
-            ]
-        ]}
+        if let filters = filters {
+            var filtersArray: [[String: Any]] = []
+            for (key, condition) in filters {
+                if let equalTo = condition.provinceID.equalTo {
+                    filtersArray.append([key: ["equalTo": equalTo]])
+                }
+                if let contains = condition.provinceID.contains {
+                    filtersArray.append([key: ["contains": contains]])
+                }
+                if let `in` = condition.provinceID.in {
+                    filtersArray.append([key: ["in": `in`]])
+                }
+                if let not = condition.provinceID.not {
+                    filtersArray.append([key: ["not": not]])
+                }
+            }
+            if !filtersArray.isEmpty {
+                parameters["filters"] = filtersArray
+            }
+        }
         
         var components = URLComponents()
         components.scheme = "https"
