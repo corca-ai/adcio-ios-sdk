@@ -45,7 +45,7 @@ public protocol PlacementRepogitory {
         fromAgent: Bool?,
         birthYear: Int?,
         gender: Gender?,
-        filters: Filter?,
+        filters: [String: Filter]?,
         completion: @escaping (PlacementResult) -> Void
     )
     
@@ -119,9 +119,6 @@ public final class PlacementClient: PlacementRepogitory {
                 if let contains = condition.contains {
                     filtersArray.append([key: ["contains": contains]])
                 }
-                if let `in` = condition.in {
-                    filtersArray.append([key: ["in": `in`]])
-                }
                 if let not = condition.not {
                     filtersArray.append([key: ["not": not]])
                 }
@@ -130,8 +127,6 @@ public final class PlacementClient: PlacementRepogitory {
                 parameters["filters"] = filtersArray
             }
         }
-        
-        print(parameters)
         
         var components = URLComponents()
         components.scheme = "https"
@@ -196,14 +191,14 @@ public final class PlacementClient: PlacementRepogitory {
     
     public func createRecommendationProducts(
         clientID: String,
-        excludingProductIDs: [String]?,
-        categoryID: String?,
+        excludingProductIDs: [String]? = nil,
+        categoryID: String? = nil,
         placementID: String,
-        customerID: String?,
-        fromAgent: Bool?,
-        birthYear: Int?,
-        gender: Gender?,
-        filters: Filter?,
+        customerID: String? = nil,
+        fromAgent: Bool? = nil,
+        birthYear: Int? = nil,
+        gender: Gender? = nil,
+        filters: [String: Filter]? = nil,
         completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
@@ -217,6 +212,24 @@ public final class PlacementClient: PlacementRepogitory {
         parameters["clientId"] = clientID
         if excludingProductIDs != nil { parameters["excludingProductIds"] = excludingProductIDs }
         if categoryID != nil { parameters["categoryId"] = categoryID }
+        
+        if let filters = filters {
+            var filtersArray: [[String: Any]] = []
+            for (key, condition) in filters {
+                if let equalTo = condition.equalTo {
+                    filtersArray.append([key: ["equalTo": equalTo]])
+                }
+                if let contains = condition.contains {
+                    filtersArray.append([key: ["contains": contains]])
+                }
+                if let not = condition.not {
+                    filtersArray.append([key: ["not": not]])
+                }
+            }
+            if !filtersArray.isEmpty {
+                parameters["filters"] = filtersArray
+            }
+        }
         
         var components = URLComponents()
         components.scheme = "https"
