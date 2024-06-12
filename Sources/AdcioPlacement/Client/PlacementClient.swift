@@ -45,7 +45,7 @@ public protocol PlacementRepogitory {
         fromAgent: Bool?,
         birthYear: Int?,
         gender: Gender?,
-        filters: [Filter]?,
+        filters: Filter?,
         completion: @escaping (PlacementResult) -> Void
     )
     
@@ -114,6 +114,30 @@ public final class PlacementClient: PlacementRepogitory {
             [
                 "province_id": [
                     "equalTo": filters?.provinceID.equalTo
+                ]
+            ]
+        ]}
+        
+        if filters?.provinceID.contains != nil { parameters["filters"] = [
+            [
+                "province_id": [
+                    "contains": filters?.provinceID.contains
+                ]
+            ]
+        ]}
+        
+        if filters?.provinceID.in != nil { parameters["filters"] = [
+            [
+                "province_id": [
+                    "in": filters?.provinceID.in
+                ]
+            ]
+        ]}
+        
+        if filters?.provinceID.not != nil { parameters["filters"] = [
+            [
+                "province_id": [
+                    "not": filters?.provinceID.not
                 ]
             ]
         ]}
@@ -188,7 +212,7 @@ public final class PlacementClient: PlacementRepogitory {
         fromAgent: Bool?,
         birthYear: Int?,
         gender: Gender?,
-        filters: [Filter]?,
+        filters: Filter?,
         completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
@@ -202,7 +226,37 @@ public final class PlacementClient: PlacementRepogitory {
         parameters["clientId"] = clientID
         if excludingProductIDs != nil { parameters["excludingProductIds"] = excludingProductIDs }
         if categoryID != nil { parameters["categoryId"] = categoryID }
-        if filters != nil { parameters["filters"] = filters }
+        if filters?.provinceID.contains != nil { parameters["filters"] = [
+            [
+                "province_id": [
+                    "equalTo": filters?.provinceID.equalTo
+                ]
+            ]
+        ]}
+        
+        if filters?.provinceID.contains != nil { parameters["filters"] = [
+            [
+                "province_id": [
+                    "contains": filters?.provinceID.contains
+                ]
+            ]
+        ]}
+        
+        if filters?.provinceID.in != nil { parameters["filters"] = [
+            [
+                "province_id": [
+                    "in": filters?.provinceID.in
+                ]
+            ]
+        ]}
+        
+        if filters?.provinceID.not != nil { parameters["filters"] = [
+            [
+                "province_id": [
+                    "not": filters?.provinceID.not
+                ]
+            ]
+        ]}
         
         var components = URLComponents()
         components.scheme = "https"
