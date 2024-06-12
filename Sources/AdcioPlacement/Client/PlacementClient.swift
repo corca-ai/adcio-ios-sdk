@@ -113,16 +113,16 @@ public final class PlacementClient: PlacementRepogitory {
         if let filters = filters {
             var filtersArray: [[String: Any]] = []
             for (key, condition) in filters {
-                if let equalTo = condition.provinceID.equalTo {
+                if let equalTo = condition.equalTo {
                     filtersArray.append([key: ["equalTo": equalTo]])
                 }
-                if let contains = condition.provinceID.contains {
+                if let contains = condition.contains {
                     filtersArray.append([key: ["contains": contains]])
                 }
-                if let `in` = condition.provinceID.in {
+                if let `in` = condition.in {
                     filtersArray.append([key: ["in": `in`]])
                 }
-                if let not = condition.provinceID.not {
+                if let not = condition.not {
                     filtersArray.append([key: ["not": not]])
                 }
             }
@@ -215,37 +215,6 @@ public final class PlacementClient: PlacementRepogitory {
         parameters["clientId"] = clientID
         if excludingProductIDs != nil { parameters["excludingProductIds"] = excludingProductIDs }
         if categoryID != nil { parameters["categoryId"] = categoryID }
-        if filters?.provinceID.contains != nil { parameters["filters"] = [
-            [
-                "province_id": [
-                    "equalTo": filters?.provinceID.equalTo
-                ]
-            ]
-        ]}
-        
-        if filters?.provinceID.contains != nil { parameters["filters"] = [
-            [
-                "province_id": [
-                    "contains": filters?.provinceID.contains
-                ]
-            ]
-        ]}
-        
-        if filters?.provinceID.in != nil { parameters["filters"] = [
-            [
-                "province_id": [
-                    "in": filters?.provinceID.in
-                ]
-            ]
-        ]}
-        
-        if filters?.provinceID.not != nil { parameters["filters"] = [
-            [
-                "province_id": [
-                    "not": filters?.provinceID.not
-                ]
-            ]
-        ]}
         
         var components = URLComponents()
         components.scheme = "https"

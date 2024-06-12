@@ -82,18 +82,6 @@ public enum Gender: CustomStringConvertible, Equatable {
 }
 
 public struct Filter {
-    public let provinceID: ProvinceID
-    
-    public init(provinceID: ProvinceID) {
-        self.provinceID = provinceID
-    }
-
-    enum CodingKeys: String, CodingKey {
-        case provinceID = "province_id"
-    }
-}
-
-public struct ProvinceID {
     public let equalTo: Any?
     public let not: Any?
     public let `in`: [Any]?
@@ -106,3 +94,29 @@ public struct ProvinceID {
         self.contains = contains
     }
 }
+
+//public struct Filter {
+//    public let provinceID: ProvinceID
+//    
+//    public init(provinceID: ProvinceID) {
+//        self.provinceID = provinceID
+//    }
+//
+//    enum CodingKeys: String, CodingKey {
+//        case provinceID = "province_id"
+//    }
+//}
+//
+//public struct ProvinceID {
+//    public let equalTo: Any?
+//    public let not: Any?
+//    public let `in`: [Any]?
+//    public let contains: String?
+//    
+//    public init(equalTo: Any? = nil, not: Any? = nil, in: [Any]? = nil, contains: String? = nil) {
+//        self.equalTo = equalTo
+//        self.not = not
+//        self.in = `in`
+//        self.contains = contains
+//    }
+//}
