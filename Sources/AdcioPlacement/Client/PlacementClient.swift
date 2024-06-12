@@ -142,9 +142,6 @@ public final class PlacementClient: PlacementRepogitory {
             ]
         ]}
         
-        print("##", parameters["filters"])
-        print("##", filters?.provinceID.in)
-        
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
