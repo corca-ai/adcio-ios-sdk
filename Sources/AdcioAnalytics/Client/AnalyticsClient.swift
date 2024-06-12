@@ -38,7 +38,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
         apiClient: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
         deviceId: String = DeviceIDLoader.indentifier,
-        baseURL: URL = URL(string: "receiver.adcio.ai")!
+        baseURL: URL = URL(string: "receiver-dev.adcio.ai")!
     ) {
         self.clientID = clientID
         self.apiClient = apiClient
