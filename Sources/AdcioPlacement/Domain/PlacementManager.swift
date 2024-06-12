@@ -14,8 +14,9 @@ public protocol PlacementManageable {
     
     func createAdvertisementProducts(clientID: String, excludingProductIDs: [String]?,
                                      categoryID: String?, placementID: String, customerID: String?,
-                                     fromAgent: Bool, birthYear: Int?,
-                                     gender: Gender?, completion: @escaping (PlacementResult) -> Void)
+                                     fromAgent: Bool?, birthYear: Int?,
+                                     gender: Gender?, filters: [Filter]?,
+                                     completion: @escaping (PlacementResult) -> Void)
     
     func createAdvertisementBanners(clientID: String, excludingProductIDs: [String]?,
                                     categoryID: String?, placementID: String,
@@ -24,15 +25,16 @@ public protocol PlacementManageable {
                                     completion: @escaping (AdvertisementBannerResult) -> Void)
     
     func createRecommendationProducts(clientID: String, excludingProductIDs: [String]?,
-                                     categoryID: String?, placementID: String, customerID: String?,
-                                     fromAgent: Bool, birthYear: Int?,
-                                     gender: Gender?, completion: @escaping (PlacementResult) -> Void)
+                                      categoryID: String?, placementID: String, customerID: String?,
+                                      fromAgent: Bool, birthYear: Int?,
+                                      gender: Gender?, filters: [Filter]?,
+                                      completion: @escaping (PlacementResult) -> Void)
     
     func createRecommendationBanners(clientID: String, excludingProductIDs: [String]?,
-                                    categoryID: String?, placementID: String,
-                                    customerID: String?, fromAgent: Bool?,
-                                    birthYear: Int?, gender: Gender?,
-                                    completion: @escaping (AdvertisementBannerResult) -> Void)
+                                     categoryID: String?, placementID: String,
+                                     customerID: String?, fromAgent: Bool?,
+                                     birthYear: Int?, gender: Gender?,
+                                     completion: @escaping (AdvertisementBannerResult) -> Void)
 }
 
 public final class PlacementManager: PlacementManageable {
@@ -51,16 +53,16 @@ public final class PlacementManager: PlacementManageable {
     /// create Advertisement Products method
     public func createAdvertisementProducts(clientID: String, excludingProductIDs: [String]? = nil,
                                             categoryID: String? = nil, placementID: String,
-                                            customerID: String? = nil, fromAgent: Bool,
+                                            customerID: String? = nil, fromAgent: Bool? = false,
                                             birthYear: Int? = nil, gender: Gender? = nil,
-                                            completion: @escaping (PlacementResult) -> Void) {
+                                            filters: [Filter]? = nil, completion: @escaping (PlacementResult) -> Void) {
         clearImpresstionHisstory()
         
         client.createAdvertisementProducts(clientID: clientID, excludingProductIDs: excludingProductIDs,
                                            categoryID: categoryID, placementID: placementID,
                                            customerID: customerID, fromAgent: fromAgent,
-                                           birthYear: birthYear, gender: gender,
-                                           completion: completion)
+                                           birthYear: birthYear, gender: gender, 
+                                           filters: filters, completion: completion)
     }
     
     /// create Advertisement Banners method
@@ -83,38 +85,38 @@ public final class PlacementManager: PlacementManageable {
     }
     
     /// create Recommendation Products method
-    public func createRecommendationProducts(clientID: String, excludingProductIDs: [String]?, 
-                                             categoryID: String?, placementID: String,
-                                             customerID: String?, fromAgent: Bool,
-                                             birthYear: Int?, gender: Gender?,
-                                             completion: @escaping (PlacementResult) -> Void) {
+    public func createRecommendationProducts(clientID: String, excludingProductIDs: [String]? = nil,
+                                             categoryID: String? = nil, placementID: String,
+                                             customerID: String? = nil, fromAgent: Bool,
+                                             birthYear: Int? = nil, gender: Gender? = nil,
+                                             filters: [Filter]? = nil, completion: @escaping (PlacementResult) -> Void) {
         
         clearImpresstionHisstory()
         
         client.createRecommendationProducts(clientID: clientID, excludingProductIDs: excludingProductIDs,
-                                           categoryID: categoryID, placementID: placementID,
-                                           customerID: customerID, fromAgent: fromAgent,
-                                           birthYear: birthYear, gender: gender,
-                                           completion: completion)
+                                            categoryID: categoryID, placementID: placementID,
+                                            customerID: customerID, fromAgent: fromAgent,
+                                            birthYear: birthYear, gender: gender,
+                                            filters: filters, completion: completion)
     }
     
     /// create Recommendation Bannders method
-    public func createRecommendationBanners(clientID: String, excludingProductIDs: [String]?, 
-                                            categoryID: String?, placementID: String,
-                                            customerID: String?, fromAgent: Bool?,
-                                            birthYear: Int?, gender: Gender?,
+    public func createRecommendationBanners(clientID: String, excludingProductIDs: [String]? = nil,
+                                            categoryID: String? = nil, placementID: String,
+                                            customerID: String? = nil, fromAgent: Bool? = nil,
+                                            birthYear: Int? = nil, gender: Gender? = nil,
                                             completion: @escaping (AdvertisementBannerResult) -> Void) {
         
         clearImpresstionHisstory()
         
         client.createRecommendationBanners(placementID: placementID,
-                                          customerID: customerID,
-                                          placementPositionX: nil,
-                                          placementPositionY: nil,
-                                          fromAgent: fromAgent,
-                                          birthYear: birthYear,
-                                          gender: gender,
-                                          completion: completion)
+                                           customerID: customerID,
+                                           placementPositionX: nil,
+                                           placementPositionY: nil,
+                                           fromAgent: fromAgent,
+                                           birthYear: birthYear,
+                                           gender: gender,
+                                           completion: completion)
     }
     
     

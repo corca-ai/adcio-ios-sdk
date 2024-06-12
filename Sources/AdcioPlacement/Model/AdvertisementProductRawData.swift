@@ -80,3 +80,15 @@ public enum Gender: CustomStringConvertible, Equatable {
         }
     }
 }
+
+public struct Filter: Codable {
+    public let provinceID: ProvinceID
+
+    enum CodingKeys: String, CodingKey {
+        case provinceID = "province_id"
+    }
+}
+
+public struct ProvinceID: Codable {
+    public let equalTo: Int
+}
