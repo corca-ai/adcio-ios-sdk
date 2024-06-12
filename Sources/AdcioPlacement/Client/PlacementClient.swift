@@ -21,7 +21,7 @@ public protocol PlacementRepogitory {
         fromAgent: Bool?,
         birthYear: Int?,
         gender: Gender?,
-        filters: [Filter]?,
+        filters: Filter?,
         completion: @escaping (PlacementResult) -> Void
     )
     
@@ -95,7 +95,7 @@ public final class PlacementClient: PlacementRepogitory {
         fromAgent: Bool? = false,
         birthYear: Int? = nil,
         gender: Gender? = nil,
-        filters: [Filter]? = nil,
+        filters: Filter? = nil,
         completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
@@ -109,7 +109,14 @@ public final class PlacementClient: PlacementRepogitory {
         parameters["clientId"] = clientID
         if excludingProductIDs != nil { parameters["excludingProductIds"] = excludingProductIDs }
         if categoryID != nil { parameters["categoryId"] = categoryID }
-        if filters != nil { parameters["filters"] = filters }
+        
+        if filters?.provinceID.contains != nil { parameters["filters"] = [
+            [
+                "province_id": [
+                    "equalTo": filters?.provinceID.equalTo
+                ]
+            ]
+        ]}
         
         var components = URLComponents()
         components.scheme = "https"

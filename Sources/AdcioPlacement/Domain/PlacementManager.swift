@@ -15,7 +15,7 @@ public protocol PlacementManageable {
     func createAdvertisementProducts(clientID: String, excludingProductIDs: [String]?,
                                      categoryID: String?, placementID: String, customerID: String?,
                                      fromAgent: Bool?, birthYear: Int?,
-                                     gender: Gender?, filters: [Filter]?,
+                                     gender: Gender?, filters: Filter?,
                                      completion: @escaping (PlacementResult) -> Void)
     
     func createAdvertisementBanners(clientID: String, excludingProductIDs: [String]?,
@@ -55,7 +55,7 @@ public final class PlacementManager: PlacementManageable {
                                             categoryID: String? = nil, placementID: String,
                                             customerID: String? = nil, fromAgent: Bool? = false,
                                             birthYear: Int? = nil, gender: Gender? = nil,
-                                            filters: [Filter]? = nil, completion: @escaping (PlacementResult) -> Void) {
+                                            filters: Filter? = nil, completion: @escaping (PlacementResult) -> Void) {
         clearImpresstionHisstory()
         
         client.createAdvertisementProducts(clientID: clientID, excludingProductIDs: excludingProductIDs,
