@@ -131,7 +131,7 @@ public final class PlacementClient: PlacementRepogitory {
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
-        components.path = "/advertisements/products"
+        components.path = "/v1/advertisements/products"
         
         guard let url = components.url?.absoluteURL else {
             return
@@ -172,7 +172,7 @@ public final class PlacementClient: PlacementRepogitory {
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
-        components.path = "/advertisements/banners"
+        components.path = "/v1/advertisements/banners"
         
         guard let url = components.url?.absoluteURL else {
             return
@@ -234,7 +234,7 @@ public final class PlacementClient: PlacementRepogitory {
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
-        components.path = "/recommendations/products"
+        components.path = "/v1/recommendations/products"
         
         guard let url = components.url?.absoluteURL else {
             return
@@ -275,7 +275,7 @@ public final class PlacementClient: PlacementRepogitory {
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
-        components.path = "/recommendations/banners"
+        components.path = "/v1/recommendations/banners"
         
         guard let url = components.url?.absoluteURL else {
             return
