@@ -80,3 +80,16 @@ public enum Gender: CustomStringConvertible, Equatable {
         }
     }
 }
+
+public struct Filter {
+    public let equalTo: Any?
+    public let not: Any?
+    public let contains: String?
+    
+    public init(equalTo: Any? = nil, not: Any? = nil, contains: String? = nil) {
+        self.equalTo = equalTo
+        self.not = not
+        self.contains = contains
+    }
+}
+  

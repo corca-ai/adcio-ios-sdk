@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal final class AdvertisementProductMapper {
+internal final class ProductsMapper {
     private struct Root: Decodable {
         public let suggestions: [AdcioSuggestion]
     }
@@ -25,7 +25,7 @@ internal final class AdvertisementProductMapper {
     }
 }
 
-internal final class AdvertisementBannerMapper {
+internal final class BannersMapper {
     private struct Root: Decodable {
         public let suggestions: [AdvertisementBanner]
     }

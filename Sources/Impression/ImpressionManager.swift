@@ -7,13 +7,14 @@
 
 import Foundation
 
-/*
- 1. clear 동작 → Placement
- 2. 특정 adSetID가 있는지 검증 동작 반환 (bool) → Analytics
- 3. append(adSetID)
- */
-
 public typealias AdSetID = String
+
+public enum ImpressionType {
+    case advertisementProducts
+    case advertisementBannders
+    case recommendationProducts
+    case recommendationBannders
+}
 
 public protocol ImpressionManageable {
     func clear()
