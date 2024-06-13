@@ -19,7 +19,7 @@ public protocol AnalyticsProductManageable {
 
 public protocol AnalyticsViewManageable {
     func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
-    func onClick(option: AdcioLogOption, customerID: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func onClick(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
 }
 
 public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewManageable {
@@ -56,8 +56,8 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         client.onPurchase(orderID: orderID, customerID: customerID, requestID: requestID, adsetID: adsetID, categoryIDOnStore: categoryIDOnStore, quantity: quantity, productIDOnStore: productIDOnStore, amount: amount, completion: completion)
     }
     
-    public func onClick(option: AdcioLogOption, customerID: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
-        client.onClick(option: option, customerID: customerID, completion: completion)
+    public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
+        client.onClick(option: option, customerID: customerID, productIDOnStore: productIDOnStore, completion: completion)
     }
     
     private func impressable(with adSetID: AdSetID) -> Bool {
