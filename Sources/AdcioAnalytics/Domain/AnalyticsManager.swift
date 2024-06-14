@@ -23,13 +23,11 @@ public protocol AnalyticsViewManageable {
 }
 
 public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewManageable {
-    private let impressionManager: ImpressionManageable
     private let client: AnalyticsRepogitory
     public private(set) var sessionID: String
     public private(set) var deviceID: String
     
     public init(clientID: String) {
-        self.impressionManager = ImpressionManager.instance
         self.client = AnalyticsClient(clientID: clientID)
         self.sessionID = self.client.sessionID
         self.deviceID = self.client.deviceID
@@ -44,11 +42,6 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     }
     
     public func onImpression(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
-        guard !impressable(with: option.adsetID) else {
-            return
-        }
-        
-        append(with: option.adsetID)
         client.onImpression(option: option, customerID: customerID, productIDOnStore: productIDOnStore, completion: completion)
     }
     
@@ -58,13 +51,5 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     
     public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
         client.onClick(option: option, customerID: customerID, productIDOnStore: productIDOnStore, completion: completion)
-    }
-    
-    private func impressable(with adSetID: AdSetID) -> Bool {
-        return impressionManager.impressable(with: adSetID)
-    }
-    
-    private func append(with adSetID: AdSetID) {
-        impressionManager.append(with: adSetID)
     }
 }
