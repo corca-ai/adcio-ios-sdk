@@ -29,22 +29,16 @@ let package = Package(
             name: "AdcioPlacement",
             dependencies: [
                 .target(name: "Core"),
-                .target(name: "Impression")
             ]
         ),
         .target(
             name: "AdcioAnalytics",
             dependencies: [
                 .target(name: "Core"),
-                .target(name: "Impression")
             ]
         ),
         .target(
             name: "AdcioAgent",
-            dependencies: []
-        ),
-        .target(
-            name: "Impression",
             dependencies: []
         ),
         .testTarget(
