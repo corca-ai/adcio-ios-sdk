@@ -38,13 +38,11 @@ public protocol PlacementManageable {
 }
 
 public final class PlacementManager: PlacementManageable {
-    private let impressionManager: ImpressionManageable
     private let client: PlacementRepogitory
     public private(set) var sessionID: String
     public private(set) var deviceID: String
     
     public init() {
-        self.impressionManager = ImpressionManager.instance
         self.client = PlacementClient()
         self.sessionID = self.client.sessionID
         self.deviceID = self.client.deviceID
@@ -56,8 +54,6 @@ public final class PlacementManager: PlacementManageable {
                                             customerID: String? = nil, fromAgent: Bool? = false,
                                             birthYear: Int? = nil, gender: Gender? = nil,
                                             filters: [String: Filter]? = nil, completion: @escaping (PlacementResult) -> Void) {
-        clearImpresstionHisstory()
-        
         client.createAdvertisementProducts(clientID: clientID, excludingProductIDs: excludingProductIDs,
                                            categoryID: categoryID, placementID: placementID,
                                            customerID: customerID, fromAgent: fromAgent,
@@ -71,9 +67,6 @@ public final class PlacementManager: PlacementManageable {
                                            customerID: String? = nil, fromAgent: Bool? = false,
                                            birthYear: Int? = nil, gender: Gender? = nil,
                                            completion: @escaping (AdvertisementBannerResult) -> Void) {
-        
-        clearImpresstionHisstory()
-        
         client.createAdvertisementBanners(placementID: placementID,
                                           customerID: customerID,
                                           placementPositionX: nil,
@@ -90,9 +83,6 @@ public final class PlacementManager: PlacementManageable {
                                              customerID: String? = nil, fromAgent: Bool,
                                              birthYear: Int? = nil, gender: Gender? = nil,
                                              filters: [String: Filter]? = nil, completion: @escaping (PlacementResult) -> Void) {
-        
-        clearImpresstionHisstory()
-        
         client.createRecommendationProducts(clientID: clientID, excludingProductIDs: excludingProductIDs,
                                             categoryID: categoryID, placementID: placementID,
                                             customerID: customerID, fromAgent: fromAgent,
@@ -106,9 +96,6 @@ public final class PlacementManager: PlacementManageable {
                                             customerID: String? = nil, fromAgent: Bool? = nil,
                                             birthYear: Int? = nil, gender: Gender? = nil,
                                             completion: @escaping (AdvertisementBannerResult) -> Void) {
-        
-        clearImpresstionHisstory()
-        
         client.createRecommendationBanners(placementID: placementID,
                                            customerID: customerID,
                                            placementPositionX: nil,
@@ -117,10 +104,5 @@ public final class PlacementManager: PlacementManageable {
                                            birthYear: birthYear,
                                            gender: gender,
                                            completion: completion)
-    }
-    
-    
-    private func clearImpresstionHisstory() {
-        impressionManager.clear()
     }
 }
