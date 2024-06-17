@@ -234,7 +234,7 @@ public final class PlacementClient: PlacementRepogitory {
         var components = URLComponents()
         components.scheme = "https"
         components.host = baseURL.absoluteString
-        components.path = "/v1/recommendations/products"
+        components.path = "/recommendations/products"
         
         guard let url = components.url?.absoluteURL else {
             return
