@@ -202,8 +202,8 @@ public final class PlacementClient: PlacementRepogitory {
         completion: @escaping (PlacementResult) -> Void
     ) {
         var parameters: [String : Any] = [:]
-        parameters["sessionId"] = "helloworld"
-        parameters["deviceId"] = "bbe87fd2-e53e-4beb-b7c6-de4a4d4edba3"
+        parameters["sessionId"] = "hello_world"
+        parameters["deviceId"] = "04af9da9-2c77-4482-8b41-b63e774d4fea"
         parameters["placementId"] = placementID
         parameters["fromAgent"] = fromAgent
         if customerID != nil { parameters["customerId"] = customerID }
