@@ -20,6 +20,7 @@ public final class SessionClient: SessionLoader {
     
     public init() {
         self.identifier = UUID().uuidString
+        print("UUID",self.identifier)
     }
     
     public func loadSession(completion: ((SessionID) -> Void)) {
