@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Impression
 
 public protocol AnalyticsProductManageable {
     func onView(customerID: String?, productIDOnStore: String, requestID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
