@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Impression
 
 public protocol PlacementManageable {
     var sessionID: String { get }
