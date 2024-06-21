@@ -9,6 +9,7 @@ import Foundation
 
 public struct AdcioSuggestionRawData: Decodable, Equatable {
     public let suggestions: [AdcioSuggestion]
+    public let plcement: Placement?
     public let metadata: MetaData?
 }
 
