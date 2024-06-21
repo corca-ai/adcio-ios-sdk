@@ -239,7 +239,7 @@ public final class PlacementClient: PlacementRepogitory {
         guard let url = components.url?.absoluteURL else {
             return
         }
-        
+        print(parameters)
         client.request(from: url,
                        parameter: parameters) { result in
             switch result {
