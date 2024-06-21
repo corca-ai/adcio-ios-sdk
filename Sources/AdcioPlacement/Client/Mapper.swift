@@ -9,7 +9,8 @@ import Foundation
 
 internal final class ProductsMapper {
     private struct Root: Decodable {
-        public let adcioSuggestionRawData: AdcioSuggestionRawData
+        public let suggestions: [AdcioSuggestion]
+        public let metadata: MetaData
     }
     
     private static var OK_201: Int { return 201 }
@@ -21,7 +22,10 @@ internal final class ProductsMapper {
             throw PlacementClient.Error.invalidData
         }
         
-        return root.adcioSuggestionRawData
+        let rawData = AdcioSuggestionRawData(suggestions: root.suggestions,
+                                             metadata: root.metadata)
+        
+        return rawData
     }
 }
 
