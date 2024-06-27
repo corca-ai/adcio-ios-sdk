@@ -25,16 +25,20 @@ let package = Package(
     ],
     targets: [
         .target(name: "Core"),
+        .target(name: "ControllerV1"),
+        .target(name: "ReceiverV1"),
         .target(
             name: "AdcioPlacement",
             dependencies: [
                 .target(name: "Core"),
+                .target(name: "ControllerV1"),
             ]
         ),
         .target(
             name: "AdcioAnalytics",
             dependencies: [
                 .target(name: "Core"),
+                .target(name: "ReceiverV1"),
             ]
         ),
         .target(
