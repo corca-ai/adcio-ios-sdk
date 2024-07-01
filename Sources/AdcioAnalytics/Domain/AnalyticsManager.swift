@@ -6,23 +6,20 @@
 //
 
 import Foundation
-import Impression
+import ReceiverV1
 
-public protocol AnalyticsProductManageable {
-    func onView(customerID: String?, productIDOnStore: String, requestID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
-    func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Int?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
-    func onAddToCart(cartID: String?, customerID: String?, productIDOnStore: String?, reqeustID: String?, adsetID: String?, categoryIdOnStore: String?, quantity: Int?, completion: @escaping (AnalyticsResult) -> Void)
-    
+public protocol AnalyticsManageable {
     var sessionID: String { get }
     var deviceID: String { get }
+    
+    func onPurchase(_ purchaseRequest: TrackPurchaseRequestDto, completion: @escaping (AnalyticsResult) -> Void)
+    func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void)
+    func onImpression(_ impressionRequestDTO: TrackImpressionRequestDto, completion: @escaping (AnalyticsResult) -> Void)
+    func onView(_ pageViewRequestDTO: TrackPageViewRequestDto, completion: @escaping (AnalyticsResult) -> Void)
+    func onAddToCart(_ addToCartRequestDTO: TrackAddToCartRequestDto, completion: @escaping (AnalyticsResult) -> Void)
 }
 
-public protocol AnalyticsViewManageable {
-    func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
-    func onClick(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
-}
-
-public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewManageable {
+public final class AnalyticsManager: AnalyticsManageable {
     private let client: AnalyticsRepogitory
     public private(set) var sessionID: String
     public private(set) var deviceID: String
@@ -33,23 +30,23 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         self.deviceID = self.client.deviceID
     }
     
-    public func onAddToCart(cartID: String? = nil, customerID: String? = nil, productIDOnStore: String? = nil, reqeustID: String? = nil, adsetID: String? = nil, categoryIdOnStore: String? = nil, quantity: Int? = nil, completion: @escaping (AnalyticsResult) -> Void) {
-        client.onAddToCart(cartID: cartID, customerID: customerID, productIDOnStore: productIDOnStore, reqeustID: reqeustID, adsetID: adsetID, categoryIdOnStore: categoryIdOnStore, quantity: quantity, completion: completion)
+    public func onPurchase(_ purchaseRequest: TrackPurchaseRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+        client.onPurchase(purchaseRequest, completion: completion)
     }
     
-    public func onView(customerID: String? = nil, productIDOnStore: String, requestID: String? = nil, adsetID: String? = nil, categoryIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
-        client.onView(customerID: customerID, productIDOnStore: productIDOnStore, reqeustID: requestID, adsetID: adsetID, categoryIDOnStore: categoryIDOnStore, completion: completion)
+    public func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+        client.onClick(clickRequestDTO, completion: completion)
     }
     
-    public func onImpression(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
-        client.onImpression(option: option, customerID: customerID, productIDOnStore: productIDOnStore, completion: completion)
+    public func onImpression(_ impressionRequestDTO: TrackImpressionRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+        client.onImpression(impressionRequestDTO, completion: completion)
     }
     
-    public func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Int?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void) {
-        client.onPurchase(orderID: orderID, customerID: customerID, requestID: requestID, adsetID: adsetID, categoryIDOnStore: categoryIDOnStore, quantity: quantity, productIDOnStore: productIDOnStore, amount: amount, completion: completion)
+    public func onView(_ pageViewRequestDTO: TrackPageViewRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+        client.onView(pageViewRequestDTO, completion: completion)
     }
     
-    public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
-        client.onClick(option: option, customerID: customerID, productIDOnStore: productIDOnStore, completion: completion)
+    public func onAddToCart(_ addToCartRequestDTO: TrackAddToCartRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+        client.onAddToCart(addToCartRequestDTO, completion: completion)
     }
 }
