@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ReceiverV1
 import Core
 
 public protocol AnalyticsRepogitory {
@@ -17,6 +18,7 @@ public protocol AnalyticsRepogitory {
     func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Int?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
     func onView(customerID: String?, productIDOnStore: String, reqeustID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func onAddToCart(cartID: String?, customerID: String?, productIDOnStore: String?, reqeustID: String?, adsetID: String?, categoryIdOnStore: String?, quantity: Int?, completion: @escaping (AnalyticsResult) -> Void)
+    func onClickTest(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void)*
 }
 
 public class AnalyticsClient: AnalyticsRepogitory {
@@ -46,6 +48,17 @@ public class AnalyticsClient: AnalyticsRepogitory {
         self.deviceID = deviceId
         self.baseURL = baseURL
         self.sessionID = loader.identifier
+    }
+    
+    public func onClickTest(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+        EventsAPI.eventsControllerOnClick(trackClickRequestDto: clickRequestDTO) { data, error in
+            guard let error else {
+                completion(.failure(Error.invalidData))
+                return
+            }
+            
+            completion(.success(data?.success ?? false))
+        }
     }
     
     public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {

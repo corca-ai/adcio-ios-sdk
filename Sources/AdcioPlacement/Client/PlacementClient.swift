@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ControllerV1
 import Core
 
 public protocol PlacementRepogitory {

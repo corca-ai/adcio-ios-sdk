@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Impression
+import ReceiverV1
 
 public protocol AnalyticsProductManageable {
     func onView(customerID: String?, productIDOnStore: String, requestID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
@@ -20,17 +20,20 @@ public protocol AnalyticsProductManageable {
 public protocol AnalyticsViewManageable {
     func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func onClick(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func onClickTest(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
 }
 
 public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewManageable {
     private let client: AnalyticsRepogitory
     public private(set) var sessionID: String
     public private(set) var deviceID: String
+    private var clientID: String
     
     public init(clientID: String) {
         self.client = AnalyticsClient(clientID: clientID)
         self.sessionID = self.client.sessionID
         self.deviceID = self.client.deviceID
+        self.clientID = clientID
     }
     
     public func onAddToCart(cartID: String? = nil, customerID: String? = nil, productIDOnStore: String? = nil, reqeustID: String? = nil, adsetID: String? = nil, categoryIdOnStore: String? = nil, quantity: Int? = nil, completion: @escaping (AnalyticsResult) -> Void) {
@@ -51,5 +54,9 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     
     public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
         client.onClick(option: option, customerID: customerID, productIDOnStore: productIDOnStore, completion: completion)
+    }
+    
+    public func onClickTest(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
+        client.onClickTest(TrackClickRequestDto(storeId: clientID, sessionId: sessionID, deviceId: deviceID, customerId: customerID, requestId: option.requestID, productIdOnStore: productIDOnStore, adsetId: option.adsetID), completion: completion)
     }
 }
