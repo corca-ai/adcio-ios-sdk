@@ -19,7 +19,7 @@ public protocol AnalyticsProductManageable {
 
 public protocol AnalyticsViewManageable {
     func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
-    func onClick(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func onClick(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
 }
 
 public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewManageable {
@@ -51,7 +51,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         client.onPurchase(orderID: orderID, customerID: customerID, requestID: requestID, adsetID: adsetID, categoryIDOnStore: categoryIDOnStore, quantity: quantity, productIDOnStore: productIDOnStore, amount: amount, completion: completion)
     }
     
-    public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         client.onClick(TrackClickRequestDto(storeId: clientID, sessionId: sessionID, deviceId: deviceID, customerId: customerID, requestId: option.requestID, productIdOnStore: productIDOnStore, adsetId: option.adsetID), completion: completion)
     }
 }

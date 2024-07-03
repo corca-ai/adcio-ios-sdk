@@ -13,7 +13,7 @@ public protocol AnalyticsRepogitory {
     var sessionID: SessionID { get }
     var deviceID: String { get }
     
-    func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void)
+    func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void)
     func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Int?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
     func onView(customerID: String?, productIDOnStore: String, reqeustID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
@@ -29,7 +29,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
     private let clientID: String
     public private(set) var sessionID: SessionID
     
-    public enum Error: Swift.Error {
+    public enum NetworkError: Swift.Error {
         case connectivity
         case invalidData
     }
@@ -49,14 +49,14 @@ public class AnalyticsClient: AnalyticsRepogitory {
         self.sessionID = loader.identifier
     }
     
-    public func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         EventsAPI.eventsControllerOnClick(trackClickRequestDto: clickRequestDTO) { result, error in
-            guard let error else {
-                completion(.failure(error ?? Error.invalidData))
+            guard error == nil else {
+                completion(nil, error)
                 return
             }
             
-            completion(.success(result?.success ?? false))
+            completion(result, nil)
         }
     }
     
@@ -85,7 +85,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
             case .failure:
-                completion(.failure(AnalyticsClient.Error.connectivity))
+                completion(.failure(AnalyticsClient.NetworkError.connectivity))
             }
         }
     }
@@ -119,7 +119,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
             case .failure:
-                completion(.failure(AnalyticsClient.Error.connectivity))
+                completion(.failure(AnalyticsClient.NetworkError.connectivity))
             }
         }
     }
@@ -151,7 +151,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
             case .failure:
-                completion(.failure(AnalyticsClient.Error.connectivity))
+                completion(.failure(AnalyticsClient.NetworkError.connectivity))
             }
         }
     }
@@ -184,7 +184,7 @@ public class AnalyticsClient: AnalyticsRepogitory {
             case let .success(data, response):
                 completion(AnalyticsClient.map(data, from: response))
             case .failure:
-                completion(.failure(AnalyticsClient.Error.connectivity))
+                completion(.failure(AnalyticsClient.NetworkError.connectivity))
             }
         }
     }
