@@ -53,16 +53,10 @@ public final class PlacementManager: PlacementManageable {
     public func createAdvertisementBanners(clientID: String, excludingProductIDs: [String]? = nil,
                                            categoryID: String? = nil, placementID: String,
                                            customerID: String? = nil, fromAgent: Bool? = false,
-                                           birthYear: Int? = nil, gender: Gender? = nil,
-                                           completion: @escaping (AdvertisementBannerResult) -> Void) {
-        client.createAdvertisementBanners(placementID: placementID,
-                                          customerID: customerID,
-                                          placementPositionX: nil,
-                                          placementPositionY: nil,
-                                          fromAgent: fromAgent,
-                                          birthYear: birthYear,
-                                          gender: gender,
-                                          completion: completion)
+                                           birthYear: Double? = nil, gender: BannerSuggestionRequestDto.Gender? = nil,
+                                           completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void) {
+        client.createAdvertisementBanners(
+            BannerSuggestionRequestDto(sessionId: sessionID, deviceId: deviceID, customerId: customerID, placementId: placementID, placementPositionX: nil, placementPositionY: nil, fromAgent: fromAgent, birthYear: birthYear, gender: gender), completion: completion)
     }
     
     /// create Recommendation Products method
