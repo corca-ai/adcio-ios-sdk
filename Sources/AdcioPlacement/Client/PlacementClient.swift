@@ -79,10 +79,15 @@ public final class PlacementClient: PlacementRepogitory {
     public func createAdvertisementProducts(_ productSuggestionRequestDto: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
         SuggestionAPI.advertisementsControllerAdvertiseProducts(productSuggestionRequestDto: productSuggestionRequestDto) { data, error in
             guard let error else {
+                print("### 1 Error")
                 completion(nil, error)
                 return
             }
             
+            print("### 2 Error")
+            data?.suggestions.forEach({ suggestion in
+                print("### 3", suggestion.product)
+            })
             completion(data, nil)
         }
     }
