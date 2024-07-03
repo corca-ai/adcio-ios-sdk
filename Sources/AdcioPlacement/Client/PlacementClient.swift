@@ -84,7 +84,6 @@ public final class PlacementClient: PlacementRepogitory {
                 return
             }
             
-            print("### 2 Error")
             data?.suggestions.forEach({ suggestion in
                 print("### 3", suggestion.product)
             })

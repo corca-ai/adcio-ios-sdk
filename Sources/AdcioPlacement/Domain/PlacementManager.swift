@@ -12,11 +12,7 @@ public protocol PlacementManageable {
     var sessionID: String { get }
     var deviceID: String { get }
     
-    func createAdvertisementProducts(clientID: String, excludingProductIDs: [String]?,
-                                            categoryID: String?, placementID: String,
-                                            customerID: String?, fromAgent: Bool?,
-                                            birthYear: Int?, gender: Gender?,
-                                            filters: [String: Filter]?, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
+    func createAdvertisementProducts(_ productSuggestionRequestDTO: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
     
     func createAdvertisementBanners(clientID: String, excludingProductIDs: [String]?,
                                     categoryID: String?, placementID: String,
@@ -49,12 +45,8 @@ public final class PlacementManager: PlacementManageable {
     }
     
     /// create Advertisement Products method
-    public func createAdvertisementProducts(clientID: String, excludingProductIDs: [String]? = nil,
-                                            categoryID: String? = nil, placementID: String,
-                                            customerID: String? = nil, fromAgent: Bool? = false,
-                                            birthYear: Int? = nil, gender: Gender? = nil,
-                                            filters: [String: Filter]? = nil, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
-        client.createAdvertisementProducts(ProductSuggestionRequestDto(sessionId: sessionID, deviceId: deviceID, placementId: placementID, clientId: clientID, excludingProductIds: excludingProductIDs, categoryId: categoryID), completion: completion)
+    public func createAdvertisementProducts(_ productSuggestionRequestDTO: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
+        client.createAdvertisementProducts(productSuggestionRequestDTO, completion: completion)
     }
     
     /// create Advertisement Banners method
