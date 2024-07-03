@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import ControllerV1
 
 public protocol PlacementManageable {
     var sessionID: String { get }
     var deviceID: String { get }
     
     func createAdvertisementProducts(clientID: String, excludingProductIDs: [String]?,
-                                     categoryID: String?, placementID: String, customerID: String?,
-                                     fromAgent: Bool?, birthYear: Int?,
-                                     gender: Gender?, filters: [String: Filter]?,
-                                     completion: @escaping (PlacementResult) -> Void)
+                                            categoryID: String?, placementID: String,
+                                            customerID: String?, fromAgent: Bool?,
+                                            birthYear: Int?, gender: Gender?,
+                                            filters: [String: Filter]?, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
     
     func createAdvertisementBanners(clientID: String, excludingProductIDs: [String]?,
                                     categoryID: String?, placementID: String,
@@ -52,12 +53,8 @@ public final class PlacementManager: PlacementManageable {
                                             categoryID: String? = nil, placementID: String,
                                             customerID: String? = nil, fromAgent: Bool? = false,
                                             birthYear: Int? = nil, gender: Gender? = nil,
-                                            filters: [String: Filter]? = nil, completion: @escaping (PlacementResult) -> Void) {
-        client.createAdvertisementProducts(clientID: clientID, excludingProductIDs: excludingProductIDs,
-                                           categoryID: categoryID, placementID: placementID,
-                                           customerID: customerID, fromAgent: fromAgent,
-                                           birthYear: birthYear, gender: gender,
-                                           filters: filters, completion: completion)
+                                            filters: [String: Filter]? = nil, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
+        client.createAdvertisementProducts(ProductSuggestionRequestDto(sessionId: sessionID, deviceId: deviceID, placementId: placementID, clientId: clientID, excludingProductIds: excludingProductIDs, categoryId: categoryID), completion: completion)
     }
     
     /// create Advertisement Banners method
