@@ -12,25 +12,29 @@ public protocol PlacementManageable {
     var sessionID: String { get }
     var deviceID: String { get }
     
-    func createAdvertisementProducts(_ productSuggestionRequestDTO: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
+    func createAdvertisementProducts(clientID: String, excludingProductIDs: [String]?,
+                                             categoryID: String?, placementID: String,
+                                             customerID: String?, fromAgent: Bool,
+                                             birthYear: Double?, gender: ProductSuggestionRequestDto.Gender?,
+                                             filters: [[String: ProductFilterOperationDto]]?, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
     
     func createAdvertisementBanners(clientID: String, excludingProductIDs: [String]?,
-                                    categoryID: String?, placementID: String,
-                                    customerID: String?, fromAgent: Bool?,
-                                    birthYear: Int?, gender: Gender?,
-                                    completion: @escaping (AdvertisementBannerResult) -> Void)
+                                           categoryID: String?, placementID: String,
+                                           customerID: String?, fromAgent: Bool?,
+                                           birthYear: Double?, gender: BannerSuggestionRequestDto.Gender?,
+                                           completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void)
     
     func createRecommendationProducts(clientID: String, excludingProductIDs: [String]?,
-                                      categoryID: String?, placementID: String, customerID: String?,
-                                      fromAgent: Bool, birthYear: Int?,
-                                      gender: Gender?, filters: [String: Filter]?,
-                                      completion: @escaping (PlacementResult) -> Void)
+                                             categoryID: String?, placementID: String,
+                                             customerID: String?, fromAgent: Bool,
+                                             birthYear: Double?, gender: ProductSuggestionRequestDto.Gender?,
+                                             filters: [[String: ProductFilterOperationDto]]?, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
     
     func createRecommendationBanners(clientID: String, excludingProductIDs: [String]?,
-                                     categoryID: String?, placementID: String,
-                                     customerID: String?, fromAgent: Bool?,
-                                     birthYear: Int?, gender: Gender?,
-                                     completion: @escaping (AdvertisementBannerResult) -> Void)
+                                           categoryID: String?, placementID: String,
+                                           customerID: String?, fromAgent: Bool?,
+                                           birthYear: Double?, gender: BannerSuggestionRequestDto.Gender?,
+                                           completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void)
 }
 
 public final class PlacementManager: PlacementManageable {
@@ -45,8 +49,12 @@ public final class PlacementManager: PlacementManageable {
     }
     
     /// create Advertisement Products method
-    public func createAdvertisementProducts(_ productSuggestionRequestDTO: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
-        client.createAdvertisementProducts(productSuggestionRequestDTO, completion: completion)
+    public func createAdvertisementProducts(clientID: String, excludingProductIDs: [String]? = nil,
+                                             categoryID: String? = nil, placementID: String,
+                                             customerID: String? = nil, fromAgent: Bool,
+                                             birthYear: Double? = nil, gender: ProductSuggestionRequestDto.Gender? = nil,
+                                             filters: [[String: ProductFilterOperationDto]]? = nil, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
+        client.createAdvertisementProducts(ProductSuggestionRequestDto(sessionId: sessionID, deviceId: deviceID, customerId: customerID, placementId: placementID, placementPositionX: nil, placementPositionY: nil, fromAgent: fromAgent, birthYear: birthYear, gender: gender, clientId: clientID, excludingProductIds: excludingProductIDs, categoryId: categoryID, filters: filters), completion: completion)
     }
     
     /// create Advertisement Banners method
@@ -63,28 +71,18 @@ public final class PlacementManager: PlacementManageable {
     public func createRecommendationProducts(clientID: String, excludingProductIDs: [String]? = nil,
                                              categoryID: String? = nil, placementID: String,
                                              customerID: String? = nil, fromAgent: Bool,
-                                             birthYear: Int? = nil, gender: Gender? = nil,
-                                             filters: [String: Filter]? = nil, completion: @escaping (PlacementResult) -> Void) {
-        client.createRecommendationProducts(clientID: clientID, excludingProductIDs: excludingProductIDs,
-                                            categoryID: categoryID, placementID: placementID,
-                                            customerID: customerID, fromAgent: fromAgent,
-                                            birthYear: birthYear, gender: gender,
-                                            filters: filters, completion: completion)
+                                             birthYear: Double? = nil, gender: ProductSuggestionRequestDto.Gender? = nil,
+                                             filters: [[String: ProductFilterOperationDto]]? = nil, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
+        client.createRecommendationProducts(ProductSuggestionRequestDto(sessionId: sessionID, deviceId: deviceID, customerId: customerID, placementId: placementID, placementPositionX: nil, placementPositionY: nil, fromAgent: fromAgent, birthYear: birthYear, gender: gender, clientId: clientID, excludingProductIds: excludingProductIDs, categoryId: categoryID, filters: filters), completion: completion)
     }
     
     /// create Recommendation Bannders method
     public func createRecommendationBanners(clientID: String, excludingProductIDs: [String]? = nil,
-                                            categoryID: String? = nil, placementID: String,
-                                            customerID: String? = nil, fromAgent: Bool? = nil,
-                                            birthYear: Int? = nil, gender: Gender? = nil,
-                                            completion: @escaping (AdvertisementBannerResult) -> Void) {
-        client.createRecommendationBanners(placementID: placementID,
-                                           customerID: customerID,
-                                           placementPositionX: nil,
-                                           placementPositionY: nil,
-                                           fromAgent: fromAgent,
-                                           birthYear: birthYear,
-                                           gender: gender,
-                                           completion: completion)
+                                           categoryID: String? = nil, placementID: String,
+                                           customerID: String? = nil, fromAgent: Bool? = false,
+                                           birthYear: Double? = nil, gender: BannerSuggestionRequestDto.Gender? = nil,
+                                           completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void) {
+        client.createRecommendationBanners(
+            BannerSuggestionRequestDto(sessionId: sessionID, deviceId: deviceID, customerId: customerID, placementId: placementID, placementPositionX: nil, placementPositionY: nil, fromAgent: fromAgent, birthYear: birthYear, gender: gender), completion: completion)
     }
 }
