@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import ReceiverV1
 import Core
 
 public protocol AnalyticsRepogitory {
     var sessionID: SessionID { get }
     var deviceID: String { get }
     
-    func onClick(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
+    func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void)
     func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
     func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Int?, productIDOnStore: String, amount: Int, completion: @escaping (AnalyticsResult) -> Void)
     func onView(customerID: String?, productIDOnStore: String, reqeustID: String?, adsetID: String?, categoryIDOnStore: String?, completion: @escaping (AnalyticsResult) -> Void)
@@ -48,33 +49,14 @@ public class AnalyticsClient: AnalyticsRepogitory {
         self.sessionID = loader.identifier
     }
     
-    public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, completion: @escaping (AnalyticsResult) -> Void) {
-        var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
-        parameters["deviceId"] = deviceID
-        parameters["storeId"] = clientID
-        parameters["customerId"] = customerID
-        parameters["requestId"] = option.requestID
-        parameters["productIdOnStore"] = productIDOnStore
-        parameters["adsetId"] = option.adsetID
-        
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = baseURL.absoluteString
-        components.path = "/events/click"
-        
-        guard let url = components.url?.absoluteURL else {
-            return
-        }
-        
-        apiClient.request(from: url,
-                          parameter: parameters) { result in
-            switch result {
-            case let .success(data, response):
-                completion(AnalyticsClient.map(data, from: response))
-            case .failure:
-                completion(.failure(AnalyticsClient.Error.connectivity))
+    public func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+        EventsAPI.eventsControllerOnClick(trackClickRequestDto: clickRequestDTO) { result, error in
+            guard let error else {
+                completion(.failure(error ?? Error.invalidData))
+                return
             }
+            
+            completion(.success(result?.success ?? false))
         }
     }
     

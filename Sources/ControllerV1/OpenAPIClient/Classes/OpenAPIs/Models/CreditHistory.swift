@@ -26,9 +26,9 @@ public struct CreditHistory: Codable, JSONEncodable, Hashable {
     public var amount: Double
     public var createdAt: Date
     public var transaction: Transaction?
-    public var creditDecreaseRequest: CreditDecreaseRequest?
+    public var creditDecreaseRequestId: String?
 
-    public init(id: String, store: Client?, storeId: String?, seller: Client?, sellerId: String?, creditType: AnyCodable, adjustmentType: AdjustmentType, amount: Double, createdAt: Date, transaction: Transaction?, creditDecreaseRequest: CreditDecreaseRequest?) {
+    public init(id: String, store: Client?, storeId: String?, seller: Client?, sellerId: String?, creditType: AnyCodable, adjustmentType: AdjustmentType, amount: Double, createdAt: Date, transaction: Transaction?, creditDecreaseRequestId: String?) {
         self.id = id
         self.store = store
         self.storeId = storeId
@@ -39,7 +39,7 @@ public struct CreditHistory: Codable, JSONEncodable, Hashable {
         self.amount = amount
         self.createdAt = createdAt
         self.transaction = transaction
-        self.creditDecreaseRequest = creditDecreaseRequest
+        self.creditDecreaseRequestId = creditDecreaseRequestId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -53,7 +53,7 @@ public struct CreditHistory: Codable, JSONEncodable, Hashable {
         case amount
         case createdAt
         case transaction
-        case creditDecreaseRequest
+        case creditDecreaseRequestId
     }
 
     // Encodable protocol methods
@@ -70,7 +70,6 @@ public struct CreditHistory: Codable, JSONEncodable, Hashable {
         try container.encode(amount, forKey: .amount)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(transaction, forKey: .transaction)
-        try container.encode(creditDecreaseRequest, forKey: .creditDecreaseRequest)
+        try container.encode(creditDecreaseRequestId, forKey: .creditDecreaseRequestId)
     }
 }
-

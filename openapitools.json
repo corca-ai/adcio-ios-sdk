@@ -6,13 +6,13 @@
       "controller": {
         "packageName": "controller",
         "generatorName": "swift5",
-        "output": "#{cwd}/Sources/ControllerV1",
+        "output": "#{cwd}/ControllerV1",
         "inputSpec": "https://api.adcio.ai/api-json"
       },
       "receiver": {
         "packageName": "receiver",
         "generatorName": "swift5",
-        "output": "#{cwd}/Sources/ReceiverV1",
+        "output": "#{cwd}/ReceiverV1",
         "inputSpec": "https://receiver.adcio.ai/api-json"
       }
     }
