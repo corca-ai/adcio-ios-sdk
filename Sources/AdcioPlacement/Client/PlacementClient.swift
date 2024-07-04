@@ -12,6 +12,7 @@ import Core
 public protocol PlacementRepogitory {
     var sessionID: SessionID { get }
     var deviceID: String { get }
+    var userAgent: String { get }
     
     func createAdvertisementProducts(_ productSuggestionRequestDto: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
     
@@ -23,28 +24,23 @@ public protocol PlacementRepogitory {
 }
 
 public final class PlacementClient: PlacementRepogitory {
-    private let baseURL: URL
     private let client: HTTPClient
     private let loader: SessionLoader
     public private(set) var deviceID: String
     public private(set) var sessionID: SessionID
+    public private(set) var userAgent: String
     
     public init(
         client: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
         deviceID: String = DeviceIDLoader.indentifier,
-        baseURL: URL = URL(string: "api.adcio.ai")!
+        userAgent: String = DeviceIDLoader.userAgent
     ) {
         self.client = client
         self.loader = loader
         self.deviceID = deviceID
-        self.baseURL = baseURL
         self.sessionID = loader.identifier
-    }
-    
-    public enum NetworkError: Swift.Error {
-        case connectivity
-        case invalidData
+        self.userAgent = userAgent
     }
     
     public func createAdvertisementProducts(_ productSuggestionRequestDTO: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {

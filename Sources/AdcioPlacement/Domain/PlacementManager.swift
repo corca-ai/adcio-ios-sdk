@@ -49,12 +49,14 @@ public final class PlacementManager: PlacementManageable {
     private let client: PlacementRepogitory
     public private(set) var sessionID: String
     public private(set) var deviceID: String
+    private var userAgent: String
     private let sdkVersion = "2.0.0"
     
     public init() {
         self.client = PlacementClient()
         self.sessionID = self.client.sessionID
         self.deviceID = self.client.deviceID
+        self.userAgent = self.client.userAgent
     }
     
     /// create Advertisement Products method
@@ -83,17 +85,22 @@ public final class PlacementManager: PlacementManageable {
                     categoryId: categoryID,
                     filters: filters,
                     targets: targets,
-                    userAgent: userAgent),
+                    userAgent: userAgent == nil ? self.userAgent : userAgent),
                 completion: completion)
         }
     
     /// create Advertisement Banners method
     public func createAdvertisementBanners(
-        clientID: String, excludingProductIDs: [String]? = nil,
-        categoryID: String? = nil, placementID: String,
-        customerID: String? = nil, fromAgent: Bool? = false,
-        birthYear: Double? = nil, targets: [SuggestionRequestTarget]? = nil,
-        userAgent: String? = nil, completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void) {
+        clientID: String, 
+        excludingProductIDs: [String]? = nil,
+        categoryID: String? = nil, 
+        placementID: String,
+        customerID: String? = nil, 
+        fromAgent: Bool? = false,
+        birthYear: Double? = nil, 
+        targets: [SuggestionRequestTarget]? = nil,
+        userAgent: String? = nil, 
+        completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void) {
             
             client.createAdvertisementBanners(
                 BannerSuggestionRequestDto(
@@ -106,18 +113,23 @@ public final class PlacementManager: PlacementManageable {
                     placementPositionY: nil,
                     fromAgent: fromAgent,
                     targets: targets,
-                    userAgent: userAgent),
+                    userAgent: userAgent == nil ? self.userAgent : userAgent),
                 completion: completion)
         }
     
     /// create Recommendation Products method
     public func createRecommendationProducts(
-        clientID: String, excludingProductIDs: [String]? = nil,
-        categoryID: String? = nil, placementID: String,
-        customerID: String? = nil, fromAgent: Bool,
-        birthYear: Double? = nil, baselineProductIDs: [String]? = nil,
+        clientID: String, 
+        excludingProductIDs: [String]? = nil,
+        categoryID: String? = nil, 
+        placementID: String,
+        customerID: String? = nil, 
+        fromAgent: Bool,
+        birthYear: Double? = nil, 
+        baselineProductIDs: [String]? = nil,
         filters: [[String: ProductFilterOperationDto]]? = nil,
-        targets: [SuggestionRequestTarget]? = nil, userAgent: String? = nil,
+        targets: [SuggestionRequestTarget]? = nil, 
+        userAgent: String? = nil,
         completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
             
             client.createRecommendationProducts(
@@ -136,17 +148,22 @@ public final class PlacementManager: PlacementManageable {
                     categoryId: categoryID,
                     filters: filters,
                     targets: targets,
-                    userAgent: userAgent),
+                    userAgent: userAgent == nil ? self.userAgent : userAgent),
                 completion: completion)
         }
     
     /// create Recommendation Bannders method
     public func createRecommendationBanners(
-        clientID: String, excludingProductIDs: [String]? = nil,
-        categoryID: String? = nil, placementID: String,
-        customerID: String? = nil, fromAgent: Bool? = false,
-        birthYear: Double? = nil, targets: [SuggestionRequestTarget]? = nil,
-        userAgent: String? = nil, completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void) {
+        clientID: String, 
+        excludingProductIDs: [String]? = nil,
+        categoryID: String? = nil, 
+        placementID: String,
+        customerID: String? = nil, 
+        fromAgent: Bool? = false,
+        birthYear: Double? = nil, 
+        targets: [SuggestionRequestTarget]? = nil,
+        userAgent: String? = nil, 
+        completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void) {
             
             client.createRecommendationBanners(
                 BannerSuggestionRequestDto(
@@ -159,7 +176,7 @@ public final class PlacementManager: PlacementManageable {
                     placementPositionY: nil,
                     fromAgent: fromAgent,
                     targets: targets,
-                    userAgent: userAgent),
+                    userAgent: userAgent == nil ? self.userAgent : userAgent),
                 completion: completion)
         }
 }
