@@ -7,4 +7,8 @@ public struct DeviceIDLoader {
         }
         return indentifier
     }
+    
+    public static var userAgent: String {
+        "\(UIDevice.current.systemName)\(UIDevice.current.systemVersion)"
+    }
 }

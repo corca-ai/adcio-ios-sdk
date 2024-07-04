@@ -27,11 +27,6 @@ public class AnalyticsClient: AnalyticsRepogitory {
     private let clientID: String
     public private(set) var sessionID: SessionID
     
-    public enum NetworkError: Swift.Error {
-        case connectivity
-        case invalidData
-    }
-    
     public init(
         clientID: String,
         apiClient: HTTPClient = URLSessionHTTPClient(),
