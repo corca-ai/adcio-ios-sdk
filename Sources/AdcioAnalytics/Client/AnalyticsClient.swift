@@ -12,6 +12,7 @@ import Core
 public protocol AnalyticsRepogitory {
     var sessionID: SessionID { get }
     var deviceID: String { get }
+    var userAgent: String { get }
     
     func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void)
     func onImpression(_ impressionRequestDTO: TrackImpressionRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void)
@@ -26,18 +27,21 @@ public class AnalyticsClient: AnalyticsRepogitory {
     public private(set) var deviceID: String
     private let clientID: String
     public private(set) var sessionID: SessionID
+    public private(set) var userAgent: String
     
     public init(
         clientID: String,
         apiClient: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
-        deviceId: String = DeviceIDLoader.indentifier
+        deviceId: String = DeviceIDLoader.indentifier,
+        userAgent: String = DeviceIDLoader.userAgent
     ) {
         self.clientID = clientID
         self.apiClient = apiClient
         self.loader = loader
         self.deviceID = deviceId
         self.sessionID = loader.identifier
+        self.userAgent = userAgent
     }
     
     public func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
