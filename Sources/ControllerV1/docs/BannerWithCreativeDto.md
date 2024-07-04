@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 **creative** | [**Creative**](Creative.md) |  | 
 **id** | **String** |  | 
 **clientId** | **String** |  | 
-**campaigns** | [Campaign] |  | 
 **type** | **String** |  | 
 **url** | **String** |  | 
 **name** | **String** |  | 

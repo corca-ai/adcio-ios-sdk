@@ -12,52 +12,23 @@ import AnyCodable
 
 public struct Campaign: Codable, JSONEncodable, Hashable {
 
-    public enum BudgetType: String, Codable, CaseIterable {
-        case dailyBudget = "DAILY_BUDGET"
-        case totalBudgetInPeriod = "TOTAL_BUDGET_IN_PERIOD"
-        case maxBudgetPerDay = "MAX_BUDGET_PER_DAY"
-    }
     public var id: String
     public var title: String
-    public var placement: Placement
-    public var placementId: String
-    public var maxBudgetPerDay: Double
-    public var totalBudgetInPeriod: Double?
-    public var budgetType: BudgetType
-    public var usedBudget: Double
-    public var activated: Bool
-    public var products: [Product]
-    public var banners: [Banner]
-    public var startsAt: Date
-    public var endsAt: Date?
     public var client: Client
     public var clientId: String
     public var adGroups: [AdGroup]
-    public var audience: Audience
     public var clickLookbackWindowDays: Double
     public var impressionLookbackWindowDays: Double?
     public var createdAt: Date
     public var updatedAt: Date
     public var deletedAt: Date?
 
-    public init(id: String, title: String, placement: Placement, placementId: String, maxBudgetPerDay: Double, totalBudgetInPeriod: Double?, budgetType: BudgetType, usedBudget: Double, activated: Bool, products: [Product], banners: [Banner], startsAt: Date, endsAt: Date?, client: Client, clientId: String, adGroups: [AdGroup], audience: Audience, clickLookbackWindowDays: Double, impressionLookbackWindowDays: Double?, createdAt: Date, updatedAt: Date, deletedAt: Date?) {
+    public init(id: String, title: String, client: Client, clientId: String, adGroups: [AdGroup], clickLookbackWindowDays: Double, impressionLookbackWindowDays: Double?, createdAt: Date, updatedAt: Date, deletedAt: Date?) {
         self.id = id
         self.title = title
-        self.placement = placement
-        self.placementId = placementId
-        self.maxBudgetPerDay = maxBudgetPerDay
-        self.totalBudgetInPeriod = totalBudgetInPeriod
-        self.budgetType = budgetType
-        self.usedBudget = usedBudget
-        self.activated = activated
-        self.products = products
-        self.banners = banners
-        self.startsAt = startsAt
-        self.endsAt = endsAt
         self.client = client
         self.clientId = clientId
         self.adGroups = adGroups
-        self.audience = audience
         self.clickLookbackWindowDays = clickLookbackWindowDays
         self.impressionLookbackWindowDays = impressionLookbackWindowDays
         self.createdAt = createdAt
@@ -68,21 +39,9 @@ public struct Campaign: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
         case title
-        case placement
-        case placementId
-        case maxBudgetPerDay
-        case totalBudgetInPeriod
-        case budgetType
-        case usedBudget
-        case activated
-        case products
-        case banners
-        case startsAt
-        case endsAt
         case client
         case clientId
         case adGroups
-        case audience
         case clickLookbackWindowDays
         case impressionLookbackWindowDays
         case createdAt
@@ -96,21 +55,9 @@ public struct Campaign: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(title, forKey: .title)
-        try container.encode(placement, forKey: .placement)
-        try container.encode(placementId, forKey: .placementId)
-        try container.encode(maxBudgetPerDay, forKey: .maxBudgetPerDay)
-        try container.encode(totalBudgetInPeriod, forKey: .totalBudgetInPeriod)
-        try container.encode(budgetType, forKey: .budgetType)
-        try container.encode(usedBudget, forKey: .usedBudget)
-        try container.encode(activated, forKey: .activated)
-        try container.encode(products, forKey: .products)
-        try container.encode(banners, forKey: .banners)
-        try container.encode(startsAt, forKey: .startsAt)
-        try container.encode(endsAt, forKey: .endsAt)
         try container.encode(client, forKey: .client)
         try container.encode(clientId, forKey: .clientId)
         try container.encode(adGroups, forKey: .adGroups)
-        try container.encode(audience, forKey: .audience)
         try container.encode(clickLookbackWindowDays, forKey: .clickLookbackWindowDays)
         try container.encode(impressionLookbackWindowDays, forKey: .impressionLookbackWindowDays)
         try container.encode(createdAt, forKey: .createdAt)

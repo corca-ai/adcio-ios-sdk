@@ -16,9 +16,6 @@ Name | Type | Description | Notes
 **storeId** | **String** |  | 
 **businessLicenseId** | **String** |  | 
 **isSeller** | **Bool** |  | 
-**creditHistoriesAsStore** | [CreditHistory] |  | 
-**creditHistoriesAsSeller** | [CreditHistory] |  | 
-**creditDecreaseRequests** | [CreditDecreaseRequest] |  | 
 **createdAt** | **Date** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

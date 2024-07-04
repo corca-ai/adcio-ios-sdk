@@ -19,7 +19,6 @@ public struct BannerWithCreativeDto: Codable, JSONEncodable, Hashable {
     public var creative: Creative
     public var id: String
     public var clientId: String
-    public var campaigns: [Campaign]
     public var type: ModelType
     public var url: String
     public var name: String
@@ -34,11 +33,10 @@ public struct BannerWithCreativeDto: Codable, JSONEncodable, Hashable {
     public var createdAt: Date
     public var deletedAt: Date?
 
-    public init(creative: Creative, id: String, clientId: String, campaigns: [Campaign], type: ModelType, url: String, name: String, data: AnyCodable, categoryId: String?, productId: String?, activated: Bool, deepLink: String?, appRoute: String?, startsAt: Date, endsAt: Date?, createdAt: Date, deletedAt: Date?) {
+    public init(creative: Creative, id: String, clientId: String, type: ModelType, url: String, name: String, data: AnyCodable, categoryId: String?, productId: String?, activated: Bool, deepLink: String?, appRoute: String?, startsAt: Date, endsAt: Date?, createdAt: Date, deletedAt: Date?) {
         self.creative = creative
         self.id = id
         self.clientId = clientId
-        self.campaigns = campaigns
         self.type = type
         self.url = url
         self.name = name
@@ -58,7 +56,6 @@ public struct BannerWithCreativeDto: Codable, JSONEncodable, Hashable {
         case creative
         case id
         case clientId
-        case campaigns
         case type
         case url
         case name
@@ -81,7 +78,6 @@ public struct BannerWithCreativeDto: Codable, JSONEncodable, Hashable {
         try container.encode(creative, forKey: .creative)
         try container.encode(id, forKey: .id)
         try container.encode(clientId, forKey: .clientId)
-        try container.encode(campaigns, forKey: .campaigns)
         try container.encode(type, forKey: .type)
         try container.encode(url, forKey: .url)
         try container.encode(name, forKey: .name)

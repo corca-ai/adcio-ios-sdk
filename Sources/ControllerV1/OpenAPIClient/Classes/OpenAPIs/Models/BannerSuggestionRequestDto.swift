@@ -12,16 +12,14 @@ import AnyCodable
 
 public struct BannerSuggestionRequestDto: Codable, JSONEncodable, Hashable {
 
-    public enum Gender: String, Codable, CaseIterable {
-        case male = "male"
-        case female = "female"
-    }
     /** The session starts when the customer visits the store. It persists until the customer closes the tab, browser or app. */
     public var sessionId: String
     /** The device identifier should be unique for each device. A customer can have multiple devices. */
     public var deviceId: String
     /** The customer identifier which is generated and managed by the store. The store should configure `frontApi` parameter of ADCIO SDK so that the `customerId` can be sent to ADCIO API. */
     public var customerId: String?
+    /** The version of the SDK */
+    public var sdkVersion: String?
     /** Identifier for the placement which the suggestion will be placed. */
     public var placementId: String
     /** The X coordinate of the placement in pixel. */
@@ -30,33 +28,33 @@ public struct BannerSuggestionRequestDto: Codable, JSONEncodable, Hashable {
     public var placementPositionY: Double?
     /** Whether the request is from the ADCIO agent or not. Default value is `false`. */
     public var fromAgent: Bool?
-    /** The birth year of the customer. */
-    public var birthYear: Double?
-    /** The gender of the customer. */
-    public var gender: Gender?
+    public var targets: [SuggestionRequestTarget]?
+    public var userAgent: String?
 
-    public init(sessionId: String, deviceId: String, customerId: String? = nil, placementId: String, placementPositionX: Double? = nil, placementPositionY: Double? = nil, fromAgent: Bool? = nil, birthYear: Double? = nil, gender: Gender? = nil) {
+    public init(sessionId: String, deviceId: String, customerId: String? = nil, sdkVersion: String? = nil, placementId: String, placementPositionX: Double? = nil, placementPositionY: Double? = nil, fromAgent: Bool? = nil, targets: [SuggestionRequestTarget]? = nil, userAgent: String? = nil) {
         self.sessionId = sessionId
         self.deviceId = deviceId
         self.customerId = customerId
+        self.sdkVersion = sdkVersion
         self.placementId = placementId
         self.placementPositionX = placementPositionX
         self.placementPositionY = placementPositionY
         self.fromAgent = fromAgent
-        self.birthYear = birthYear
-        self.gender = gender
+        self.targets = targets
+        self.userAgent = userAgent
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case sessionId
         case deviceId
         case customerId
+        case sdkVersion
         case placementId
         case placementPositionX
         case placementPositionY
         case fromAgent
-        case birthYear
-        case gender
+        case targets
+        case userAgent
     }
 
     // Encodable protocol methods
@@ -66,12 +64,13 @@ public struct BannerSuggestionRequestDto: Codable, JSONEncodable, Hashable {
         try container.encode(sessionId, forKey: .sessionId)
         try container.encode(deviceId, forKey: .deviceId)
         try container.encodeIfPresent(customerId, forKey: .customerId)
+        try container.encodeIfPresent(sdkVersion, forKey: .sdkVersion)
         try container.encode(placementId, forKey: .placementId)
         try container.encodeIfPresent(placementPositionX, forKey: .placementPositionX)
         try container.encodeIfPresent(placementPositionY, forKey: .placementPositionY)
         try container.encodeIfPresent(fromAgent, forKey: .fromAgent)
-        try container.encodeIfPresent(birthYear, forKey: .birthYear)
-        try container.encodeIfPresent(gender, forKey: .gender)
+        try container.encodeIfPresent(targets, forKey: .targets)
+        try container.encodeIfPresent(userAgent, forKey: .userAgent)
     }
 }
 

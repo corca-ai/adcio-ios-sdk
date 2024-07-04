@@ -5,7 +5,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
 **clientId** | **String** |  | 
-**campaigns** | [Campaign] |  | 
 **type** | **String** |  | 
 **url** | **String** |  | 
 **name** | **String** |  | 

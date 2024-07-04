@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **placements** | [Placement] |  | 
 **id** | **String** |  | 
 **clientId** | **String** |  | 
-**campaigns** | [Campaign] |  | 
 **type** | **String** |  | 
 **url** | **String** |  | 
 **name** | **String** |  | 
