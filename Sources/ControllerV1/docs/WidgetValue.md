@@ -1,0 +1,13 @@
+# WidgetValue
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **String** |  | 
+**widget** | [**Widget**](Widget.md) |  | 
+**widgetId** | **String** |  | 
+**values** | **AnyCodable** |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

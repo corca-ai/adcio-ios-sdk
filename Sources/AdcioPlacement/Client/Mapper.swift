@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by 유현명 on 1/8/24.
 //
@@ -19,7 +19,7 @@ internal final class ProductsMapper {
         
         guard response.statusCode == OK_201,
             let root = try? JSONDecoder().decode(Root.self, from: data) else {
-            throw PlacementClient.Error.invalidData
+            throw PlacementClient.NetworkError.invalidData
         }
         
         let rawData = AdcioSuggestionRawData(suggestions: root.suggestions,
@@ -40,7 +40,7 @@ internal final class BannersMapper {
         
         guard response.statusCode == OK_201,
             let root = try? JSONDecoder().decode(Root.self, from: data) else {
-            throw PlacementClient.Error.invalidData
+            throw PlacementClient.NetworkError.invalidData
         }
         
         return root.suggestions

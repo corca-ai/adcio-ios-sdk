@@ -1,0 +1,20 @@
+{
+  "spaces": 2,
+  "generator-cli": {
+    "version": "6.6.0",
+    "generators": {
+      "controller": {
+        "packageName": "controller",
+        "generatorName": "swift5",
+        "output": "#{cwd}/Sources/ControllerV1",
+        "inputSpec": "https://api.adcio.ai/api-json"
+      },
+      "receiver": {
+        "packageName": "receiver",
+        "generatorName": "swift5",
+        "output": "#{cwd}/Sources/ReceiverV1",
+        "inputSpec": "https://receiver.adcio.ai/api-json"
+      }
+    }
+  }
+}

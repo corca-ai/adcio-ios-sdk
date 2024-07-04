@@ -1,6 +1,6 @@
 //
 //  AdcioSuggestionRawData.swift
-//  
+//
 //
 //  Created by 유현명 on 1/8/24.
 //
