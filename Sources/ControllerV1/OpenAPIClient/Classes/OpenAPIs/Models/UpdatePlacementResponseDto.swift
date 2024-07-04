@@ -67,10 +67,9 @@ public struct UpdatePlacementResponseDto: Codable, JSONEncodable, Hashable {
     public var createdAt: Date
     public var updatedAt: Date
     public var deletedAt: Date?
-    public var campaigns: [Campaign]
     public var placementDeactivated: Bool
 
-    public init(placementFormatRatio: String?, id: String, title: String, type: ModelType, suggestionType: SuggestionType, bannerPlacementType: BannerPlacementType?, supportEnvironment: SupportEnvironment, developEnvironment: DevelopEnvironment, displayCount: Double?, minDisplayCount: Double, maxDisplayCount: Double, activated: Bool, pageName: String, clientId: String, injector: Injector?, screenShot: String, displayFormatWidth: Double?, displayFormatHeight: Double?, property: Property?, displayPositions: [Double]?, tableSize: [Double]?, widgetValueId: String?, productDetailDataColumns: [String]?, createdAt: Date, updatedAt: Date, deletedAt: Date?, campaigns: [Campaign], placementDeactivated: Bool) {
+    public init(placementFormatRatio: String?, id: String, title: String, type: ModelType, suggestionType: SuggestionType, bannerPlacementType: BannerPlacementType?, supportEnvironment: SupportEnvironment, developEnvironment: DevelopEnvironment, displayCount: Double?, minDisplayCount: Double, maxDisplayCount: Double, activated: Bool, pageName: String, clientId: String, injector: Injector?, screenShot: String, displayFormatWidth: Double?, displayFormatHeight: Double?, property: Property?, displayPositions: [Double]?, tableSize: [Double]?, widgetValueId: String?, productDetailDataColumns: [String]?, createdAt: Date, updatedAt: Date, deletedAt: Date?, placementDeactivated: Bool) {
         self.placementFormatRatio = placementFormatRatio
         self.id = id
         self.title = title
@@ -97,7 +96,6 @@ public struct UpdatePlacementResponseDto: Codable, JSONEncodable, Hashable {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.deletedAt = deletedAt
-        self.campaigns = campaigns
         self.placementDeactivated = placementDeactivated
     }
 
@@ -128,7 +126,6 @@ public struct UpdatePlacementResponseDto: Codable, JSONEncodable, Hashable {
         case createdAt
         case updatedAt
         case deletedAt
-        case campaigns
         case placementDeactivated
     }
 
@@ -162,7 +159,6 @@ public struct UpdatePlacementResponseDto: Codable, JSONEncodable, Hashable {
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(deletedAt, forKey: .deletedAt)
-        try container.encode(campaigns, forKey: .campaigns)
         try container.encode(placementDeactivated, forKey: .placementDeactivated)
     }
 }

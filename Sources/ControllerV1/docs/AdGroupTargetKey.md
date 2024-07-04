@@ -1,21 +1,14 @@
-# Banner
+# AdGroupTargetKey
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
-**clientId** | **String** |  | 
-**type** | **String** |  | 
-**url** | **String** |  | 
+**store** | [**Client**](Client.md) |  | 
+**storeId** | **String** |  | 
 **name** | **String** |  | 
-**data** | **AnyCodable** |  | 
-**categoryId** | **String** |  | 
-**productId** | **String** |  | 
-**activated** | **Bool** |  | 
-**deepLink** | **String** |  | 
-**appRoute** | **String** |  | 
-**startsAt** | **Date** |  | 
-**endsAt** | **Date** |  | 
+**label** | **String** |  | 
+**selectValues** | [AdGroupTargetValue] |  | 
 **createdAt** | **Date** |  | 
 **deletedAt** | **Date** |  | 
 

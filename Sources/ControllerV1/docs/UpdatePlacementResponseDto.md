@@ -29,7 +29,6 @@ Name | Type | Description | Notes
 **createdAt** | **Date** |  | 
 **updatedAt** | **Date** |  | 
 **deletedAt** | **Date** |  | 
-**campaigns** | [Campaign] |  | 
 **placementDeactivated** | **Bool** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

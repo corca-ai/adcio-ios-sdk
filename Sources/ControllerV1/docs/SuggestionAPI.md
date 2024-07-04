@@ -28,7 +28,7 @@ Fetch a personalized banner for advertisement.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let bannerSuggestionRequestDto = BannerSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, birthYear: 123, gender: "gender_example") // BannerSuggestionRequestDto | 
+let bannerSuggestionRequestDto = BannerSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, targets: [SuggestionRequestTarget(keyName: "keyName_example", values: ["values_example"])], userAgent: "userAgent_example") // BannerSuggestionRequestDto | 
 
 // 
 SuggestionAPI.advertisementsControllerAdvertiseBanners(bannerSuggestionRequestDto: bannerSuggestionRequestDto) { (response, error) in
@@ -78,7 +78,7 @@ Fetch a personalized product for advertisement.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let productSuggestionRequestDto = ProductSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, birthYear: 123, gender: "gender_example", clientId: "clientId_example", excludingProductIds: ["excludingProductIds_example"], categoryId: "categoryId_example", filters: ["TODO"]) // ProductSuggestionRequestDto | 
+let productSuggestionRequestDto = ProductSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, clientId: "clientId_example", excludingProductIds: ["excludingProductIds_example"], baselineProductIds: ["baselineProductIds_example"], categoryId: "categoryId_example", filters: ["TODO"], targets: [SuggestionRequestTarget(keyName: "keyName_example", values: ["values_example"])], userAgent: "userAgent_example") // ProductSuggestionRequestDto | 
 
 // 
 SuggestionAPI.advertisementsControllerAdvertiseProducts(productSuggestionRequestDto: productSuggestionRequestDto) { (response, error) in
@@ -128,7 +128,7 @@ Fetch a personalized banner for recommendation.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let bannerSuggestionRequestDto = BannerSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, birthYear: 123, gender: "gender_example") // BannerSuggestionRequestDto | 
+let bannerSuggestionRequestDto = BannerSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, targets: [SuggestionRequestTarget(keyName: "keyName_example", values: ["values_example"])], userAgent: "userAgent_example") // BannerSuggestionRequestDto | 
 
 // 
 SuggestionAPI.recommendationsControllerRecommendBanners(bannerSuggestionRequestDto: bannerSuggestionRequestDto) { (response, error) in
@@ -178,7 +178,7 @@ Fetch a personalized product for recommendation.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let productSuggestionRequestDto = ProductSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, birthYear: 123, gender: "gender_example", clientId: "clientId_example", excludingProductIds: ["excludingProductIds_example"], categoryId: "categoryId_example", filters: ["TODO"]) // ProductSuggestionRequestDto | 
+let productSuggestionRequestDto = ProductSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, clientId: "clientId_example", excludingProductIds: ["excludingProductIds_example"], baselineProductIds: ["baselineProductIds_example"], categoryId: "categoryId_example", filters: ["TODO"], targets: [SuggestionRequestTarget(keyName: "keyName_example", values: ["values_example"])], userAgent: "userAgent_example") // ProductSuggestionRequestDto | 
 
 // 
 SuggestionAPI.recommendationsControllerRecommendProducts(productSuggestionRequestDto: productSuggestionRequestDto) { (response, error) in
@@ -228,7 +228,7 @@ Fetch a personalized banner for advertisement.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let bannerSuggestionRequestDto = BannerSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, birthYear: 123, gender: "gender_example") // BannerSuggestionRequestDto | 
+let bannerSuggestionRequestDto = BannerSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, targets: [SuggestionRequestTarget(keyName: "keyName_example", values: ["values_example"])], userAgent: "userAgent_example") // BannerSuggestionRequestDto | 
 
 // 
 SuggestionAPI.suggestionControllerAdvertiseBanners(bannerSuggestionRequestDto: bannerSuggestionRequestDto) { (response, error) in
@@ -278,7 +278,7 @@ Fetch a personalized product for advertisement.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let productSuggestionRequestDto = ProductSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, birthYear: 123, gender: "gender_example", clientId: "clientId_example", excludingProductIds: ["excludingProductIds_example"], categoryId: "categoryId_example", filters: ["TODO"]) // ProductSuggestionRequestDto | 
+let productSuggestionRequestDto = ProductSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, clientId: "clientId_example", excludingProductIds: ["excludingProductIds_example"], baselineProductIds: ["baselineProductIds_example"], categoryId: "categoryId_example", filters: ["TODO"], targets: [SuggestionRequestTarget(keyName: "keyName_example", values: ["values_example"])], userAgent: "userAgent_example") // ProductSuggestionRequestDto | 
 
 // 
 SuggestionAPI.suggestionControllerAdvertiseProducts(productSuggestionRequestDto: productSuggestionRequestDto) { (response, error) in
@@ -328,7 +328,7 @@ Fetch a personalized banner for recommendation.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let bannerSuggestionRequestDto = BannerSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, birthYear: 123, gender: "gender_example") // BannerSuggestionRequestDto | 
+let bannerSuggestionRequestDto = BannerSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, targets: [SuggestionRequestTarget(keyName: "keyName_example", values: ["values_example"])], userAgent: "userAgent_example") // BannerSuggestionRequestDto | 
 
 // 
 SuggestionAPI.suggestionControllerRecommendBanners(bannerSuggestionRequestDto: bannerSuggestionRequestDto) { (response, error) in
@@ -378,7 +378,7 @@ Fetch a personalized product for recommendation.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let productSuggestionRequestDto = ProductSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, birthYear: 123, gender: "gender_example", clientId: "clientId_example", excludingProductIds: ["excludingProductIds_example"], categoryId: "categoryId_example", filters: ["TODO"]) // ProductSuggestionRequestDto | 
+let productSuggestionRequestDto = ProductSuggestionRequestDto(sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", placementId: "placementId_example", placementPositionX: 123, placementPositionY: 123, fromAgent: false, clientId: "clientId_example", excludingProductIds: ["excludingProductIds_example"], baselineProductIds: ["baselineProductIds_example"], categoryId: "categoryId_example", filters: ["TODO"], targets: [SuggestionRequestTarget(keyName: "keyName_example", values: ["values_example"])], userAgent: "userAgent_example") // ProductSuggestionRequestDto | 
 
 // 
 SuggestionAPI.suggestionControllerRecommendProducts(productSuggestionRequestDto: productSuggestionRequestDto) { (response, error) in

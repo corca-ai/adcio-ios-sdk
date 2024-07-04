@@ -6,30 +6,28 @@
 //
 
 import Foundation
-import Core
 import ReceiverV1
+import Core
 
 public protocol AnalyticsRepogitory {
     var sessionID: SessionID { get }
     var deviceID: String { get }
     
-    func onPurchase(_ purchaseRequest: TrackPurchaseRequestDto, completion: @escaping (AnalyticsResult) -> Void)
-    func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void)
-    func onImpression(_ impressionRequestDTO: TrackImpressionRequestDto, completion: @escaping (AnalyticsResult) -> Void)
-    func onView(_ pageViewRequestDTO: TrackPageViewRequestDto, completion: @escaping (AnalyticsResult) -> Void)
-    func onAddToCart(_ addToCartRequestDTO: TrackAddToCartRequestDto, completion: @escaping (AnalyticsResult) -> Void)
+    func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void)
+    func onImpression(_ impressionRequestDTO: TrackImpressionRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void)
+    func onPurchase(_ purchaseRequestDTO: TrackPurchaseRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void)
+    func onView(_ pageViewRequestDTO: TrackPageViewRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void)
+    func onAddToCart(_ addToCartRequestDTO: TrackAddToCartRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void)
 }
 
 public class AnalyticsClient: AnalyticsRepogitory {
-    
-    private let baseURL: URL
     private let apiClient: HTTPClient
     private let loader: SessionLoader
     public private(set) var deviceID: String
     private let clientID: String
     public private(set) var sessionID: SessionID
     
-    public enum Error: Swift.Error {
+    public enum NetworkError: Swift.Error {
         case connectivity
         case invalidData
     }
@@ -38,69 +36,67 @@ public class AnalyticsClient: AnalyticsRepogitory {
         clientID: String,
         apiClient: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
-        deviceId: String = DeviceIDLoader.indentifier,
-        baseURL: URL = URL(string: "receiver.adcio.ai")!
+        deviceId: String = DeviceIDLoader.indentifier
     ) {
         self.clientID = clientID
         self.apiClient = apiClient
         self.loader = loader
         self.deviceID = deviceId
-        self.baseURL = baseURL
         self.sessionID = loader.identifier
     }
     
-    public func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onClick(_ clickRequestDTO: TrackClickRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         EventsAPI.eventsControllerOnClick(trackClickRequestDto: clickRequestDTO) { result, error in
-            guard let error else {
-                completion(.failure(AnalyticsClient.Error.invalidData))
+            guard error == nil else {
+                completion(nil, error)
                 return
             }
             
-            completion(.success(result?.success ?? true))
+            completion(result, nil)
         }
     }
     
-    public func onImpression(_ impressionRequestDTO: TrackImpressionRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onImpression(_ impressionRequestDTO: TrackImpressionRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         EventsAPI.eventsControllerOnImpression(trackImpressionRequestDto: impressionRequestDTO) { result, error in
-            guard let error else {
-                completion(.failure(AnalyticsClient.Error.invalidData))
+            guard error == nil else {
+                completion(nil, error)
                 return
             }
             
-            completion(.success(result?.success ?? true))
+            completion(result, nil)
         }
     }
     
-    public func onPurchase(_ purchaseRequestDTO: TrackPurchaseRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onPurchase(_ purchaseRequestDTO: TrackPurchaseRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         EventsAPI.eventsControllerOnPurchase(trackPurchaseRequestDto: purchaseRequestDTO) { result, error in
-            guard let error else {
-                completion(.failure(AnalyticsClient.Error.invalidData))
+            guard error == nil else {
+                completion(nil, error)
                 return
             }
             
-            completion(.success(result?.success ?? true))
+            completion(result, nil)
         }
     }
     
-    public func onView(_ pageViewRequestDTO: TrackPageViewRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onView(_ pageViewRequestDTO: TrackPageViewRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         EventsAPI.eventsControllerOnPageView(trackPageViewRequestDto: pageViewRequestDTO) { result, error in
-            guard let error else {
-                completion(.failure(AnalyticsClient.Error.invalidData))
+            guard error == nil else {
+                completion(nil, error)
                 return
             }
             
-            completion(.success(result?.success ?? true))
+            completion(result, nil)
         }
     }
     
-    public func onAddToCart(_ addToCartRequestDTO: TrackAddToCartRequestDto, completion: @escaping (AnalyticsResult) -> Void) {
+    public func onAddToCart(_ addToCartRequestDTO: TrackAddToCartRequestDto, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         EventsAPI.eventsControllerOnAddToCart(trackAddToCartRequestDto: addToCartRequestDTO) { result, error in
-            guard let error else {
-                completion(.failure(AnalyticsClient.Error.invalidData))
+            guard error == nil else {
+                completion(nil, error)
                 return
             }
             
-            completion(.success(result?.success ?? true))
+            completion(result, nil)
         }
     }
 }

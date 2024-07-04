@@ -48,12 +48,9 @@ public struct Client: Codable, JSONEncodable, Hashable {
     public var storeId: String?
     public var businessLicenseId: String?
     public var isSeller: Bool
-    public var creditHistoriesAsStore: [CreditHistory]
-    public var creditHistoriesAsSeller: [CreditHistory]
-    public var creditDecreaseRequests: [CreditDecreaseRequest]
     public var createdAt: Date
 
-    public init(id: String, name: String, currency: Currency, timezone: Timezone, credit: Double, paidCredit: Double, freeCredit: Double, type: ModelType, deletedAt: Date?, paymentCardId: String?, storeId: String?, businessLicenseId: String?, isSeller: Bool, creditHistoriesAsStore: [CreditHistory], creditHistoriesAsSeller: [CreditHistory], creditDecreaseRequests: [CreditDecreaseRequest], createdAt: Date) {
+    public init(id: String, name: String, currency: Currency, timezone: Timezone, credit: Double, paidCredit: Double, freeCredit: Double, type: ModelType, deletedAt: Date?, paymentCardId: String?, storeId: String?, businessLicenseId: String?, isSeller: Bool, createdAt: Date) {
         self.id = id
         self.name = name
         self.currency = currency
@@ -67,9 +64,6 @@ public struct Client: Codable, JSONEncodable, Hashable {
         self.storeId = storeId
         self.businessLicenseId = businessLicenseId
         self.isSeller = isSeller
-        self.creditHistoriesAsStore = creditHistoriesAsStore
-        self.creditHistoriesAsSeller = creditHistoriesAsSeller
-        self.creditDecreaseRequests = creditDecreaseRequests
         self.createdAt = createdAt
     }
 
@@ -87,9 +81,6 @@ public struct Client: Codable, JSONEncodable, Hashable {
         case storeId
         case businessLicenseId
         case isSeller
-        case creditHistoriesAsStore
-        case creditHistoriesAsSeller
-        case creditDecreaseRequests
         case createdAt
     }
 
@@ -110,9 +101,6 @@ public struct Client: Codable, JSONEncodable, Hashable {
         try container.encode(storeId, forKey: .storeId)
         try container.encode(businessLicenseId, forKey: .businessLicenseId)
         try container.encode(isSeller, forKey: .isSeller)
-        try container.encode(creditHistoriesAsStore, forKey: .creditHistoriesAsStore)
-        try container.encode(creditHistoriesAsSeller, forKey: .creditHistoriesAsSeller)
-        try container.encode(creditDecreaseRequests, forKey: .creditDecreaseRequests)
         try container.encode(createdAt, forKey: .createdAt)
     }
 }

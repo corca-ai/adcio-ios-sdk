@@ -1,8 +1,11 @@
-# AdGroup
+# AdGroupWithSellerAndCampaign
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**targets** | [AdGroupTargetKeyValueResponse] |  | 
+**seller** | [**Client**](Client.md) |  | 
+**campaign** | [**Campaign**](Campaign.md) |  | 
 **id** | **String** |  | 
 **title** | **String** |  | 
 **type** | **String** |  | 

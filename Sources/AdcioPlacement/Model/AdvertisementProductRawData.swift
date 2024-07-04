@@ -1,6 +1,6 @@
 //
 //  AdcioSuggestionRawData.swift
-//  
+//
 //
 //  Created by 유현명 on 1/8/24.
 //
@@ -9,9 +9,14 @@ import Foundation
 
 public struct AdcioSuggestionRawData: Decodable, Equatable {
     public let suggestions: [AdcioSuggestion]
+    public let metadata: MetaData?
 }
 
 public struct Placement: Decodable, Equatable {}
+
+public struct MetaData: Decodable, Equatable {
+    public let isBaseline: Bool
+}
 
 public struct AdcioSuggestion: Decodable, Equatable {
     public let logOptions: LogOptions

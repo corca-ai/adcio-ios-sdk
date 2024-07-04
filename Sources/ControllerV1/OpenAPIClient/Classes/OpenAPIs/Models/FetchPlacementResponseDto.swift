@@ -70,9 +70,9 @@ public struct FetchPlacementResponseDto: Codable, JSONEncodable, Hashable {
     public var page: FetchPageClientDto
     public var products: [ProductWithSeller]?
     public var banners: [BannerWithCreative]?
-    public var campaigns: [CampaignWithClientAndAudience]?
+    public var adGroups: [AdGroupWithSellerAndCampaign]?
 
-    public init(placementFormatRatio: String?, id: String, title: String, type: ModelType, suggestionType: SuggestionType, bannerPlacementType: BannerPlacementType?, supportEnvironment: SupportEnvironment, developEnvironment: DevelopEnvironment, displayCount: Double?, minDisplayCount: Double, maxDisplayCount: Double, activated: Bool, pageName: String, clientId: String, injector: Injector?, screenShot: String, displayFormatWidth: Double?, displayFormatHeight: Double?, property: Property?, displayPositions: [Double]?, tableSize: [Double]?, widgetValueId: String?, productDetailDataColumns: [String]?, createdAt: Date, updatedAt: Date, deletedAt: Date?, page: FetchPageClientDto, products: [ProductWithSeller]? = nil, banners: [BannerWithCreative]? = nil, campaigns: [CampaignWithClientAndAudience]? = nil) {
+    public init(placementFormatRatio: String?, id: String, title: String, type: ModelType, suggestionType: SuggestionType, bannerPlacementType: BannerPlacementType?, supportEnvironment: SupportEnvironment, developEnvironment: DevelopEnvironment, displayCount: Double?, minDisplayCount: Double, maxDisplayCount: Double, activated: Bool, pageName: String, clientId: String, injector: Injector?, screenShot: String, displayFormatWidth: Double?, displayFormatHeight: Double?, property: Property?, displayPositions: [Double]?, tableSize: [Double]?, widgetValueId: String?, productDetailDataColumns: [String]?, createdAt: Date, updatedAt: Date, deletedAt: Date?, page: FetchPageClientDto, products: [ProductWithSeller]? = nil, banners: [BannerWithCreative]? = nil, adGroups: [AdGroupWithSellerAndCampaign]? = nil) {
         self.placementFormatRatio = placementFormatRatio
         self.id = id
         self.title = title
@@ -102,7 +102,7 @@ public struct FetchPlacementResponseDto: Codable, JSONEncodable, Hashable {
         self.page = page
         self.products = products
         self.banners = banners
-        self.campaigns = campaigns
+        self.adGroups = adGroups
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -135,7 +135,7 @@ public struct FetchPlacementResponseDto: Codable, JSONEncodable, Hashable {
         case page
         case products
         case banners
-        case campaigns
+        case adGroups
     }
 
     // Encodable protocol methods
@@ -171,7 +171,7 @@ public struct FetchPlacementResponseDto: Codable, JSONEncodable, Hashable {
         try container.encode(page, forKey: .page)
         try container.encodeIfPresent(products, forKey: .products)
         try container.encodeIfPresent(banners, forKey: .banners)
-        try container.encodeIfPresent(campaigns, forKey: .campaigns)
+        try container.encodeIfPresent(adGroups, forKey: .adGroups)
     }
 }
 

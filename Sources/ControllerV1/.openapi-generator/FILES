@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .swiftformat
 Cartfile
 OpenAPIClient.podspec
@@ -17,8 +16,11 @@ OpenAPIClient/Classes/OpenAPIs/JSONDataEncoding.swift
 OpenAPIClient/Classes/OpenAPIs/JSONEncodingHelper.swift
 OpenAPIClient/Classes/OpenAPIs/Models.swift
 OpenAPIClient/Classes/OpenAPIs/Models/AdGroup.swift
+OpenAPIClient/Classes/OpenAPIs/Models/AdGroupTargetKey.swift
+OpenAPIClient/Classes/OpenAPIs/Models/AdGroupTargetKeyValueResponse.swift
+OpenAPIClient/Classes/OpenAPIs/Models/AdGroupTargetValue.swift
+OpenAPIClient/Classes/OpenAPIs/Models/AdGroupWithSellerAndCampaign.swift
 OpenAPIClient/Classes/OpenAPIs/Models/AppendInjector.swift
-OpenAPIClient/Classes/OpenAPIs/Models/Audience.swift
 OpenAPIClient/Classes/OpenAPIs/Models/Banner.swift
 OpenAPIClient/Classes/OpenAPIs/Models/BannerControllerFetchMany200Response.swift
 OpenAPIClient/Classes/OpenAPIs/Models/BannerInjector.swift
@@ -28,7 +30,6 @@ OpenAPIClient/Classes/OpenAPIs/Models/BannerSuggestionResponseDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/BannerWithCreative.swift
 OpenAPIClient/Classes/OpenAPIs/Models/BannerWithCreativeDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/Campaign.swift
-OpenAPIClient/Classes/OpenAPIs/Models/CampaignWithClientAndAudience.swift
 OpenAPIClient/Classes/OpenAPIs/Models/CategoryWithPath.swift
 OpenAPIClient/Classes/OpenAPIs/Models/Client.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ConnectProductsToPlacementDto.swift
@@ -37,8 +38,6 @@ OpenAPIClient/Classes/OpenAPIs/Models/CreateBannerDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/CreatePlacementDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/CreateProductDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/Creative.swift
-OpenAPIClient/Classes/OpenAPIs/Models/CreditDecreaseRequest.swift
-OpenAPIClient/Classes/OpenAPIs/Models/CreditHistory.swift
 OpenAPIClient/Classes/OpenAPIs/Models/FetchActivePlacementsResponseDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/FetchBannerResponseDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/FetchManyBannersResponseDto.swift
@@ -48,7 +47,6 @@ OpenAPIClient/Classes/OpenAPIs/Models/FetchPlacementResponseDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/FetchProductResponseDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/GridInjector.swift
 OpenAPIClient/Classes/OpenAPIs/Models/GridInjectorDto.swift
-OpenAPIClient/Classes/OpenAPIs/Models/IamportPaymentVBank.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ImpressionObserver.swift
 OpenAPIClient/Classes/OpenAPIs/Models/Injector.swift
 OpenAPIClient/Classes/OpenAPIs/Models/LogOptionsDto.swift
@@ -68,9 +66,8 @@ OpenAPIClient/Classes/OpenAPIs/Models/ProductSuggestionResponseDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ProductWithSeller.swift
 OpenAPIClient/Classes/OpenAPIs/Models/RemoveProductFromPlacementResponseDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/Retriever.swift
+OpenAPIClient/Classes/OpenAPIs/Models/SuggestionRequestTarget.swift
 OpenAPIClient/Classes/OpenAPIs/Models/SuggestionResponsePlacementType.swift
-OpenAPIClient/Classes/OpenAPIs/Models/Transaction.swift
-OpenAPIClient/Classes/OpenAPIs/Models/TransactionPaymentCard.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateBannerDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdatePlacementDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdatePlacementResponseDto.swift
@@ -90,8 +87,11 @@ OpenAPIClient/Classes/OpenAPIs/Validation.swift
 Package.swift
 README.md
 docs/AdGroup.md
+docs/AdGroupTargetKey.md
+docs/AdGroupTargetKeyValueResponse.md
+docs/AdGroupTargetValue.md
+docs/AdGroupWithSellerAndCampaign.md
 docs/AppendInjector.md
-docs/Audience.md
 docs/Banner.md
 docs/BannerAPI.md
 docs/BannerControllerFetchMany200Response.md
@@ -102,7 +102,6 @@ docs/BannerSuggestionResponseDto.md
 docs/BannerWithCreative.md
 docs/BannerWithCreativeDto.md
 docs/Campaign.md
-docs/CampaignWithClientAndAudience.md
 docs/CategoryWithPath.md
 docs/Client.md
 docs/ConnectProductsToPlacementDto.md
@@ -111,8 +110,6 @@ docs/CreateBannerDto.md
 docs/CreatePlacementDto.md
 docs/CreateProductDto.md
 docs/Creative.md
-docs/CreditDecreaseRequest.md
-docs/CreditHistory.md
 docs/FetchActivePlacementsResponseDto.md
 docs/FetchBannerResponseDto.md
 docs/FetchManyBannersResponseDto.md
@@ -122,7 +119,6 @@ docs/FetchPlacementResponseDto.md
 docs/FetchProductResponseDto.md
 docs/GridInjector.md
 docs/GridInjectorDto.md
-docs/IamportPaymentVBank.md
 docs/ImpressionObserver.md
 docs/Injector.md
 docs/LogOptionsDto.md
@@ -146,9 +142,8 @@ docs/ProductWithSeller.md
 docs/RemoveProductFromPlacementResponseDto.md
 docs/Retriever.md
 docs/SuggestionAPI.md
+docs/SuggestionRequestTarget.md
 docs/SuggestionResponsePlacementType.md
-docs/Transaction.md
-docs/TransactionPaymentCard.md
 docs/UpdateBannerDto.md
 docs/UpdatePlacementDto.md
 docs/UpdatePlacementResponseDto.md
