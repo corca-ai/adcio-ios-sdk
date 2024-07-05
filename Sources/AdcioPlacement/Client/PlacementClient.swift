@@ -24,19 +24,16 @@ public protocol PlacementRepogitory {
 }
 
 public final class PlacementClient: PlacementRepogitory {
-    private let client: HTTPClient
     private let loader: SessionLoader
     public private(set) var deviceID: String
     public private(set) var sessionID: SessionID
     public private(set) var userAgent: String
     
     public init(
-        client: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
         deviceID: String = DeviceIDLoader.indentifier,
         userAgent: String = DeviceIDLoader.userAgent
     ) {
-        self.client = client
         self.loader = loader
         self.deviceID = deviceID
         self.sessionID = loader.identifier

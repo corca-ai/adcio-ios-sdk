@@ -22,7 +22,6 @@ public protocol AnalyticsRepogitory {
 }
 
 public class AnalyticsClient: AnalyticsRepogitory {
-    private let apiClient: HTTPClient
     private let loader: SessionLoader
     public private(set) var deviceID: String
     private let clientID: String
@@ -31,13 +30,11 @@ public class AnalyticsClient: AnalyticsRepogitory {
     
     public init(
         clientID: String,
-        apiClient: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
         deviceId: String = DeviceIDLoader.indentifier,
         userAgent: String = DeviceIDLoader.userAgent
     ) {
         self.clientID = clientID
-        self.apiClient = apiClient
         self.loader = loader
         self.deviceID = deviceId
         self.sessionID = loader.identifier
