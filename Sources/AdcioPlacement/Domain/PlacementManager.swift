@@ -147,7 +147,7 @@ public final class PlacementManager: PlacementManageable {
                 completion: completion)
         }
     
-    /// create Recommendation Bannders method
+    /// create Recommendation Banners method
     public func createRecommendationBanners(
         clientID: String, 
         excludingProductIDs: [String]? = nil,
