@@ -16,8 +16,7 @@ public protocol PlacementManageable {
         clientID: String, excludingProductIDs: [String]?,
         categoryID: String?, placementID: String,
         customerID: String?, fromAgent: Bool,
-        birthYear: Double?, baselineProductIDs: [String]?,
-        filters: [[String: ProductFilterOperationDto]]?,
+        baselineProductIDs: [String]?, filters: [[String: ProductFilterOperationDto]]?,
         targets: [SuggestionRequestTarget]?, userAgent: String?,
         completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
     
@@ -25,15 +24,14 @@ public protocol PlacementManageable {
         clientID: String, excludingProductIDs: [String]?,
         categoryID: String?, placementID: String,
         customerID: String?, fromAgent: Bool?,
-        birthYear: Double?, targets: [SuggestionRequestTarget]?,
-        userAgent: String?, completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void)
+        targets: [SuggestionRequestTarget]?, userAgent: String?,
+        completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void)
     
     func createRecommendationProducts(
         clientID: String, excludingProductIDs: [String]?,
         categoryID: String?, placementID: String,
         customerID: String?, fromAgent: Bool,
-        birthYear: Double?, baselineProductIDs: [String]?,
-        filters: [[String: ProductFilterOperationDto]]?,
+        baselineProductIDs: [String]?, filters: [[String: ProductFilterOperationDto]]?,
         targets: [SuggestionRequestTarget]?, userAgent: String?,
         completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
     
@@ -41,8 +39,8 @@ public protocol PlacementManageable {
         clientID: String, excludingProductIDs: [String]?,
         categoryID: String?, placementID: String,
         customerID: String?, fromAgent: Bool?,
-        birthYear: Double?, targets: [SuggestionRequestTarget]?,
-        userAgent: String?, completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void)
+        targets: [SuggestionRequestTarget]?, userAgent: String?,
+        completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void)
 }
 
 public final class PlacementManager: PlacementManageable {
@@ -64,8 +62,7 @@ public final class PlacementManager: PlacementManageable {
         clientID: String, excludingProductIDs: [String]? = nil,
         categoryID: String? = nil, placementID: String,
         customerID: String? = nil, fromAgent: Bool,
-        birthYear: Double? = nil, baselineProductIDs: [String]? = nil,
-        filters: [[String: ProductFilterOperationDto]]? = nil,
+        baselineProductIDs: [String]? = nil, filters: [[String: ProductFilterOperationDto]]? = nil,
         targets: [SuggestionRequestTarget]? = nil, userAgent: String? = nil,
         completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
             
@@ -97,7 +94,6 @@ public final class PlacementManager: PlacementManageable {
         placementID: String,
         customerID: String? = nil, 
         fromAgent: Bool? = false,
-        birthYear: Double? = nil, 
         targets: [SuggestionRequestTarget]? = nil,
         userAgent: String? = nil, 
         completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void) {
@@ -125,7 +121,6 @@ public final class PlacementManager: PlacementManageable {
         placementID: String,
         customerID: String? = nil, 
         fromAgent: Bool,
-        birthYear: Double? = nil, 
         baselineProductIDs: [String]? = nil,
         filters: [[String: ProductFilterOperationDto]]? = nil,
         targets: [SuggestionRequestTarget]? = nil, 
@@ -160,7 +155,6 @@ public final class PlacementManager: PlacementManageable {
         placementID: String,
         customerID: String? = nil, 
         fromAgent: Bool? = false,
-        birthYear: Double? = nil, 
         targets: [SuggestionRequestTarget]? = nil,
         userAgent: String? = nil, 
         completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void) {
