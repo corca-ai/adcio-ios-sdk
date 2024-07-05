@@ -6,307 +6,85 @@
 //
 
 import Foundation
+import ControllerV1
 import Core
 
 public protocol PlacementRepogitory {
     var sessionID: SessionID { get }
     var deviceID: String { get }
+    var userAgent: String { get }
     
-    func createAdvertisementProducts(
-        clientID: String,
-        excludingProductIDs: [String]?,
-        categoryID: String?,
-        placementID: String,
-        customerID: String?,
-        fromAgent: Bool?,
-        birthYear: Int?,
-        gender: Gender?,
-        filters: [String: Filter]?,
-        completion: @escaping (PlacementResult) -> Void
-    )
+    func createAdvertisementProducts(_ productSuggestionRequestDto: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
     
-    func createAdvertisementBanners(
-        placementID: String,
-        customerID: String?,
-        placementPositionX: Int?,
-        placementPositionY: Int?,
-        fromAgent: Bool?,
-        birthYear: Int?,
-        gender: Gender?,
-        completion: @escaping (AdvertisementBannerResult) -> Void
-    )
+    func createAdvertisementBanners(_ bannerSuggestionRequestDTO: BannerSuggestionRequestDto, completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void)
     
-    func createRecommendationProducts(
-        clientID: String,
-        excludingProductIDs: [String]?,
-        categoryID: String?,
-        placementID: String,
-        customerID: String?,
-        fromAgent: Bool?,
-        birthYear: Int?,
-        gender: Gender?,
-        filters: [String: Filter]?,
-        completion: @escaping (PlacementResult) -> Void
-    )
+    func createRecommendationProducts(_ productSuggestionRequestDTO: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void)
     
-    func createRecommendationBanners(
-        placementID: String,
-        customerID: String?,
-        placementPositionX: Int?,
-        placementPositionY: Int?,
-        fromAgent: Bool?,
-        birthYear: Int?,
-        gender: Gender?,
-        completion: @escaping (AdvertisementBannerResult) -> Void
-    )
+    func createRecommendationBanners(_ bannerSuggestionRequestDTO: BannerSuggestionRequestDto, completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void)
 }
 
 public final class PlacementClient: PlacementRepogitory {
-    private let baseURL: URL
-    private let client: HTTPClient
     private let loader: SessionLoader
     public private(set) var deviceID: String
     public private(set) var sessionID: SessionID
+    public private(set) var userAgent: String
     
     public init(
-        client: HTTPClient = URLSessionHTTPClient(),
         loader: SessionLoader = SessionClient.instance,
         deviceID: String = DeviceIDLoader.indentifier,
-        baseURL: URL = URL(string: "api.adcio.ai")!
+        userAgent: String = DeviceIDLoader.userAgent
     ) {
-        self.client = client
         self.loader = loader
         self.deviceID = deviceID
-        self.baseURL = baseURL
         self.sessionID = loader.identifier
+        self.userAgent = userAgent
     }
     
-    public enum Error: Swift.Error {
-        case connectivity
-        case invalidData
-    }
-    
-    public func createAdvertisementProducts(
-        clientID: String,
-        excludingProductIDs: [String]? = nil,
-        categoryID: String? = nil,
-        placementID: String,
-        customerID: String? = nil,
-        fromAgent: Bool? = false,
-        birthYear: Int? = nil,
-        gender: Gender? = nil,
-        filters: [String: Filter]? = nil,
-        completion: @escaping (PlacementResult) -> Void
-    ) {
-        var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
-        parameters["deviceId"] = deviceID
-        parameters["placementId"] = placementID
-        parameters["fromAgent"] = fromAgent
-        if customerID != nil { parameters["customerId"] = customerID }
-        if birthYear != nil { parameters["birthYear"] = birthYear }
-        if gender != nil { parameters["gender"] = gender?.description }
-        parameters["clientId"] = clientID
-        if excludingProductIDs != nil { parameters["excludingProductIds"] = excludingProductIDs }
-        if categoryID != nil { parameters["categoryId"] = categoryID }
-        
-        if let filters = filters {
-            var filtersArray: [[String: Any]] = []
-            for (key, condition) in filters {
-                if let equalTo = condition.equalTo {
-                    filtersArray.append([key: ["equalTo": equalTo]])
-                }
-                if let contains = condition.contains {
-                    filtersArray.append([key: ["contains": contains]])
-                }
-                if let not = condition.not {
-                    filtersArray.append([key: ["not": not]])
-                }
+    public func createAdvertisementProducts(_ productSuggestionRequestDTO: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
+        SuggestionAPI.advertisementsControllerAdvertiseProducts(productSuggestionRequestDto: productSuggestionRequestDTO) { data, error in
+            guard error == nil else {
+                completion(nil, error)
+                return
             }
-            if !filtersArray.isEmpty {
-                parameters["filters"] = filtersArray
-            }
-        }
-        
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = baseURL.absoluteString
-        components.path = "/v1/advertisements/products"
-        
-        guard let url = components.url?.absoluteURL else {
-            return
-        }
-        
-        client.request(from: url,
-                       parameter: parameters) { result in
-            switch result {
-            case let .success(data, response):
-                completion(PlacementClient.mapWithProduct(data, from: response))
-            case .failure:
-                completion(.failure(PlacementClient.Error.connectivity))
-            }
+
+            completion(data, nil)
         }
     }
     
     public func createAdvertisementBanners(
-        placementID: String,
-        customerID: String? = nil,
-        placementPositionX: Int? = nil,
-        placementPositionY: Int? = nil,
-        fromAgent: Bool? = false,
-        birthYear: Int? = nil,
-        gender: Gender? = nil,
-        completion: @escaping (AdvertisementBannerResult) -> Void
+        _ bannerSuggestionRequestDTO: BannerSuggestionRequestDto, completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void
     ) {
-        var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
-        parameters["deviceId"] = deviceID
-        parameters["placementId"] = placementID
-        parameters["fromAgent"] = fromAgent
-        if customerID != nil { parameters["customerId"] = customerID }
-        if placementPositionX != nil { parameters["placementPositionX"] = placementPositionX }
-        if placementPositionY != nil { parameters["placementPositionY"] = placementPositionY }
-        if birthYear != nil { parameters["birthYear"] = birthYear }
-        if gender != nil { parameters["gender"] = gender?.description }
-        
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = baseURL.absoluteString
-        components.path = "/v1/advertisements/banners"
-        
-        guard let url = components.url?.absoluteURL else {
-            return
-        }
-        
-        client.request(from: url,
-                       parameter: parameters) { result in
-            switch result {
-            case let .success(data, response):
-                completion(PlacementClient.mapWithBanner(data, from: response))
-            case .failure:
-                completion(.failure(PlacementClient.Error.connectivity))
+        SuggestionAPI.advertisementsControllerAdvertiseBanners(bannerSuggestionRequestDto: bannerSuggestionRequestDTO) { data, error in
+            guard error == nil else {
+                completion(nil, error)
+                return
             }
+
+            completion(data, nil)
         }
     }
     
-    public func createRecommendationProducts(
-        clientID: String,
-        excludingProductIDs: [String]? = nil,
-        categoryID: String? = nil,
-        placementID: String,
-        customerID: String? = nil,
-        fromAgent: Bool? = nil,
-        birthYear: Int? = nil,
-        gender: Gender? = nil,
-        filters: [String: Filter]? = nil,
-        completion: @escaping (PlacementResult) -> Void
-    ) {
-        var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
-        parameters["deviceId"] = deviceID
-        parameters["placementId"] = placementID
-        parameters["fromAgent"] = fromAgent
-        if customerID != nil { parameters["customerId"] = customerID }
-        if birthYear != nil { parameters["birthYear"] = birthYear }
-        if gender != nil { parameters["gender"] = gender?.description }
-        parameters["clientId"] = clientID
-        if excludingProductIDs != nil { parameters["excludingProductIds"] = excludingProductIDs }
-        if categoryID != nil { parameters["categoryId"] = categoryID }
-        
-        if let filters = filters {
-            var filtersArray: [[String: Any]] = []
-            for (key, condition) in filters {
-                if let equalTo = condition.equalTo {
-                    filtersArray.append([key: ["equalTo": equalTo]])
-                }
-                if let contains = condition.contains {
-                    filtersArray.append([key: ["contains": contains]])
-                }
-                if let not = condition.not {
-                    filtersArray.append([key: ["not": not]])
-                }
+    public func createRecommendationProducts(_ productSuggestionRequestDTO: ProductSuggestionRequestDto, completion: @escaping (ProductSuggestionResponseDto?, Error?) -> Void) {
+        SuggestionAPI.recommendationsControllerRecommendProducts(productSuggestionRequestDto: productSuggestionRequestDTO) { data, error in
+            guard error == nil else {
+                completion(nil, error)
+                return
             }
-            if !filtersArray.isEmpty {
-                parameters["filters"] = filtersArray
-            }
-        }
-        
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = baseURL.absoluteString
-        components.path = "/v1/recommendations/products"
-        
-        guard let url = components.url?.absoluteURL else {
-            return
-        }
-        print(parameters)
-        client.request(from: url,
-                       parameter: parameters) { result in
-            switch result {
-            case let .success(data, response):
-                completion(PlacementClient.mapWithProduct(data, from: response))
-            case .failure:
-                completion(.failure(PlacementClient.Error.connectivity))
-            }
+
+            completion(data, nil)
         }
     }
     
     public func createRecommendationBanners(
-        placementID: String,
-        customerID: String?,
-        placementPositionX: Int?,
-        placementPositionY: Int?,
-        fromAgent: Bool?,
-        birthYear: Int?,
-        gender: Gender?,
-        completion: @escaping (AdvertisementBannerResult) -> Void
+        _ bannerSuggestionRequestDTO: BannerSuggestionRequestDto, completion: @escaping (BannerSuggestionResponseDto?, Error?) -> Void
     ) {
-        var parameters: [String : Any] = [:]
-        parameters["sessionId"] = sessionID
-        parameters["deviceId"] = deviceID
-        parameters["placementId"] = placementID
-        parameters["fromAgent"] = fromAgent
-        if customerID != nil { parameters["customerId"] = customerID }
-        if placementPositionX != nil { parameters["placementPositionX"] = placementPositionX }
-        if placementPositionY != nil { parameters["placementPositionY"] = placementPositionY }
-        if birthYear != nil { parameters["birthYear"] = birthYear }
-        if gender != nil { parameters["gender"] = gender?.description }
-        
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = baseURL.absoluteString
-        components.path = "/v1/recommendations/banners"
-        
-        guard let url = components.url?.absoluteURL else {
-            return
-        }
-        
-        client.request(from: url,
-                       parameter: parameters) { result in
-            switch result {
-            case let .success(data, response):
-                completion(PlacementClient.mapWithBanner(data, from: response))
-            case .failure:
-                completion(.failure(PlacementClient.Error.connectivity))
+        SuggestionAPI.recommendationsControllerRecommendBanners(bannerSuggestionRequestDto: bannerSuggestionRequestDTO) { data, error in
+            guard error == nil else {
+                completion(nil, error)
+                return
             }
-        }
-    }
-    
-    private static func mapWithBanner(_ data: Data, from response: HTTPURLResponse) -> AdvertisementBannerResult {
-        do {
-            let items = try BannersMapper.map(data, from: response)
-            return .success(items)
-        } catch {
-            return .failure(error)
-        }
-    }
-    
-    private static func mapWithProduct(_ data: Data, from response: HTTPURLResponse) -> PlacementResult {
-        do {
-            let items = try ProductsMapper.map(data, from: response)
-            return .success(items)
-        } catch {
-            return .failure(error)
+
+            completion(data, nil)
         }
     }
 }
