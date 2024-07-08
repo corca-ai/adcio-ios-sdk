@@ -66,6 +66,7 @@ OpenAPIClient/Classes/OpenAPIs/Models/ProductSuggestionResponseDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ProductWithSeller.swift
 OpenAPIClient/Classes/OpenAPIs/Models/RemoveProductFromPlacementResponseDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/Retriever.swift
+OpenAPIClient/Classes/OpenAPIs/Models/SuggestionMetadata.swift
 OpenAPIClient/Classes/OpenAPIs/Models/SuggestionRequestTarget.swift
 OpenAPIClient/Classes/OpenAPIs/Models/SuggestionResponsePlacementType.swift
 OpenAPIClient/Classes/OpenAPIs/Models/UpdateBannerDto.swift
@@ -142,6 +143,7 @@ docs/ProductWithSeller.md
 docs/RemoveProductFromPlacementResponseDto.md
 docs/Retriever.md
 docs/SuggestionAPI.md
+docs/SuggestionMetadata.md
 docs/SuggestionRequestTarget.md
 docs/SuggestionResponsePlacementType.md
 docs/UpdateBannerDto.md
