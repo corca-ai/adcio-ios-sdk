@@ -68,7 +68,7 @@ public final class PlacementManager: PlacementManageable {
             
             client.createAdvertisementProducts(
                 ProductSuggestionRequestDto(
-                    sessionId: sessionID,
+                    sessionId: "helloworld",
                     deviceId: deviceID,
                     customerId: customerID,
                     sdkVersion: sdkVersion,
