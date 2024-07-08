@@ -48,7 +48,7 @@ public final class PlacementManager: PlacementManageable {
     public private(set) var sessionID: String
     public private(set) var deviceID: String
     private var userAgent: String
-    private let sdkVersion = "1.2.0"
+    private let sdkVersion = "iOS 1.2.1"
     
     public init() {
         self.client = PlacementClient()

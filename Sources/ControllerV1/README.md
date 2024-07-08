@@ -106,6 +106,7 @@ Class | Method | HTTP request | Description
  - [ProductWithSeller](docs/ProductWithSeller.md)
  - [RemoveProductFromPlacementResponseDto](docs/RemoveProductFromPlacementResponseDto.md)
  - [Retriever](docs/Retriever.md)
+ - [SuggestionMetadata](docs/SuggestionMetadata.md)
  - [SuggestionRequestTarget](docs/SuggestionRequestTarget.md)
  - [SuggestionResponsePlacementType](docs/SuggestionResponsePlacementType.md)
  - [UpdateBannerDto](docs/UpdateBannerDto.md)

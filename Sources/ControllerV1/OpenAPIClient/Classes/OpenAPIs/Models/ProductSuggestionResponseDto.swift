@@ -14,9 +14,9 @@ public struct ProductSuggestionResponseDto: Codable, JSONEncodable, Hashable {
 
     public var suggestions: [ProductSuggestionDto]
     public var placement: SuggestionResponsePlacementType
-    public var metadata: AnyCodable
+    public var metadata: SuggestionMetadata
 
-    public init(suggestions: [ProductSuggestionDto], placement: SuggestionResponsePlacementType, metadata: AnyCodable) {
+    public init(suggestions: [ProductSuggestionDto], placement: SuggestionResponsePlacementType, metadata: SuggestionMetadata) {
         self.suggestions = suggestions
         self.placement = placement
         self.metadata = metadata
