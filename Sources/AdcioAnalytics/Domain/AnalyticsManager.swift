@@ -82,7 +82,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
                 sdkVersion: sdkVersion,
                 requestId: option.requestID,
                 productIdOnStore: productIDOnStore,
-                adsetId: option.requestID,
+                adsetId: option.adsetID,
                 userAgent: userAgent),
             completion: completion)
     }
