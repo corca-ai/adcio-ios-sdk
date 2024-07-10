@@ -28,7 +28,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     public private(set) var deviceID: String
     private var clientID: String
     private var userAgent: String
-    private let sdkVersion = "iOS 1.2.1"
+    private let sdkVersion = "iOS 1.3.0"
     
     public init(clientID: String) {
         self.client = AnalyticsClient(clientID: clientID)
@@ -82,7 +82,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
                 sdkVersion: sdkVersion,
                 requestId: option.requestID,
                 productIdOnStore: productIDOnStore,
-                adsetId: option.requestID,
+                adsetId: option.adsetID,
                 userAgent: userAgent),
             completion: completion)
     }
