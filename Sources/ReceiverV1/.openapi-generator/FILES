@@ -6,6 +6,7 @@ OpenAPIClient/Classes/OpenAPIs/APIHelper.swift
 OpenAPIClient/Classes/OpenAPIs/APIs.swift
 OpenAPIClient/Classes/OpenAPIs/APIs/DefaultAPI.swift
 OpenAPIClient/Classes/OpenAPIs/APIs/EventsAPI.swift
+OpenAPIClient/Classes/OpenAPIs/APIs/LogsAPI.swift
 OpenAPIClient/Classes/OpenAPIs/CodableHelper.swift
 OpenAPIClient/Classes/OpenAPIs/Configuration.swift
 OpenAPIClient/Classes/OpenAPIs/Extensions.swift
@@ -19,6 +20,7 @@ OpenAPIClient/Classes/OpenAPIs/Models/TrackImpressionRequestDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/TrackPageViewRequestDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/TrackPurchaseRequestDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/TrackResponseDto.swift
+OpenAPIClient/Classes/OpenAPIs/Models/TrackSearchRequestDto.swift
 OpenAPIClient/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
 OpenAPIClient/Classes/OpenAPIs/SynchronizedDictionary.swift
 OpenAPIClient/Classes/OpenAPIs/URLSessionImplementations.swift
@@ -27,6 +29,7 @@ Package.swift
 README.md
 docs/DefaultAPI.md
 docs/EventsAPI.md
+docs/LogsAPI.md
 docs/NestJSErrorSchema.md
 docs/TrackAddToCartRequestDto.md
 docs/TrackClickRequestDto.md
@@ -34,5 +37,6 @@ docs/TrackImpressionRequestDto.md
 docs/TrackPageViewRequestDto.md
 docs/TrackPurchaseRequestDto.md
 docs/TrackResponseDto.md
+docs/TrackSearchRequestDto.md
 git_push.sh
 project.yml

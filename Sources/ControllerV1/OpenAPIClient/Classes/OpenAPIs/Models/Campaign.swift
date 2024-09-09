@@ -14,21 +14,17 @@ public struct Campaign: Codable, JSONEncodable, Hashable {
 
     public var id: String
     public var title: String
-    public var client: Client
     public var clientId: String
-    public var adGroups: [AdGroup]
     public var clickLookbackWindowDays: Double
     public var impressionLookbackWindowDays: Double?
     public var createdAt: Date
     public var updatedAt: Date
     public var deletedAt: Date?
 
-    public init(id: String, title: String, client: Client, clientId: String, adGroups: [AdGroup], clickLookbackWindowDays: Double, impressionLookbackWindowDays: Double?, createdAt: Date, updatedAt: Date, deletedAt: Date?) {
+    public init(id: String, title: String, clientId: String, clickLookbackWindowDays: Double, impressionLookbackWindowDays: Double?, createdAt: Date, updatedAt: Date, deletedAt: Date?) {
         self.id = id
         self.title = title
-        self.client = client
         self.clientId = clientId
-        self.adGroups = adGroups
         self.clickLookbackWindowDays = clickLookbackWindowDays
         self.impressionLookbackWindowDays = impressionLookbackWindowDays
         self.createdAt = createdAt
@@ -39,9 +35,7 @@ public struct Campaign: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
         case title
-        case client
         case clientId
-        case adGroups
         case clickLookbackWindowDays
         case impressionLookbackWindowDays
         case createdAt
@@ -55,9 +49,7 @@ public struct Campaign: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(title, forKey: .title)
-        try container.encode(client, forKey: .client)
         try container.encode(clientId, forKey: .clientId)
-        try container.encode(adGroups, forKey: .adGroups)
         try container.encode(clickLookbackWindowDays, forKey: .clickLookbackWindowDays)
         try container.encode(impressionLookbackWindowDays, forKey: .impressionLookbackWindowDays)
         try container.encode(createdAt, forKey: .createdAt)

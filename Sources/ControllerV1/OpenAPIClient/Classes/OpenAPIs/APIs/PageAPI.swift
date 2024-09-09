@@ -13,16 +13,26 @@ import AnyCodable
 open class PageAPI {
 
     /**
+     * enum for parameter supportEnvironment
+     */
+    public enum SupportEnvironment_pageControllerFetchActivePlacements: String, CaseIterable {
+        case web = "WEB"
+        case webMobile = "WEB_MOBILE"
+        case app = "APP"
+    }
+
+    /**
      
      
      - parameter name: (path)  
      - parameter clientId: (query) The client ID of the placement owner. 
+     - parameter supportEnvironment: (query) The support environment of the placement. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func pageControllerFetchActivePlacements(name: String, clientId: String, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [FetchActivePlacementsResponseDto]?, _ error: Error?) -> Void)) -> RequestTask {
-        return pageControllerFetchActivePlacementsWithRequestBuilder(name: name, clientId: clientId).execute(apiResponseQueue) { result in
+    open class func pageControllerFetchActivePlacements(name: String, clientId: String, supportEnvironment: SupportEnvironment_pageControllerFetchActivePlacements? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [FetchActivePlacementsResponseDto]?, _ error: Error?) -> Void)) -> RequestTask {
+        return pageControllerFetchActivePlacementsWithRequestBuilder(name: name, clientId: clientId, supportEnvironment: supportEnvironment).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -38,9 +48,10 @@ open class PageAPI {
      - Fetch active placements of the page.
      - parameter name: (path)  
      - parameter clientId: (query) The client ID of the placement owner. 
+     - parameter supportEnvironment: (query) The support environment of the placement. (optional)
      - returns: RequestBuilder<[FetchActivePlacementsResponseDto]> 
      */
-    open class func pageControllerFetchActivePlacementsWithRequestBuilder(name: String, clientId: String) -> RequestBuilder<[FetchActivePlacementsResponseDto]> {
+    open class func pageControllerFetchActivePlacementsWithRequestBuilder(name: String, clientId: String, supportEnvironment: SupportEnvironment_pageControllerFetchActivePlacements? = nil) -> RequestBuilder<[FetchActivePlacementsResponseDto]> {
         var localVariablePath = "/pages/{name}/placements"
         let namePreEscape = "\(APIHelper.mapValueToPathItem(name))"
         let namePostEscape = namePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -51,6 +62,7 @@ open class PageAPI {
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "clientId": (wrappedValue: clientId.encodeToJSON(), isExplode: true),
+            "supportEnvironment": (wrappedValue: supportEnvironment?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

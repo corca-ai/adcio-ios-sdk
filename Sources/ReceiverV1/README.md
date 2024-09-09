@@ -31,6 +31,7 @@ Class | Method | HTTP request | Description
 *EventsAPI* | [**eventsControllerOnImpression**](docs/EventsAPI.md#eventscontrolleronimpression) | **POST** /events/impression | 
 *EventsAPI* | [**eventsControllerOnPageView**](docs/EventsAPI.md#eventscontrolleronpageview) | **POST** /events/view | 
 *EventsAPI* | [**eventsControllerOnPurchase**](docs/EventsAPI.md#eventscontrolleronpurchase) | **POST** /events/purchase | 
+*LogsAPI* | [**logsControllerOnSearch**](docs/LogsAPI.md#logscontrolleronsearch) | **POST** /logs/search | 
 
 
 ## Documentation For Models
@@ -42,6 +43,7 @@ Class | Method | HTTP request | Description
  - [TrackPageViewRequestDto](docs/TrackPageViewRequestDto.md)
  - [TrackPurchaseRequestDto](docs/TrackPurchaseRequestDto.md)
  - [TrackResponseDto](docs/TrackResponseDto.md)
+ - [TrackSearchRequestDto](docs/TrackSearchRequestDto.md)
 
 
 <a id="documentation-for-authorization"></a>

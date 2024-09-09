@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **fromAgent** | **Bool** | Whether the request is from the ADCIO agent or not. Default value is &#x60;false&#x60;. | [optional] 
 **targets** | [SuggestionRequestTarget] |  | [optional] 
 **userAgent** | **String** |  | [optional] 
+**appVersion** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

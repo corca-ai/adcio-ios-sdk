@@ -12,20 +12,40 @@ import AnyCodable
 
 public struct FetchActivePlacementsResponseDto: Codable, JSONEncodable, Hashable {
 
+    public enum SuggestionType: String, Codable, CaseIterable {
+        case recommend = "RECOMMEND"
+        case advertise = "ADVERTISE"
+    }
+    public enum DevelopEnvironment: String, Codable, CaseIterable {
+        case widget = "WIDGET"
+        case selfDeveloped = "SELF_DEVELOPED"
+        case codeInjector = "CODE_INJECTOR"
+    }
+    public enum SupportEnvironment: String, Codable, CaseIterable {
+        case web = "WEB"
+        case webMobile = "WEB_MOBILE"
+        case app = "APP"
+    }
     public var id: String
     public var type: String
-    public var suggestionType: String
+    public var suggestionType: SuggestionType
+    public var developEnvironment: DevelopEnvironment
+    public var supportEnvironment: SupportEnvironment
 
-    public init(id: String, type: String, suggestionType: String) {
+    public init(id: String, type: String, suggestionType: SuggestionType, developEnvironment: DevelopEnvironment, supportEnvironment: SupportEnvironment) {
         self.id = id
         self.type = type
         self.suggestionType = suggestionType
+        self.developEnvironment = developEnvironment
+        self.supportEnvironment = supportEnvironment
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
         case type
         case suggestionType
+        case developEnvironment
+        case supportEnvironment
     }
 
     // Encodable protocol methods
@@ -35,6 +55,8 @@ public struct FetchActivePlacementsResponseDto: Codable, JSONEncodable, Hashable
         try container.encode(id, forKey: .id)
         try container.encode(type, forKey: .type)
         try container.encode(suggestionType, forKey: .suggestionType)
+        try container.encode(developEnvironment, forKey: .developEnvironment)
+        try container.encode(supportEnvironment, forKey: .supportEnvironment)
     }
 }
 

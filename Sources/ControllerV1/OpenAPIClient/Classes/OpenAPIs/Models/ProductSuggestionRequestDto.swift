@@ -40,8 +40,9 @@ public struct ProductSuggestionRequestDto: Codable, JSONEncodable, Hashable {
     public var filters: [[String: ProductFilterOperationDto]]?
     public var targets: [SuggestionRequestTarget]?
     public var userAgent: String?
+    public var appVersion: String?
 
-    public init(sessionId: String, deviceId: String, customerId: String? = nil, sdkVersion: String? = nil, placementId: String, placementPositionX: Double? = nil, placementPositionY: Double? = nil, fromAgent: Bool? = nil, clientId: String, excludingProductIds: [String]? = nil, baselineProductIds: [String]? = nil, categoryId: String? = nil, filters: [[String: ProductFilterOperationDto]]? = nil, targets: [SuggestionRequestTarget]? = nil, userAgent: String? = nil) {
+    public init(sessionId: String, deviceId: String, customerId: String? = nil, sdkVersion: String? = nil, placementId: String, placementPositionX: Double? = nil, placementPositionY: Double? = nil, fromAgent: Bool? = nil, clientId: String, excludingProductIds: [String]? = nil, baselineProductIds: [String]? = nil, categoryId: String? = nil, filters: [[String: ProductFilterOperationDto]]? = nil, targets: [SuggestionRequestTarget]? = nil, userAgent: String? = nil, appVersion: String? = nil) {
         self.sessionId = sessionId
         self.deviceId = deviceId
         self.customerId = customerId
@@ -57,6 +58,7 @@ public struct ProductSuggestionRequestDto: Codable, JSONEncodable, Hashable {
         self.filters = filters
         self.targets = targets
         self.userAgent = userAgent
+        self.appVersion = appVersion
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -75,6 +77,7 @@ public struct ProductSuggestionRequestDto: Codable, JSONEncodable, Hashable {
         case filters
         case targets
         case userAgent
+        case appVersion
     }
 
     // Encodable protocol methods
@@ -96,6 +99,7 @@ public struct ProductSuggestionRequestDto: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(filters, forKey: .filters)
         try container.encodeIfPresent(targets, forKey: .targets)
         try container.encodeIfPresent(userAgent, forKey: .userAgent)
+        try container.encodeIfPresent(appVersion, forKey: .appVersion)
     }
 }
 

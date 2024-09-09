@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **productIdOnStore** | **String** | Product ID (on store). | [optional] 
 **adsetId** | **String** | Product ID / Banner ID | [optional] 
 **userAgent** | **String** |  | [optional] 
+**appVersion** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

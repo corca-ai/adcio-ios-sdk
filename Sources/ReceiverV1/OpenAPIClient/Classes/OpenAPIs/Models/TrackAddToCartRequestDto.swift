@@ -35,8 +35,9 @@ public struct TrackAddToCartRequestDto: Codable, JSONEncodable, Hashable {
     /** Quantity of the product. */
     public var quantity: Double?
     public var userAgent: String?
+    public var appVersion: String?
 
-    public init(storeId: String, sessionId: String, deviceId: String, customerId: String? = nil, sdkVersion: String? = nil, requestId: String? = nil, productIdOnStore: String? = nil, adsetId: String? = nil, categoryIdOnStore: String? = nil, cartId: String? = nil, quantity: Double? = nil, userAgent: String? = nil) {
+    public init(storeId: String, sessionId: String, deviceId: String, customerId: String? = nil, sdkVersion: String? = nil, requestId: String? = nil, productIdOnStore: String? = nil, adsetId: String? = nil, categoryIdOnStore: String? = nil, cartId: String? = nil, quantity: Double? = nil, userAgent: String? = nil, appVersion: String? = nil) {
         self.storeId = storeId
         self.sessionId = sessionId
         self.deviceId = deviceId
@@ -49,6 +50,7 @@ public struct TrackAddToCartRequestDto: Codable, JSONEncodable, Hashable {
         self.cartId = cartId
         self.quantity = quantity
         self.userAgent = userAgent
+        self.appVersion = appVersion
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -64,6 +66,7 @@ public struct TrackAddToCartRequestDto: Codable, JSONEncodable, Hashable {
         case cartId
         case quantity
         case userAgent
+        case appVersion
     }
 
     // Encodable protocol methods
@@ -82,6 +85,7 @@ public struct TrackAddToCartRequestDto: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(cartId, forKey: .cartId)
         try container.encodeIfPresent(quantity, forKey: .quantity)
         try container.encodeIfPresent(userAgent, forKey: .userAgent)
+        try container.encodeIfPresent(appVersion, forKey: .appVersion)
     }
 }
 

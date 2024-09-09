@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **pageControllerFetchActivePlacements**
 ```swift
-    open class func pageControllerFetchActivePlacements(name: String, clientId: String, completion: @escaping (_ data: [FetchActivePlacementsResponseDto]?, _ error: Error?) -> Void)
+    open class func pageControllerFetchActivePlacements(name: String, clientId: String, supportEnvironment: SupportEnvironment_pageControllerFetchActivePlacements? = nil, completion: @escaping (_ data: [FetchActivePlacementsResponseDto]?, _ error: Error?) -> Void)
 ```
 
 
@@ -23,9 +23,10 @@ import OpenAPIClient
 
 let name = "name_example" // String | 
 let clientId = "clientId_example" // String | The client ID of the placement owner.
+let supportEnvironment = "supportEnvironment_example" // String | The support environment of the placement. (optional)
 
 // 
-PageAPI.pageControllerFetchActivePlacements(name: name, clientId: clientId) { (response, error) in
+PageAPI.pageControllerFetchActivePlacements(name: name, clientId: clientId, supportEnvironment: supportEnvironment) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -43,6 +44,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String** |  | 
  **clientId** | **String** | The client ID of the placement owner. | 
+ **supportEnvironment** | **String** | The support environment of the placement. | [optional] 
 
 ### Return type
 

@@ -55,7 +55,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [AdGroup](docs/AdGroup.md)
  - [AdGroupTargetKey](docs/AdGroupTargetKey.md)
  - [AdGroupTargetKeyValueResponse](docs/AdGroupTargetKeyValueResponse.md)
  - [AdGroupTargetValue](docs/AdGroupTargetValue.md)
@@ -100,6 +99,7 @@ Class | Method | HTTP request | Description
  - [ProductControllerFetchMany200Response](docs/ProductControllerFetchMany200Response.md)
  - [ProductDetailDto](docs/ProductDetailDto.md)
  - [ProductFilterOperationDto](docs/ProductFilterOperationDto.md)
+ - [ProductIconImage](docs/ProductIconImage.md)
  - [ProductSuggestionDto](docs/ProductSuggestionDto.md)
  - [ProductSuggestionRequestDto](docs/ProductSuggestionRequestDto.md)
  - [ProductSuggestionResponseDto](docs/ProductSuggestionResponseDto.md)

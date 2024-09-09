@@ -30,8 +30,9 @@ public struct BannerSuggestionRequestDto: Codable, JSONEncodable, Hashable {
     public var fromAgent: Bool?
     public var targets: [SuggestionRequestTarget]?
     public var userAgent: String?
+    public var appVersion: String?
 
-    public init(sessionId: String, deviceId: String, customerId: String? = nil, sdkVersion: String? = nil, placementId: String, placementPositionX: Double? = nil, placementPositionY: Double? = nil, fromAgent: Bool? = nil, targets: [SuggestionRequestTarget]? = nil, userAgent: String? = nil) {
+    public init(sessionId: String, deviceId: String, customerId: String? = nil, sdkVersion: String? = nil, placementId: String, placementPositionX: Double? = nil, placementPositionY: Double? = nil, fromAgent: Bool? = nil, targets: [SuggestionRequestTarget]? = nil, userAgent: String? = nil, appVersion: String? = nil) {
         self.sessionId = sessionId
         self.deviceId = deviceId
         self.customerId = customerId
@@ -42,6 +43,7 @@ public struct BannerSuggestionRequestDto: Codable, JSONEncodable, Hashable {
         self.fromAgent = fromAgent
         self.targets = targets
         self.userAgent = userAgent
+        self.appVersion = appVersion
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -55,6 +57,7 @@ public struct BannerSuggestionRequestDto: Codable, JSONEncodable, Hashable {
         case fromAgent
         case targets
         case userAgent
+        case appVersion
     }
 
     // Encodable protocol methods
@@ -71,6 +74,7 @@ public struct BannerSuggestionRequestDto: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(fromAgent, forKey: .fromAgent)
         try container.encodeIfPresent(targets, forKey: .targets)
         try container.encodeIfPresent(userAgent, forKey: .userAgent)
+        try container.encodeIfPresent(appVersion, forKey: .appVersion)
     }
 }
 

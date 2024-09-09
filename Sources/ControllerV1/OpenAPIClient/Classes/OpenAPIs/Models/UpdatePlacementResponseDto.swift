@@ -61,15 +61,18 @@ public struct UpdatePlacementResponseDto: Codable, JSONEncodable, Hashable {
     public var displayFormatHeight: Double?
     public var property: Property?
     public var displayPositions: [Double]?
+    public var fixedProductIds: [String]?
     public var tableSize: [Double]?
     public var widgetValueId: String?
     public var productDetailDataColumns: [String]?
+    public var includingCategoryIds: [String]?
+    public var excludingCategoryIds: [String]?
     public var createdAt: Date
     public var updatedAt: Date
     public var deletedAt: Date?
     public var placementDeactivated: Bool
 
-    public init(placementFormatRatio: String?, id: String, title: String, type: ModelType, suggestionType: SuggestionType, bannerPlacementType: BannerPlacementType?, supportEnvironment: SupportEnvironment, developEnvironment: DevelopEnvironment, displayCount: Double?, minDisplayCount: Double, maxDisplayCount: Double, activated: Bool, pageName: String, clientId: String, injector: Injector?, screenShot: String, displayFormatWidth: Double?, displayFormatHeight: Double?, property: Property?, displayPositions: [Double]?, tableSize: [Double]?, widgetValueId: String?, productDetailDataColumns: [String]?, createdAt: Date, updatedAt: Date, deletedAt: Date?, placementDeactivated: Bool) {
+    public init(placementFormatRatio: String?, id: String, title: String, type: ModelType, suggestionType: SuggestionType, bannerPlacementType: BannerPlacementType?, supportEnvironment: SupportEnvironment, developEnvironment: DevelopEnvironment, displayCount: Double?, minDisplayCount: Double, maxDisplayCount: Double, activated: Bool, pageName: String, clientId: String, injector: Injector?, screenShot: String, displayFormatWidth: Double?, displayFormatHeight: Double?, property: Property?, displayPositions: [Double]?, fixedProductIds: [String]?, tableSize: [Double]?, widgetValueId: String?, productDetailDataColumns: [String]?, includingCategoryIds: [String]?, excludingCategoryIds: [String]?, createdAt: Date, updatedAt: Date, deletedAt: Date?, placementDeactivated: Bool) {
         self.placementFormatRatio = placementFormatRatio
         self.id = id
         self.title = title
@@ -90,9 +93,12 @@ public struct UpdatePlacementResponseDto: Codable, JSONEncodable, Hashable {
         self.displayFormatHeight = displayFormatHeight
         self.property = property
         self.displayPositions = displayPositions
+        self.fixedProductIds = fixedProductIds
         self.tableSize = tableSize
         self.widgetValueId = widgetValueId
         self.productDetailDataColumns = productDetailDataColumns
+        self.includingCategoryIds = includingCategoryIds
+        self.excludingCategoryIds = excludingCategoryIds
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.deletedAt = deletedAt
@@ -120,9 +126,12 @@ public struct UpdatePlacementResponseDto: Codable, JSONEncodable, Hashable {
         case displayFormatHeight
         case property
         case displayPositions
+        case fixedProductIds
         case tableSize
         case widgetValueId
         case productDetailDataColumns
+        case includingCategoryIds
+        case excludingCategoryIds
         case createdAt
         case updatedAt
         case deletedAt
@@ -153,9 +162,12 @@ public struct UpdatePlacementResponseDto: Codable, JSONEncodable, Hashable {
         try container.encode(displayFormatHeight, forKey: .displayFormatHeight)
         try container.encode(property, forKey: .property)
         try container.encode(displayPositions, forKey: .displayPositions)
+        try container.encode(fixedProductIds, forKey: .fixedProductIds)
         try container.encode(tableSize, forKey: .tableSize)
         try container.encode(widgetValueId, forKey: .widgetValueId)
         try container.encode(productDetailDataColumns, forKey: .productDetailDataColumns)
+        try container.encode(includingCategoryIds, forKey: .includingCategoryIds)
+        try container.encode(excludingCategoryIds, forKey: .excludingCategoryIds)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(deletedAt, forKey: .deletedAt)

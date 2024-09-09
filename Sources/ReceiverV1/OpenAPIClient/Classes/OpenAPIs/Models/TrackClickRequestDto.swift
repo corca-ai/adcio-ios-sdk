@@ -29,8 +29,9 @@ public struct TrackClickRequestDto: Codable, JSONEncodable, Hashable {
     /** Product ID / Banner ID */
     public var adsetId: String?
     public var userAgent: String?
+    public var appVersion: String?
 
-    public init(storeId: String, sessionId: String, deviceId: String, customerId: String? = nil, sdkVersion: String? = nil, requestId: String? = nil, productIdOnStore: String? = nil, adsetId: String? = nil, userAgent: String? = nil) {
+    public init(storeId: String, sessionId: String, deviceId: String, customerId: String? = nil, sdkVersion: String? = nil, requestId: String? = nil, productIdOnStore: String? = nil, adsetId: String? = nil, userAgent: String? = nil, appVersion: String? = nil) {
         self.storeId = storeId
         self.sessionId = sessionId
         self.deviceId = deviceId
@@ -40,6 +41,7 @@ public struct TrackClickRequestDto: Codable, JSONEncodable, Hashable {
         self.productIdOnStore = productIdOnStore
         self.adsetId = adsetId
         self.userAgent = userAgent
+        self.appVersion = appVersion
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -52,6 +54,7 @@ public struct TrackClickRequestDto: Codable, JSONEncodable, Hashable {
         case productIdOnStore
         case adsetId
         case userAgent
+        case appVersion
     }
 
     // Encodable protocol methods
@@ -67,6 +70,7 @@ public struct TrackClickRequestDto: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(productIdOnStore, forKey: .productIdOnStore)
         try container.encodeIfPresent(adsetId, forKey: .adsetId)
         try container.encodeIfPresent(userAgent, forKey: .userAgent)
+        try container.encodeIfPresent(appVersion, forKey: .appVersion)
     }
 }
 
