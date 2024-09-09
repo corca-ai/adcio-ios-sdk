@@ -31,12 +31,12 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     private var appVersion: String
     private let sdkVersion = "iOS 1.3.1"
     
-    public init(clientID: String, userAgent: String?, appVersion: String?) {
+    public init(clientID: String, userAgent: String?, appVersion: String) {
         self.client = AnalyticsClient(clientID: clientID)
         self.sessionID = self.client.sessionID
         self.deviceID = self.client.deviceID
         self.userAgent = userAgent ?? ""
-        self.appVersion = appVersion ?? ""
+        self.appVersion = appVersion
         self.clientID = clientID
     }
     

@@ -47,12 +47,12 @@ public final class PlacementManager: PlacementManageable {
     private var appVersion: String
     private let sdkVersion = "iOS 1.3.1"
     
-    public init(userAgent: String?, appVersion: String?) {
+    public init(userAgent: String?, appVersion: String) {
         self.client = PlacementClient()
         self.sessionID = self.client.sessionID
         self.deviceID = self.client.deviceID
         self.userAgent = userAgent ?? ""
-        self.appVersion = appVersion ?? ""
+        self.appVersion = appVersion
     }
     
     /// create Advertisement Products method
