@@ -57,6 +57,62 @@ open class ProductAPI {
     }
 
     /**
+
+     - parameter campaignId: (query) campaignId를 지정하지 않으면 다른 캠페인의 광고그룹에 사용된 상품을 제외하고 조회하며, campaignId를 지정하면 해당 캠페인의 타 광고그룹에 사용된 상품을 포함하여 조회합니다. (optional)
+     - parameter orderBy: (query) AdGroupCandidateProductSortOption (optional)
+     - parameter name: (query)  (optional)
+     - parameter limit: (query)  (optional)
+     - parameter offset: (query)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func productControllerFetchAdGroupCandidateProducts(campaignId: String? = nil, orderBy: [String]? = nil, name: String? = nil, limit: Double? = nil, offset: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: ProductControllerFetchAdGroupCandidateProducts200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return productControllerFetchAdGroupCandidateProductsWithRequestBuilder(campaignId: campaignId, orderBy: orderBy, name: name, limit: limit, offset: offset).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     - GET /products/ad-group-candidates
+     - parameter campaignId: (query) campaignId를 지정하지 않으면 다른 캠페인의 광고그룹에 사용된 상품을 제외하고 조회하며, campaignId를 지정하면 해당 캠페인의 타 광고그룹에 사용된 상품을 포함하여 조회합니다. (optional)
+     - parameter orderBy: (query) AdGroupCandidateProductSortOption (optional)
+     - parameter name: (query)  (optional)
+     - parameter limit: (query)  (optional)
+     - parameter offset: (query)  (optional)
+     - returns: RequestBuilder<ProductControllerFetchAdGroupCandidateProducts200Response> 
+     */
+    open class func productControllerFetchAdGroupCandidateProductsWithRequestBuilder(campaignId: String? = nil, orderBy: [String]? = nil, name: String? = nil, limit: Double? = nil, offset: Double? = nil) -> RequestBuilder<ProductControllerFetchAdGroupCandidateProducts200Response> {
+        let localVariablePath = "/products/ad-group-candidates"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "campaignId": (wrappedValue: campaignId?.encodeToJSON(), isExplode: true),
+            "orderBy": (wrappedValue: orderBy?.encodeToJSON(), isExplode: true),
+            "name": (wrappedValue: name?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "offset": (wrappedValue: offset?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ProductControllerFetchAdGroupCandidateProducts200Response>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
+    }
+
+    /**
      
      
      - parameter orderBy: (query) ProductSortOption (optional)
@@ -137,6 +193,156 @@ open class ProductAPI {
         let localVariableRequestBuilder: RequestBuilder<ProductControllerFetchMany200Response>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     
+     
+     - parameter name: (query)  (optional)
+     - parameter limit: (query)  (optional)
+     - parameter offset: (query)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func productControllerFetchManyProductNames(name: String? = nil, limit: Double? = nil, offset: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [FetchProductNamesResponseDto]?, _ error: Error?) -> Void)) -> RequestTask {
+        return productControllerFetchManyProductNamesWithRequestBuilder(name: name, limit: limit, offset: offset).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     
+     - GET /products/names
+     - Fetch many product names.
+     - API Key:
+       - type: apiKey X-Api-Key (HEADER)
+       - name: api-key
+     - parameter name: (query)  (optional)
+     - parameter limit: (query)  (optional)
+     - parameter offset: (query)  (optional)
+     - returns: RequestBuilder<[FetchProductNamesResponseDto]> 
+     */
+    open class func productControllerFetchManyProductNamesWithRequestBuilder(name: String? = nil, limit: Double? = nil, offset: Double? = nil) -> RequestBuilder<[FetchProductNamesResponseDto]> {
+        let localVariablePath = "/products/names"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "name": (wrappedValue: name?.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "offset": (wrappedValue: offset?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<[FetchProductNamesResponseDto]>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+
+     - parameter ids: (query)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func productControllerFetchManyPublic(ids: [String], apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [FetchProductResponseDto]?, _ error: Error?) -> Void)) -> RequestTask {
+        return productControllerFetchManyPublicWithRequestBuilder(ids: ids).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     - GET /products/public
+     - parameter ids: (query)  
+     - returns: RequestBuilder<[FetchProductResponseDto]> 
+     */
+    open class func productControllerFetchManyPublicWithRequestBuilder(ids: [String]) -> RequestBuilder<[FetchProductResponseDto]> {
+        let localVariablePath = "/products/public"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "ids": (wrappedValue: ids.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<[FetchProductResponseDto]>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
+    }
+
+    /**
+
+     - parameter storeId: (query)  
+     - parameter limit: (query)  (optional)
+     - parameter offset: (query)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func productControllerFetchManyWithWhere(storeId: String, limit: Double? = nil, offset: Double? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: ProductControllerFetchMany200Response?, _ error: Error?) -> Void)) -> RequestTask {
+        return productControllerFetchManyWithWhereWithRequestBuilder(storeId: storeId, limit: limit, offset: offset).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     - GET /products/with-where
+     - parameter storeId: (query)  
+     - parameter limit: (query)  (optional)
+     - parameter offset: (query)  (optional)
+     - returns: RequestBuilder<ProductControllerFetchMany200Response> 
+     */
+    open class func productControllerFetchManyWithWhereWithRequestBuilder(storeId: String, limit: Double? = nil, offset: Double? = nil) -> RequestBuilder<ProductControllerFetchMany200Response> {
+        let localVariablePath = "/products/with-where"
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "storeId": (wrappedValue: storeId.encodeToJSON(), isExplode: true),
+            "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
+            "offset": (wrappedValue: offset?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ProductControllerFetchMany200Response>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
 
     /**
@@ -236,6 +442,52 @@ open class ProductAPI {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+
+     - parameter storeId: (path)  
+     - parameter upsertManyProductDto: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func productControllerUpdateMany(storeId: String, upsertManyProductDto: UpsertManyProductDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: UpsertManyProductResponseDto?, _ error: Error?) -> Void)) -> RequestTask {
+        return productControllerUpdateManyWithRequestBuilder(storeId: storeId, upsertManyProductDto: upsertManyProductDto).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     - PUT /products/bulk/store/{storeId}
+     - parameter storeId: (path)  
+     - parameter upsertManyProductDto: (body)  
+     - returns: RequestBuilder<UpsertManyProductResponseDto> 
+     */
+    open class func productControllerUpdateManyWithRequestBuilder(storeId: String, upsertManyProductDto: UpsertManyProductDto) -> RequestBuilder<UpsertManyProductResponseDto> {
+        var localVariablePath = "/products/bulk/store/{storeId}"
+        let storeIdPreEscape = "\(APIHelper.mapValueToPathItem(storeId))"
+        let storeIdPostEscape = storeIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{storeId}", with: storeIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: upsertManyProductDto)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<UpsertManyProductResponseDto>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false)
     }
 
     /**

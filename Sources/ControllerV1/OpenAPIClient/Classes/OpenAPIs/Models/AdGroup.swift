@@ -20,6 +20,11 @@ public struct AdGroup: Codable, JSONEncodable, Hashable {
         case totalBudgetInPeriod = "TOTAL_BUDGET_IN_PERIOD"
         case maxBudgetPerDay = "MAX_BUDGET_PER_DAY"
     }
+    public enum LatestReviewStatus: String, Codable, CaseIterable {
+        case pending = "PENDING"
+        case approved = "APPROVED"
+        case rejected = "REJECTED"
+    }
     public var id: String
     public var title: String
     public var type: ModelType
@@ -28,17 +33,19 @@ public struct AdGroup: Codable, JSONEncodable, Hashable {
     public var totalBudgetInPeriod: Double?
     public var budgetType: BudgetType
     public var dailyUsedBudget: Double
-    public var totalUsedBudget: Double
     public var activated: Bool
     public var startsAt: Date
     public var endsAt: Date?
+    public var storeId: String?
     public var sellerId: String
     public var campaignId: String
+    public var latestReviewStatus: LatestReviewStatus
+    public var latestReviewId: String?
     public var createdAt: Date
     public var updatedAt: Date
     public var deletedAt: Date?
 
-    public init(id: String, title: String, type: ModelType, placementId: String, maxBudgetPerDay: Double, totalBudgetInPeriod: Double?, budgetType: BudgetType, dailyUsedBudget: Double, totalUsedBudget: Double, activated: Bool, startsAt: Date, endsAt: Date?, sellerId: String, campaignId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?) {
+    public init(id: String, title: String, type: ModelType, placementId: String, maxBudgetPerDay: Double, totalBudgetInPeriod: Double?, budgetType: BudgetType, dailyUsedBudget: Double, activated: Bool, startsAt: Date, endsAt: Date?, storeId: String?, sellerId: String, campaignId: String, latestReviewStatus: LatestReviewStatus, latestReviewId: String?, createdAt: Date, updatedAt: Date, deletedAt: Date?) {
         self.id = id
         self.title = title
         self.type = type
@@ -47,12 +54,14 @@ public struct AdGroup: Codable, JSONEncodable, Hashable {
         self.totalBudgetInPeriod = totalBudgetInPeriod
         self.budgetType = budgetType
         self.dailyUsedBudget = dailyUsedBudget
-        self.totalUsedBudget = totalUsedBudget
         self.activated = activated
         self.startsAt = startsAt
         self.endsAt = endsAt
+        self.storeId = storeId
         self.sellerId = sellerId
         self.campaignId = campaignId
+        self.latestReviewStatus = latestReviewStatus
+        self.latestReviewId = latestReviewId
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.deletedAt = deletedAt
@@ -67,12 +76,14 @@ public struct AdGroup: Codable, JSONEncodable, Hashable {
         case totalBudgetInPeriod
         case budgetType
         case dailyUsedBudget
-        case totalUsedBudget
         case activated
         case startsAt
         case endsAt
+        case storeId
         case sellerId
         case campaignId
+        case latestReviewStatus
+        case latestReviewId
         case createdAt
         case updatedAt
         case deletedAt
@@ -90,12 +101,14 @@ public struct AdGroup: Codable, JSONEncodable, Hashable {
         try container.encode(totalBudgetInPeriod, forKey: .totalBudgetInPeriod)
         try container.encode(budgetType, forKey: .budgetType)
         try container.encode(dailyUsedBudget, forKey: .dailyUsedBudget)
-        try container.encode(totalUsedBudget, forKey: .totalUsedBudget)
         try container.encode(activated, forKey: .activated)
         try container.encode(startsAt, forKey: .startsAt)
         try container.encode(endsAt, forKey: .endsAt)
+        try container.encode(storeId, forKey: .storeId)
         try container.encode(sellerId, forKey: .sellerId)
         try container.encode(campaignId, forKey: .campaignId)
+        try container.encode(latestReviewStatus, forKey: .latestReviewStatus)
+        try container.encode(latestReviewId, forKey: .latestReviewId)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(deletedAt, forKey: .deletedAt)

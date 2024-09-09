@@ -11,65 +11,70 @@ import AnyCodable
 #endif
 
 public struct CreditHistory: Codable, JSONEncodable, Hashable {
-
     public enum AdjustmentType: String, Codable, CaseIterable {
         case increase = "INCREASE"
         case decrease = "DECREASE"
     }
+    public var creditType: CreditType
     public var id: String
     public var store: Client?
     public var storeId: String?
     public var seller: Client?
     public var sellerId: String?
-    public var creditType: AnyCodable
     public var adjustmentType: AdjustmentType
     public var amount: Double
     public var createdAt: Date
-    public var transaction: Transaction?
+    public var transactionId: String?  // transaction 참조 대신 ID로 변경
     public var creditDecreaseRequestId: String?
+    public var creditDecreaseRequest: CreditDecreaseRequest?
+    public var comment: String?
 
-    public init(id: String, store: Client?, storeId: String?, seller: Client?, sellerId: String?, creditType: AnyCodable, adjustmentType: AdjustmentType, amount: Double, createdAt: Date, transaction: Transaction?, creditDecreaseRequestId: String?) {
+    public init(creditType: CreditType, id: String, store: Client?, storeId: String?, seller: Client?, sellerId: String?, adjustmentType: AdjustmentType, amount: Double, createdAt: Date, transactionId: String?, creditDecreaseRequestId: String?, creditDecreaseRequest: CreditDecreaseRequest?, comment: String?) {
+        self.creditType = creditType
         self.id = id
         self.store = store
         self.storeId = storeId
         self.seller = seller
         self.sellerId = sellerId
-        self.creditType = creditType
         self.adjustmentType = adjustmentType
         self.amount = amount
         self.createdAt = createdAt
-        self.transaction = transaction
+        self.transactionId = transactionId
         self.creditDecreaseRequestId = creditDecreaseRequestId
+        self.creditDecreaseRequest = creditDecreaseRequest
+        self.comment = comment
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case creditType
         case id
         case store
         case storeId
         case seller
         case sellerId
-        case creditType
         case adjustmentType
         case amount
         case createdAt
-        case transaction
+        case transactionId
         case creditDecreaseRequestId
+        case creditDecreaseRequest
+        case comment
     }
-
-    // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(creditType, forKey: .creditType)
         try container.encode(id, forKey: .id)
         try container.encode(store, forKey: .store)
         try container.encode(storeId, forKey: .storeId)
         try container.encode(seller, forKey: .seller)
         try container.encode(sellerId, forKey: .sellerId)
-        try container.encode(creditType, forKey: .creditType)
         try container.encode(adjustmentType, forKey: .adjustmentType)
         try container.encode(amount, forKey: .amount)
         try container.encode(createdAt, forKey: .createdAt)
-        try container.encode(transaction, forKey: .transaction)
+        try container.encode(transactionId, forKey: .transactionId)
         try container.encode(creditDecreaseRequestId, forKey: .creditDecreaseRequestId)
+        try container.encode(creditDecreaseRequest, forKey: .creditDecreaseRequest)
+        try container.encode(comment, forKey: .comment)
     }
 }

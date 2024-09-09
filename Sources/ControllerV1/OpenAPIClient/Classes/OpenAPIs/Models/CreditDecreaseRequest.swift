@@ -18,9 +18,7 @@ public struct CreditDecreaseRequest: Codable, JSONEncodable, Hashable {
         case rejected = "REJECTED"
     }
     public var id: String
-    public var store: Client
     public var storeId: String
-    public var seller: Client
     public var sellerId: String
     public var amount: Double
     public var requestedAt: Date
@@ -30,11 +28,9 @@ public struct CreditDecreaseRequest: Codable, JSONEncodable, Hashable {
     public var processedAt: Date?
     public var creditHistoryId: String?
 
-    public init(id: String, store: Client, storeId: String, seller: Client, sellerId: String, amount: Double, requestedAt: Date, reason: String, rejectionReason: String?, status: Status, processedAt: Date?, creditHistoryId: String?) {
+    public init(id: String, storeId: String, sellerId: String, amount: Double, requestedAt: Date, reason: String, rejectionReason: String?, status: Status, processedAt: Date?, creditHistoryId: String?) {
         self.id = id
-        self.store = store
         self.storeId = storeId
-        self.seller = seller
         self.sellerId = sellerId
         self.amount = amount
         self.requestedAt = requestedAt
@@ -47,9 +43,7 @@ public struct CreditDecreaseRequest: Codable, JSONEncodable, Hashable {
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
-        case store
         case storeId
-        case seller
         case sellerId
         case amount
         case requestedAt
@@ -65,9 +59,7 @@ public struct CreditDecreaseRequest: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(store, forKey: .store)
         try container.encode(storeId, forKey: .storeId)
-        try container.encode(seller, forKey: .seller)
         try container.encode(sellerId, forKey: .sellerId)
         try container.encode(amount, forKey: .amount)
         try container.encode(requestedAt, forKey: .requestedAt)
@@ -78,3 +70,4 @@ public struct CreditDecreaseRequest: Codable, JSONEncodable, Hashable {
         try container.encode(creditHistoryId, forKey: .creditHistoryId)
     }
 }
+

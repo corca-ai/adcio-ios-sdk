@@ -11,12 +11,14 @@ Name | Type | Description | Notes
 **totalBudgetInPeriod** | **Double** |  | 
 **budgetType** | **String** |  | 
 **dailyUsedBudget** | **Double** |  | 
-**totalUsedBudget** | **Double** |  | 
 **activated** | **Bool** |  | 
 **startsAt** | **Date** |  | 
 **endsAt** | **Date** |  | 
+**storeId** | **String** |  | 
 **sellerId** | **String** |  | 
 **campaignId** | **String** |  | 
+**latestReviewStatus** | **String** |  | 
+**latestReviewId** | **String** |  | 
 **createdAt** | **Date** |  | 
 **updatedAt** | **Date** |  | 
 **deletedAt** | **Date** |  | 

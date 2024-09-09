@@ -1,6 +1,6 @@
 # EventsAPI
 
-All URIs are relative to *https://receiver.adcio.ai*
+All URIs are relative to *https://receiver-dev.adcio.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

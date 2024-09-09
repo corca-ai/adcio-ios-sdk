@@ -1,6 +1,6 @@
 # SuggestionAPI
 
-All URIs are relative to *https://api.adcio.ai*
+All URIs are relative to *https://api-dev.adcio.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

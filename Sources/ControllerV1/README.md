@@ -21,16 +21,128 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.adcio.ai*
+All URIs are relative to *https://api-dev.adcio.ai*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AdGroupAPI* | [**adGroupControllerCreate**](docs/AdGroupAPI.md#adgroupcontrollercreate) | **POST** /ad-group | 
+*AdGroupAPI* | [**adGroupControllerDelete**](docs/AdGroupAPI.md#adgroupcontrollerdelete) | **DELETE** /ad-group/{id} | 
+*AdGroupAPI* | [**adGroupControllerFetchAdGroupProducts**](docs/AdGroupAPI.md#adgroupcontrollerfetchadgroupproducts) | **GET** /ad-group/{id}/products | 
+*AdGroupAPI* | [**adGroupControllerFetchAdGroups**](docs/AdGroupAPI.md#adgroupcontrollerfetchadgroups) | **GET** /ad-group | 
+*AdGroupAPI* | [**adGroupControllerFetchAllBudget**](docs/AdGroupAPI.md#adgroupcontrollerfetchallbudget) | **GET** /ad-group/all/budget | 
+*AdGroupAPI* | [**adGroupControllerFetchManyAdGroupTitles**](docs/AdGroupAPI.md#adgroupcontrollerfetchmanyadgrouptitles) | **GET** /ad-group/all/titles | 
+*AdGroupAPI* | [**adGroupControllerFetchManyAdGroupsOfStore**](docs/AdGroupAPI.md#adgroupcontrollerfetchmanyadgroupsofstore) | **GET** /ad-group/all/of-store | 
+*AdGroupAPI* | [**adGroupControllerFetchOne**](docs/AdGroupAPI.md#adgroupcontrollerfetchone) | **GET** /ad-group/{id} | 
+*AdGroupAPI* | [**adGroupControllerUpdate**](docs/AdGroupAPI.md#adgroupcontrollerupdate) | **PATCH** /ad-group/{id} | 
+*AdGroupAPI* | [**adGroupControllerUpdateBudget**](docs/AdGroupAPI.md#adgroupcontrollerupdatebudget) | **PUT** /ad-group/budget | 
+*AdGroupAPI* | [**adGroupReviewControllerFetchAdGroupReviewCount**](docs/AdGroupAPI.md#adgroupreviewcontrollerfetchadgroupreviewcount) | **GET** /ad-group-reviews/count | 
+*AdGroupAPI* | [**adGroupReviewControllerFetchAdGroupReviewDetail**](docs/AdGroupAPI.md#adgroupreviewcontrollerfetchadgroupreviewdetail) | **GET** /ad-group-reviews/{id} | 
+*AdGroupAPI* | [**adGroupReviewControllerFetchAdGroupReviewHistories**](docs/AdGroupAPI.md#adgroupreviewcontrollerfetchadgroupreviewhistories) | **GET** /ad-group-reviews/ad-groups/{adGroupId} | 
+*AdGroupAPI* | [**adGroupReviewControllerProcessAdGroupReview**](docs/AdGroupAPI.md#adgroupreviewcontrollerprocessadgroupreview) | **POST** /ad-group-reviews/{id} | 
+*AdGroupAPI* | [**adGroupReviewControllerRequestAdGroupReview**](docs/AdGroupAPI.md#adgroupreviewcontrollerrequestadgroupreview) | **POST** /ad-group-reviews/ad-groups/{adGroupId} | 
+*AdGroupAPI* | [**adGroupTargetControllerCreateAdGroupTargetKeys**](docs/AdGroupAPI.md#adgrouptargetcontrollercreateadgrouptargetkeys) | **POST** /ad-group/target/keys | 
+*AdGroupAPI* | [**adGroupTargetControllerCreateAdGroupTargetValue**](docs/AdGroupAPI.md#adgrouptargetcontrollercreateadgrouptargetvalue) | **POST** /ad-group/target/keys/{id}/values | 
+*AdGroupAPI* | [**adGroupTargetControllerFetchAdGroupTargetKeys**](docs/AdGroupAPI.md#adgrouptargetcontrollerfetchadgrouptargetkeys) | **GET** /ad-group/target/keys | 
+*AdminAPI* | [**adminControllerDeleteClient**](docs/AdminAPI.md#admincontrollerdeleteclient) | **DELETE** /admin/clients/{id} | 
+*AdminAPI* | [**adminControllerFetchClient**](docs/AdminAPI.md#admincontrollerfetchclient) | **GET** /admin/clients/{id} | 
+*AdminAPI* | [**adminControllerFetchClients**](docs/AdminAPI.md#admincontrollerfetchclients) | **GET** /admin/clients | 
+*AdminAPI* | [**adminControllerFetchPlacements**](docs/AdminAPI.md#admincontrollerfetchplacements) | **GET** /admin/placements | 
+*AdminAPI* | [**adminControllerFetchSystemSetting**](docs/AdminAPI.md#admincontrollerfetchsystemsetting) | **GET** /admin | 
+*AdminAPI* | [**adminControllerUpdateClient**](docs/AdminAPI.md#admincontrollerupdateclient) | **PUT** /admin/clients/{id} | 
 *BannerAPI* | [**bannerControllerCreate**](docs/BannerAPI.md#bannercontrollercreate) | **POST** /banners | 
 *BannerAPI* | [**bannerControllerDelete**](docs/BannerAPI.md#bannercontrollerdelete) | **DELETE** /banners/{id} | 
 *BannerAPI* | [**bannerControllerFetchMany**](docs/BannerAPI.md#bannercontrollerfetchmany) | **GET** /banners | 
 *BannerAPI* | [**bannerControllerFetchOne**](docs/BannerAPI.md#bannercontrollerfetchone) | **GET** /banners/{id} | 
+*BannerAPI* | [**bannerControllerRestore**](docs/BannerAPI.md#bannercontrollerrestore) | **PUT** /banners/{id}/restore | 
 *BannerAPI* | [**bannerControllerUpdate**](docs/BannerAPI.md#bannercontrollerupdate) | **PUT** /banners/{id} | 
+*BannerAPI* | [**bannerControllerUploadImage**](docs/BannerAPI.md#bannercontrolleruploadimage) | **POST** /banners/image | 
+*BootstrapAPI* | [**bootstrapControllerBootstrap**](docs/BootstrapAPI.md#bootstrapcontrollerbootstrap) | **GET** /bootstrap | 
+*CampaignAPI* | [**campaignControllerCreate**](docs/CampaignAPI.md#campaigncontrollercreate) | **POST** /campaign | 
+*CampaignAPI* | [**campaignControllerFetchMany**](docs/CampaignAPI.md#campaigncontrollerfetchmany) | **GET** /campaign | 
+*CampaignAPI* | [**campaignControllerFetchOne**](docs/CampaignAPI.md#campaigncontrollerfetchone) | **GET** /campaign/{id} | 
+*CampaignAPI* | [**campaignControllerRemove**](docs/CampaignAPI.md#campaigncontrollerremove) | **DELETE** /campaign/{id} | 
+*CampaignAPI* | [**campaignControllerUpdate**](docs/CampaignAPI.md#campaigncontrollerupdate) | **PATCH** /campaign/{id} | 
+*CategoryAPI* | [**categoryControllerFetchMany**](docs/CategoryAPI.md#categorycontrollerfetchmany) | **GET** /categories | 
+*CategoryAPI* | [**categoryControllerUpsertMany**](docs/CategoryAPI.md#categorycontrollerupsertmany) | **PUT** /categories/bulk | 
+*ChatAPI* | [**chatControllerCreateChatDialogue**](docs/ChatAPI.md#chatcontrollercreatechatdialogue) | **POST** /chat/groups/{groupId}/dialogue | 
+*ChatAPI* | [**chatControllerCreateChatGroup**](docs/ChatAPI.md#chatcontrollercreatechatgroup) | **POST** /chat/groups | 
+*ChatAPI* | [**chatControllerCreateChatProfile**](docs/ChatAPI.md#chatcontrollercreatechatprofile) | **POST** /chat/profile | 
+*ChatAPI* | [**chatControllerCreateChatRecommendation**](docs/ChatAPI.md#chatcontrollercreatechatrecommendation) | **POST** /chat/groups/{groupId}/dialogue/{dialogId}/recommendation | 
+*ChatAPI* | [**chatControllerFetchChatGroup**](docs/ChatAPI.md#chatcontrollerfetchchatgroup) | **GET** /chat/groups/{id} | 
+*ChatAPI* | [**chatControllerFetchChatProfile**](docs/ChatAPI.md#chatcontrollerfetchchatprofile) | **GET** /chat/profile | 
+*ChatAPI* | [**chatControllerFetchCustomer**](docs/ChatAPI.md#chatcontrollerfetchcustomer) | **GET** /chat/users/{id} | 
+*ChatAPI* | [**chatControllerFetchCustomerDialogueCount**](docs/ChatAPI.md#chatcontrollerfetchcustomerdialoguecount) | **GET** /chat/users/{id}/dialogue/count | 
+*ChatAPI* | [**chatControllerUpdateChatProfile**](docs/ChatAPI.md#chatcontrollerupdatechatprofile) | **PUT** /chat/profile | 
+*ChatAPI* | [**chatControllerUpdateChatProfileImage**](docs/ChatAPI.md#chatcontrollerupdatechatprofileimage) | **PUT** /chat/profile/image | 
+*ChatDashboardAPI* | [**chatDashboardControllerFetchDialogue**](docs/ChatDashboardAPI.md#chatdashboardcontrollerfetchdialogue) | **GET** /chat-dashboard/dialogue | 
+*ClientAPI* | [**businessLicenseControllerFetchByLicenseNumber**](docs/ClientAPI.md#businesslicensecontrollerfetchbylicensenumber) | **GET** /business-licenses | 
+*ClientAPI* | [**businessLicenseControllerGenerateUploadLink**](docs/ClientAPI.md#businesslicensecontrollergenerateuploadlink) | **POST** /business-licenses/license-upload-link | 
+*ClientAPI* | [**businessLicenseControllerInspect**](docs/ClientAPI.md#businesslicensecontrollerinspect) | **POST** /business-licenses/inspect | 
+*ClientAPI* | [**clientControllerCreateBusinessLicense**](docs/ClientAPI.md#clientcontrollercreatebusinesslicense) | **POST** /clients/me/business-licenses | 
+*ClientAPI* | [**clientControllerCreateSeller**](docs/ClientAPI.md#clientcontrollercreateseller) | **POST** /clients/sellers | 
+*ClientAPI* | [**clientControllerCreateUser**](docs/ClientAPI.md#clientcontrollercreateuser) | **POST** /clients/me/users | 
+*ClientAPI* | [**clientControllerFetchClient**](docs/ClientAPI.md#clientcontrollerfetchclient) | **GET** /clients/me | 
+*ClientAPI* | [**clientControllerFetchClientUsers**](docs/ClientAPI.md#clientcontrollerfetchclientusers) | **GET** /clients/{id}/users | 
+*ClientAPI* | [**clientControllerFetchSeller**](docs/ClientAPI.md#clientcontrollerfetchseller) | **GET** /clients/sellers/{id} | 
+*ClientAPI* | [**clientControllerFetchSellers**](docs/ClientAPI.md#clientcontrollerfetchsellers) | **GET** /clients/sellers | 
+*ClientAPI* | [**clientControllerInviteSeller**](docs/ClientAPI.md#clientcontrollerinviteseller) | **POST** /clients/me/sellers | 
+*ClientAPI* | [**clientControllerRemoveUser**](docs/ClientAPI.md#clientcontrollerremoveuser) | **DELETE** /clients/me/users/{email} | 
+*ClientAPI* | [**clientControllerResendInvitation**](docs/ClientAPI.md#clientcontrollerresendinvitation) | **POST** /clients/me/sellers/{id}/invitation/mail | 
+*ClientAPI* | [**clientControllerSearchSellers**](docs/ClientAPI.md#clientcontrollersearchsellers) | **GET** /clients/sellers/all/names | 
+*ClientAPI* | [**clientControllerSetup**](docs/ClientAPI.md#clientcontrollersetup) | **POST** /clients | 
+*ClientAPI* | [**clientControllerUpdateClientIsStore**](docs/ClientAPI.md#clientcontrollerupdateclientisstore) | **PATCH** /clients/me/store | 
+*ClientAPI* | [**clientControllerUpdateUser**](docs/ClientAPI.md#clientcontrollerupdateuser) | **PUT** /clients/me/users/{email} | 
+*ClientAPI* | [**clientControllerVerifyUser**](docs/ClientAPI.md#clientcontrollerverifyuser) | **POST** /clients/users/verify | 
+*ClientAPI* | [**clientControllerWithdrawClient**](docs/ClientAPI.md#clientcontrollerwithdrawclient) | **POST** /clients/me/withdrawal | 
+*ClientAPI* | [**creditControllerCreateSellerCreditDecreaseRequest**](docs/ClientAPI.md#creditcontrollercreatesellercreditdecreaserequest) | **POST** /credits/decrease-requests | 
+*ClientAPI* | [**creditControllerDeleteSellerCreditDecreaseRequest**](docs/ClientAPI.md#creditcontrollerdeletesellercreditdecreaserequest) | **DELETE** /credits/decrease-requests/{decreaseRequestId} | 
+*ClientAPI* | [**creditControllerFetchAvailableCredit**](docs/ClientAPI.md#creditcontrollerfetchavailablecredit) | **GET** /credits/available | 
+*ClientAPI* | [**creditControllerFetchCreditHistory**](docs/ClientAPI.md#creditcontrollerfetchcredithistory) | **GET** /credits/histories | 
+*ClientAPI* | [**creditControllerFetchCreditInfo**](docs/ClientAPI.md#creditcontrollerfetchcreditinfo) | **GET** /credits | 
+*ClientAPI* | [**creditControllerFetchManyMyDecreaseRequest**](docs/ClientAPI.md#creditcontrollerfetchmanymydecreaserequest) | **GET** /credits/sellers/decrease-requests | 
+*ClientAPI* | [**creditControllerFetchManySellerCreditDecreaseRequest**](docs/ClientAPI.md#creditcontrollerfetchmanysellercreditdecreaserequest) | **GET** /credits/decrease-requests | 
+*ClientAPI* | [**creditControllerFetchManySellerCreditInfo**](docs/ClientAPI.md#creditcontrollerfetchmanysellercreditinfo) | **GET** /credits/sellers | 
+*ClientAPI* | [**creditControllerFetchSellerCreditDecreaseRequestCount**](docs/ClientAPI.md#creditcontrollerfetchsellercreditdecreaserequestcount) | **GET** /credits/sellers/decrease-requests/count | 
+*ClientAPI* | [**creditControllerFetchSellerCreditUpdateHistory**](docs/ClientAPI.md#creditcontrollerfetchsellercreditupdatehistory) | **GET** /credits/sellers/{sellerId}/histories | 
+*ClientAPI* | [**creditControllerIncreaseSellerCredit**](docs/ClientAPI.md#creditcontrollerincreasesellercredit) | **POST** /credits/sellers/{sellerId} | 
+*ClientAPI* | [**creditControllerProcessSellerCreditDecreaseRequest**](docs/ClientAPI.md#creditcontrollerprocesssellercreditdecreaserequest) | **POST** /credits/decrease-requests/{decreaseRequestId} | 
+*ClientAPI* | [**paymentCardControllerUpsert**](docs/ClientAPI.md#paymentcardcontrollerupsert) | **PUT** /payment-cards | 
+*ClientAPI* | [**sellerInvitationControllerCheckExistence**](docs/ClientAPI.md#sellerinvitationcontrollercheckexistence) | **GET** /seller-invitations/existence | 
+*ColumnMappingAPI* | [**columnMappingControllerCreateCategoryColumnMapping**](docs/ColumnMappingAPI.md#columnmappingcontrollercreatecategorycolumnmapping) | **POST** /column-mappings/categories | 
+*ColumnMappingAPI* | [**columnMappingControllerCreateProductColumnMapping**](docs/ColumnMappingAPI.md#columnmappingcontrollercreateproductcolumnmapping) | **POST** /column-mappings/products | 
+*ColumnMappingAPI* | [**columnMappingControllerDeleteColumnMapping**](docs/ColumnMappingAPI.md#columnmappingcontrollerdeletecolumnmapping) | **DELETE** /column-mappings/{type}/{id} | 
+*ColumnMappingAPI* | [**columnMappingControllerFetchMany**](docs/ColumnMappingAPI.md#columnmappingcontrollerfetchmany) | **GET** /column-mappings/{type} | 
+*ColumnMappingAPI* | [**columnMappingControllerUpdateCategoryColumnMapping**](docs/ColumnMappingAPI.md#columnmappingcontrollerupdatecategorycolumnmapping) | **PUT** /column-mappings/categories/{id} | 
+*ColumnMappingAPI* | [**columnMappingControllerUpdateProductColumnMapping**](docs/ColumnMappingAPI.md#columnmappingcontrollerupdateproductcolumnmapping) | **PUT** /column-mappings/products/{id} | 
+*CreditUsageAPI* | [**creditUsageControllerExtractCsvFromCampaignsWithCreditUsed**](docs/CreditUsageAPI.md#creditusagecontrollerextractcsvfromcampaignswithcreditused) | **GET** /credit-usages/campaigns/in-month/csv | 
+*CreditUsageAPI* | [**creditUsageControllerExtractCsvFromDailyCreditUsedPerAdGroup**](docs/CreditUsageAPI.md#creditusagecontrollerextractcsvfromdailycreditusedperadgroup) | **GET** /credit-usages/ad-groups/{id}/daily/csv | 
+*CreditUsageAPI* | [**creditUsageControllerFetchAdGroupCampaignWithCreditUsedDto**](docs/CreditUsageAPI.md#creditusagecontrollerfetchadgroupcampaignwithcredituseddto) | **GET** /credit-usages/ad-groups/{id}/with-campaign/in-month | 
+*CreditUsageAPI* | [**creditUsageControllerFetchAdGroupsWithCreditUsed**](docs/CreditUsageAPI.md#creditusagecontrollerfetchadgroupswithcreditused) | **GET** /credit-usages/ad-groups | 
+*CreditUsageAPI* | [**creditUsageControllerFetchAdGroupsWithCreditUsedInCampaign**](docs/CreditUsageAPI.md#creditusagecontrollerfetchadgroupswithcreditusedincampaign) | **GET** /credit-usages/campaigns/{id}/ad-groups/in-month | 
+*CreditUsageAPI* | [**creditUsageControllerFetchCampaignWithCreditUsed**](docs/CreditUsageAPI.md#creditusagecontrollerfetchcampaignwithcreditused) | **GET** /credit-usages/campaigns/{id}/in-month | 
+*CreditUsageAPI* | [**creditUsageControllerFetchCampaignsWithCreditUsed**](docs/CreditUsageAPI.md#creditusagecontrollerfetchcampaignswithcreditused) | **GET** /credit-usages/campaigns/in-month | 
+*CreditUsageAPI* | [**creditUsageControllerFetchCreditUsedSum**](docs/CreditUsageAPI.md#creditusagecontrollerfetchcreditusedsum) | **GET** /credit-usages/sum/in-month | 
+*CreditUsageAPI* | [**creditUsageControllerFetchDailyCreditUsedPerAdGroup**](docs/CreditUsageAPI.md#creditusagecontrollerfetchdailycreditusedperadgroup) | **GET** /credit-usages/ad-groups/{id}/daily | 
+*CustomerAPI* | [**customerControllerFetchCarts**](docs/CustomerAPI.md#customercontrollerfetchcarts) | **GET** /customer/carts | 
+*CustomerAPI* | [**customerControllerFetchOrders**](docs/CustomerAPI.md#customercontrollerfetchorders) | **GET** /customer/orders | 
+*CustomerAPI* | [**customerControllerFetchWishlist**](docs/CustomerAPI.md#customercontrollerfetchwishlist) | **GET** /customer/wishlist | 
+*DashboardAPI* | [**dashboardControllerExtractCsvOnBannerDashboard**](docs/DashboardAPI.md#dashboardcontrollerextractcsvonbannerdashboard) | **GET** /dashboard/banners/csv | 
+*DashboardAPI* | [**dashboardControllerExtractCsvOnProductDashboard**](docs/DashboardAPI.md#dashboardcontrollerextractcsvonproductdashboard) | **GET** /dashboard/products/csv | 
+*DashboardAPI* | [**dashboardControllerFetchAdsetEfficienciesOnSellerAdGroupDashboard**](docs/DashboardAPI.md#dashboardcontrollerfetchadsetefficienciesonselleradgroupdashboard) | **GET** /dashboard/campaigns/{campaignId}/ad-group-adset-efficiencies | 
+*DashboardAPI* | [**dashboardControllerFetchListOnBannerDashboard**](docs/DashboardAPI.md#dashboardcontrollerfetchlistonbannerdashboard) | **GET** /dashboard/banners | 
+*DashboardAPI* | [**dashboardControllerFetchListOnProductDashboard**](docs/DashboardAPI.md#dashboardcontrollerfetchlistonproductdashboard) | **GET** /dashboard/products | 
+*DashboardAPI* | [**dashboardControllerFetchListOnSellerAdGroupDashboard**](docs/DashboardAPI.md#dashboardcontrollerfetchlistonselleradgroupdashboard) | **GET** /dashboard/campaigns/{campaignId}/ad-groups | 
+*DashboardAPI* | [**dashboardControllerFetchMetricsOnBannerDashboard**](docs/DashboardAPI.md#dashboardcontrollerfetchmetricsonbannerdashboard) | **GET** /dashboard/metric/banners | 
+*DashboardAPI* | [**dashboardControllerFetchMetricsOnProductDashboard**](docs/DashboardAPI.md#dashboardcontrollerfetchmetricsonproductdashboard) | **GET** /dashboard/metric/products | 
+*DashboardAPI* | [**dashboardControllerFetchMetricsOnSellerAdGroupDashboard**](docs/DashboardAPI.md#dashboardcontrollerfetchmetricsonselleradgroupdashboard) | **GET** /dashboard/campaigns/{campaignId}/ad-groups/metric | 
+*DefaultAPI* | [**exchangeRateControllerFetchAllExchangeRates**](docs/DefaultAPI.md#exchangeratecontrollerfetchallexchangerates) | **GET** /exchange-rates | 
+*DefaultAPI* | [**exchangeRateControllerFetchExchangeRate**](docs/DefaultAPI.md#exchangeratecontrollerfetchexchangerate) | **GET** /exchange-rates/{currencyCode} | 
+*FeatureFlagsAPI* | [**featureFlagControllerGetFeatureFlags**](docs/FeatureFlagsAPI.md#featureflagcontrollergetfeatureflags) | **GET** /feature-flags | 
+*NoticeAPI* | [**notionNoticeControllerFetctList**](docs/NoticeAPI.md#notionnoticecontrollerfetctlist) | **GET** /notion-notices | 
 *PageAPI* | [**pageControllerFetchActivePlacements**](docs/PageAPI.md#pagecontrollerfetchactiveplacements) | **GET** /pages/{name}/placements | 
+*PageAPI* | [**pageControllerFetchManyPage**](docs/PageAPI.md#pagecontrollerfetchmanypage) | **GET** /pages | 
+*PageAPI* | [**pageControllerRemovePage**](docs/PageAPI.md#pagecontrollerremovepage) | **DELETE** /pages/{name} | 
+*PageAPI* | [**pageControllerUpdatePage**](docs/PageAPI.md#pagecontrollerupdatepage) | **PATCH** /pages/{name} | 
 *PlacementAPI* | [**placementControllerConnectProducts**](docs/PlacementAPI.md#placementcontrollerconnectproducts) | **POST** /placements/{id}/products | 
 *PlacementAPI* | [**placementControllerCreate**](docs/PlacementAPI.md#placementcontrollercreate) | **POST** /placements | 
 *PlacementAPI* | [**placementControllerFetchMany**](docs/PlacementAPI.md#placementcontrollerfetchmany) | **GET** /placements | 
@@ -38,11 +150,20 @@ Class | Method | HTTP request | Description
 *PlacementAPI* | [**placementControllerRemove**](docs/PlacementAPI.md#placementcontrollerremove) | **DELETE** /placements/{id} | 
 *PlacementAPI* | [**placementControllerRemoveProduct**](docs/PlacementAPI.md#placementcontrollerremoveproduct) | **DELETE** /placements/{id}/products/{productId} | 
 *PlacementAPI* | [**placementControllerUpdate**](docs/PlacementAPI.md#placementcontrollerupdate) | **PATCH** /placements/{id} | 
+*PlacementAPI* | [**placementControllerUpdateScreenShot**](docs/PlacementAPI.md#placementcontrollerupdatescreenshot) | **PUT** /placements/{id}/screenShot | 
 *ProductAPI* | [**productControllerCreate**](docs/ProductAPI.md#productcontrollercreate) | **POST** /products | 
+*ProductAPI* | [**productControllerFetchAdGroupCandidateProducts**](docs/ProductAPI.md#productcontrollerfetchadgroupcandidateproducts) | **GET** /products/ad-group-candidates | 
 *ProductAPI* | [**productControllerFetchMany**](docs/ProductAPI.md#productcontrollerfetchmany) | **GET** /products | 
+*ProductAPI* | [**productControllerFetchManyProductNames**](docs/ProductAPI.md#productcontrollerfetchmanyproductnames) | **GET** /products/names | 
+*ProductAPI* | [**productControllerFetchManyPublic**](docs/ProductAPI.md#productcontrollerfetchmanypublic) | **GET** /products/public | 
+*ProductAPI* | [**productControllerFetchManyWithWhere**](docs/ProductAPI.md#productcontrollerfetchmanywithwhere) | **GET** /products/with-where | 
 *ProductAPI* | [**productControllerFetchOne**](docs/ProductAPI.md#productcontrollerfetchone) | **GET** /products/{id} | 
 *ProductAPI* | [**productControllerUpdate**](docs/ProductAPI.md#productcontrollerupdate) | **PATCH** /products/{id} | 
+*ProductAPI* | [**productControllerUpdateMany**](docs/ProductAPI.md#productcontrollerupdatemany) | **PUT** /products/bulk/store/{storeId} | 
 *ProductAPI* | [**productControllerUpsertMany**](docs/ProductAPI.md#productcontrollerupsertmany) | **PUT** /products/bulk | 
+*StoreAPI* | [**storeControllerGetMe**](docs/StoreAPI.md#storecontrollergetme) | **GET** /stores/me | 
+*StoreAPI* | [**subscriptionPlanControllerCancel**](docs/StoreAPI.md#subscriptionplancontrollercancel) | **PUT** /subscription-plans/cancel | 
+*StoreAPI* | [**subscriptionPlanControllerUpsert**](docs/StoreAPI.md#subscriptionplancontrollerupsert) | **PUT** /subscription-plans | 
 *SuggestionAPI* | [**advertisementsControllerAdvertiseBanners**](docs/SuggestionAPI.md#advertisementscontrolleradvertisebanners) | **POST** /v1/advertisements/banners | 
 *SuggestionAPI* | [**advertisementsControllerAdvertiseProducts**](docs/SuggestionAPI.md#advertisementscontrolleradvertiseproducts) | **POST** /v1/advertisements/products | 
 *SuggestionAPI* | [**recommendationsControllerRecommendBanners**](docs/SuggestionAPI.md#recommendationscontrollerrecommendbanners) | **POST** /v1/recommendations/banners | 
@@ -51,15 +172,63 @@ Class | Method | HTTP request | Description
 *SuggestionAPI* | [**suggestionControllerAdvertiseProducts**](docs/SuggestionAPI.md#suggestioncontrolleradvertiseproducts) | **POST** /advertisements/products | 
 *SuggestionAPI* | [**suggestionControllerRecommendBanners**](docs/SuggestionAPI.md#suggestioncontrollerrecommendbanners) | **POST** /recommendations/banners | 
 *SuggestionAPI* | [**suggestionControllerRecommendProducts**](docs/SuggestionAPI.md#suggestioncontrollerrecommendproducts) | **POST** /recommendations/products | 
+*TransactionAPI* | [**autoChargeControllerFetchOne**](docs/TransactionAPI.md#autochargecontrollerfetchone) | **GET** /auto-charge | 
+*TransactionAPI* | [**autoChargeControllerUpsert**](docs/TransactionAPI.md#autochargecontrollerupsert) | **POST** /auto-charge | 
+*TransactionAPI* | [**transactionControllerCloseTransaction**](docs/TransactionAPI.md#transactioncontrollerclosetransaction) | **POST** /transactions/{id}/close | 
+*TransactionAPI* | [**transactionControllerCompleteTransaction**](docs/TransactionAPI.md#transactioncontrollercompletetransaction) | **POST** /transactions/{id}/iamport/complete | 
+*TransactionAPI* | [**transactionControllerFetchMany**](docs/TransactionAPI.md#transactioncontrollerfetchmany) | **GET** /transactions | 
+*TransactionAPI* | [**transactionControllerFetchOne**](docs/TransactionAPI.md#transactioncontrollerfetchone) | **GET** /transactions/{id} | 
+*TransactionAPI* | [**transactionControllerStartTransaction**](docs/TransactionAPI.md#transactioncontrollerstarttransaction) | **POST** /transactions | 
+*UserAPI* | [**tutorialControllerCreate**](docs/UserAPI.md#tutorialcontrollercreate) | **POST** /users/tutorials | 
+*UserAPI* | [**tutorialControllerGet**](docs/UserAPI.md#tutorialcontrollerget) | **GET** /users/tutorials/{category} | 
+*UserAPI* | [**tutorialControllerGetAll**](docs/UserAPI.md#tutorialcontrollergetall) | **GET** /users/tutorials | 
+*UserAPI* | [**tutorialControllerUpdate**](docs/UserAPI.md#tutorialcontrollerupdate) | **PUT** /users/tutorials/{category} | 
+*UserAPI* | [**userControllerCheckRegistration**](docs/UserAPI.md#usercontrollercheckregistration) | **GET** /users/registration/check | 
+*UserAPI* | [**userControllerFetchToken**](docs/UserAPI.md#usercontrollerfetchtoken) | **GET** /users/token/{clientType} | 
+*UserAPI* | [**userControllerGetEmailExistence**](docs/UserAPI.md#usercontrollergetemailexistence) | **GET** /users/email/existence | 
+*UserAPI* | [**userControllerGetMe**](docs/UserAPI.md#usercontrollergetme) | **GET** /users/me | 
+*UserAPI* | [**userControllerGetRedirect**](docs/UserAPI.md#usercontrollergetredirect) | **GET** /users/redirect | 
+*UserAPI* | [**userControllerIdentify**](docs/UserAPI.md#usercontrolleridentify) | **PUT** /users/identify | 
+*UserAPI* | [**userControllerLogin**](docs/UserAPI.md#usercontrollerlogin) | **POST** /users/login | 
+*UserAPI* | [**userControllerLogout**](docs/UserAPI.md#usercontrollerlogout) | **POST** /users/logout | 
+*UserAPI* | [**userControllerRegister**](docs/UserAPI.md#usercontrollerregister) | **POST** /users | 
+*UserAPI* | [**userControllerUpdateMe**](docs/UserAPI.md#usercontrollerupdateme) | **PUT** /users/me | 
+*UserAPI* | [**userControllerUpdatePassword**](docs/UserAPI.md#usercontrollerupdatepassword) | **PUT** /users/password | 
+*UserAPI* | [**verificationControllerStartEmailVerification**](docs/UserAPI.md#verificationcontrollerstartemailverification) | **POST** /verifications/email | 
+*UserAPI* | [**verificationControllerVerifyEmailVerification**](docs/UserAPI.md#verificationcontrollerverifyemailverification) | **POST** /verifications/email/verify | 
+*WebBuilderAPI* | [**webBuilderControllerOauth**](docs/WebBuilderAPI.md#webbuildercontrolleroauth) | **GET** /web-builder/{webBuilder}/oauth/callback | 
+*WebBuilderAPI* | [**webBuilderControllerRedirect**](docs/WebBuilderAPI.md#webbuildercontrollerredirect) | **GET** /web-builder/{webBuilder}/oauth/redirect | 
+*WidgetAPI* | [**widgetControllerFetchManyWidgets**](docs/WidgetAPI.md#widgetcontrollerfetchmanywidgets) | **GET** /widgets | 
+*WidgetAPI* | [**widgetControllerFetchOneWidget**](docs/WidgetAPI.md#widgetcontrollerfetchonewidget) | **GET** /widgets/{id} | 
+*WidgetPlacementAPI* | [**widgetPlacementControllerCreateWidgetPlacement**](docs/WidgetPlacementAPI.md#widgetplacementcontrollercreatewidgetplacement) | **POST** /widget-placements | 
 
 
 ## Documentation For Models
 
+ - [AccessToken](docs/AccessToken.md)
+ - [AdGroup](docs/AdGroup.md)
+ - [AdGroupBudgetType](docs/AdGroupBudgetType.md)
+ - [AdGroupControllerFetchAdGroupProducts200Response](docs/AdGroupControllerFetchAdGroupProducts200Response.md)
+ - [AdGroupControllerFetchAdGroups200Response](docs/AdGroupControllerFetchAdGroups200Response.md)
+ - [AdGroupControllerFetchManyAdGroupsOfStore200Response](docs/AdGroupControllerFetchManyAdGroupsOfStore200Response.md)
+ - [AdGroupReview](docs/AdGroupReview.md)
+ - [AdGroupReviewControllerFetchAdGroupReviewHistories200Response](docs/AdGroupReviewControllerFetchAdGroupReviewHistories200Response.md)
+ - [AdGroupReviewSourcePendingReview](docs/AdGroupReviewSourcePendingReview.md)
+ - [AdGroupReviewStatus](docs/AdGroupReviewStatus.md)
+ - [AdGroupReviewTargetStatus](docs/AdGroupReviewTargetStatus.md)
+ - [AdGroupReviewWithSourcePendingReview](docs/AdGroupReviewWithSourcePendingReview.md)
  - [AdGroupTargetKey](docs/AdGroupTargetKey.md)
  - [AdGroupTargetKeyValueResponse](docs/AdGroupTargetKeyValueResponse.md)
  - [AdGroupTargetValue](docs/AdGroupTargetValue.md)
+ - [AdGroupWithCreditUsed](docs/AdGroupWithCreditUsed.md)
  - [AdGroupWithSellerAndCampaign](docs/AdGroupWithSellerAndCampaign.md)
+ - [AdMetric](docs/AdMetric.md)
+ - [AdMetricAverage](docs/AdMetricAverage.md)
+ - [AdminControllerFetchClients200Response](docs/AdminControllerFetchClients200Response.md)
+ - [AdminControllerFetchPlacements200Response](docs/AdminControllerFetchPlacements200Response.md)
+ - [AmountMetric](docs/AmountMetric.md)
  - [AppendInjector](docs/AppendInjector.md)
+ - [AutoCharge](docs/AutoCharge.md)
  - [Banner](docs/Banner.md)
  - [BannerControllerFetchMany200Response](docs/BannerControllerFetchMany200Response.md)
  - [BannerInjector](docs/BannerInjector.md)
@@ -68,34 +237,188 @@ Class | Method | HTTP request | Description
  - [BannerSuggestionResponseDto](docs/BannerSuggestionResponseDto.md)
  - [BannerWithCreative](docs/BannerWithCreative.md)
  - [BannerWithCreativeDto](docs/BannerWithCreativeDto.md)
+ - [BaseAdMetric](docs/BaseAdMetric.md)
+ - [BudgetCharge](docs/BudgetCharge.md)
+ - [BusinessLicense](docs/BusinessLicense.md)
  - [Campaign](docs/Campaign.md)
+ - [CampaignControllerFetchMany200Response](docs/CampaignControllerFetchMany200Response.md)
+ - [CampaignWithCreditUsed](docs/CampaignWithCreditUsed.md)
+ - [CategoryColumnMappingDto](docs/CategoryColumnMappingDto.md)
  - [CategoryWithPath](docs/CategoryWithPath.md)
+ - [ChatControllerFetchCustomer200Response](docs/ChatControllerFetchCustomer200Response.md)
+ - [ChatDashboardControllerFetchDialogue200Response](docs/ChatDashboardControllerFetchDialogue200Response.md)
+ - [ChatDialogueProduct](docs/ChatDialogueProduct.md)
+ - [ChatDialogueResponseDto](docs/ChatDialogueResponseDto.md)
+ - [ChatProfile](docs/ChatProfile.md)
+ - [CheckEmailExistsResponseDto](docs/CheckEmailExistsResponseDto.md)
+ - [CheckRegistrationResponseDto](docs/CheckRegistrationResponseDto.md)
  - [Client](docs/Client.md)
+ - [ClientControllerFetchClientUsers200Response](docs/ClientControllerFetchClientUsers200Response.md)
+ - [ClientControllerFetchSellers200Response](docs/ClientControllerFetchSellers200Response.md)
+ - [ClientControllerSearchSellers200Response](docs/ClientControllerSearchSellers200Response.md)
+ - [ClientWithBusinessLicenseDto](docs/ClientWithBusinessLicenseDto.md)
+ - [ColumnMapping](docs/ColumnMapping.md)
+ - [ColumnMappingData](docs/ColumnMappingData.md)
  - [ConnectProductsToPlacementDto](docs/ConnectProductsToPlacementDto.md)
  - [ConnectProductsToPlacementResponseDto](docs/ConnectProductsToPlacementResponseDto.md)
+ - [Count](docs/Count.md)
+ - [CountAndFigureMetric](docs/CountAndFigureMetric.md)
+ - [CountCost](docs/CountCost.md)
+ - [CountCostAmount](docs/CountCostAmount.md)
+ - [CountMetric](docs/CountMetric.md)
+ - [CreateAdGroupDataDto](docs/CreateAdGroupDataDto.md)
+ - [CreateAdGroupDto](docs/CreateAdGroupDto.md)
+ - [CreateAdGroupTargetKeyRequestDto](docs/CreateAdGroupTargetKeyRequestDto.md)
+ - [CreateAdGroupTargetKeyResponseDto](docs/CreateAdGroupTargetKeyResponseDto.md)
+ - [CreateAdGroupTargetValueRequestDto](docs/CreateAdGroupTargetValueRequestDto.md)
+ - [CreateAdGroupTargetValueResponseDto](docs/CreateAdGroupTargetValueResponseDto.md)
+ - [CreateAutoChargeDto](docs/CreateAutoChargeDto.md)
  - [CreateBannerDto](docs/CreateBannerDto.md)
+ - [CreateBusinessLicenseDto](docs/CreateBusinessLicenseDto.md)
+ - [CreateBusinessLicenseResponseDto](docs/CreateBusinessLicenseResponseDto.md)
+ - [CreateCampaignDto](docs/CreateCampaignDto.md)
+ - [CreateCampaignResponseDto](docs/CreateCampaignResponseDto.md)
+ - [CreateCategoryColumnMappingDto](docs/CreateCategoryColumnMappingDto.md)
+ - [CreateChatDialogueDto](docs/CreateChatDialogueDto.md)
+ - [CreateChatDialogueResponseDto](docs/CreateChatDialogueResponseDto.md)
+ - [CreateChatGroupDto](docs/CreateChatGroupDto.md)
+ - [CreateChatGroupResponseDto](docs/CreateChatGroupResponseDto.md)
+ - [CreateChatProfileDto](docs/CreateChatProfileDto.md)
+ - [CreateChatRecommendationDto](docs/CreateChatRecommendationDto.md)
+ - [CreateChatRecommendationResponseDto](docs/CreateChatRecommendationResponseDto.md)
  - [CreatePlacementDto](docs/CreatePlacementDto.md)
+ - [CreateProductColumnMappingDto](docs/CreateProductColumnMappingDto.md)
  - [CreateProductDto](docs/CreateProductDto.md)
+ - [CreateSellerCreditDecreaseRequestDto](docs/CreateSellerCreditDecreaseRequestDto.md)
+ - [CreateSellerDto](docs/CreateSellerDto.md)
+ - [CreateSellerResponseDto](docs/CreateSellerResponseDto.md)
+ - [CreateTransactionDto](docs/CreateTransactionDto.md)
+ - [CreateTransactionResponseDto](docs/CreateTransactionResponseDto.md)
+ - [CreateUserDto](docs/CreateUserDto.md)
+ - [CreateWidgetPlacementDto](docs/CreateWidgetPlacementDto.md)
+ - [CreateWidgetPlacementResponseDto](docs/CreateWidgetPlacementResponseDto.md)
  - [Creative](docs/Creative.md)
+ - [Credit](docs/Credit.md)
+ - [CreditControllerFetchCreditHistory200Response](docs/CreditControllerFetchCreditHistory200Response.md)
+ - [CreditControllerFetchManyMyDecreaseRequest200Response](docs/CreditControllerFetchManyMyDecreaseRequest200Response.md)
+ - [CreditControllerFetchManySellerCreditDecreaseRequest200Response](docs/CreditControllerFetchManySellerCreditDecreaseRequest200Response.md)
+ - [CreditControllerFetchManySellerCreditInfo200Response](docs/CreditControllerFetchManySellerCreditInfo200Response.md)
+ - [CreditControllerFetchSellerCreditUpdateHistory200Response](docs/CreditControllerFetchSellerCreditUpdateHistory200Response.md)
+ - [CreditDecreaseRequest](docs/CreditDecreaseRequest.md)
+ - [CreditDecreaseRequestAction](docs/CreditDecreaseRequestAction.md)
+ - [CreditDecreaseRequestStatus](docs/CreditDecreaseRequestStatus.md)
+ - [CreditHistory](docs/CreditHistory.md)
+ - [CreditInfoResponseDto](docs/CreditInfoResponseDto.md)
+ - [CreditType](docs/CreditType.md)
+ - [CreditUsageControllerFetchAdGroupsWithCreditUsed200Response](docs/CreditUsageControllerFetchAdGroupsWithCreditUsed200Response.md)
+ - [CreditUsageControllerFetchAdGroupsWithCreditUsedInCampaign200Response](docs/CreditUsageControllerFetchAdGroupsWithCreditUsedInCampaign200Response.md)
+ - [CreditUsageControllerFetchCampaignsWithCreditUsed200Response](docs/CreditUsageControllerFetchCampaignsWithCreditUsed200Response.md)
+ - [CustomerChatGroupDto](docs/CustomerChatGroupDto.md)
+ - [DailyCreditUsed](docs/DailyCreditUsed.md)
+ - [DailyCreditUsedPerAdGroupResponseDto](docs/DailyCreditUsedPerAdGroupResponseDto.md)
+ - [DailyMetric](docs/DailyMetric.md)
+ - [DashboardAdGroup](docs/DashboardAdGroup.md)
+ - [DashboardAdset](docs/DashboardAdset.md)
+ - [DashboardBanner](docs/DashboardBanner.md)
+ - [DashboardControllerFetchListOnBannerDashboard200Response](docs/DashboardControllerFetchListOnBannerDashboard200Response.md)
+ - [DashboardControllerFetchListOnProductDashboard200Response](docs/DashboardControllerFetchListOnProductDashboard200Response.md)
+ - [DashboardControllerFetchListOnSellerAdGroupDashboard200Response](docs/DashboardControllerFetchListOnSellerAdGroupDashboard200Response.md)
+ - [DashboardProduct](docs/DashboardProduct.md)
+ - [ExtractCsvOnDashboardResponseDto](docs/ExtractCsvOnDashboardResponseDto.md)
+ - [ExtractCsvResponseDto](docs/ExtractCsvResponseDto.md)
  - [FetchActivePlacementsResponseDto](docs/FetchActivePlacementsResponseDto.md)
+ - [FetchAdGroupBudgetResponseDto](docs/FetchAdGroupBudgetResponseDto.md)
+ - [FetchAdGroupCampaignWithCreditUsedResponseDto](docs/FetchAdGroupCampaignWithCreditUsedResponseDto.md)
+ - [FetchAdGroupCandidateProductsResponseDto](docs/FetchAdGroupCandidateProductsResponseDto.md)
+ - [FetchAdGroupListItemResponseDto](docs/FetchAdGroupListItemResponseDto.md)
+ - [FetchAdGroupResponseDto](docs/FetchAdGroupResponseDto.md)
+ - [FetchAdGroupReviewCountResponseDto](docs/FetchAdGroupReviewCountResponseDto.md)
+ - [FetchAdGroupReviewDetailResponseDto](docs/FetchAdGroupReviewDetailResponseDto.md)
+ - [FetchAdGroupReviewHistoriesResponseDto](docs/FetchAdGroupReviewHistoriesResponseDto.md)
+ - [FetchAdGroupTargetKeysResponseDto](docs/FetchAdGroupTargetKeysResponseDto.md)
+ - [FetchAdGroupTargetKeysResponseItemsDto](docs/FetchAdGroupTargetKeysResponseItemsDto.md)
+ - [FetchAdGroupTitleResponseDto](docs/FetchAdGroupTitleResponseDto.md)
+ - [FetchAdGroupsWithCreditUsedInCampaignResponseDto](docs/FetchAdGroupsWithCreditUsedInCampaignResponseDto.md)
+ - [FetchAdGroupsWithCreditUsedResponseDto](docs/FetchAdGroupsWithCreditUsedResponseDto.md)
+ - [FetchAdsetEfficienciesOnSellerAdGroupDashboardResponseDto](docs/FetchAdsetEfficienciesOnSellerAdGroupDashboardResponseDto.md)
+ - [FetchAllExchangeRatesResponseDto](docs/FetchAllExchangeRatesResponseDto.md)
+ - [FetchAvailableCreditResponseDto](docs/FetchAvailableCreditResponseDto.md)
  - [FetchBannerResponseDto](docs/FetchBannerResponseDto.md)
+ - [FetchByLicenseNumberResponseDto](docs/FetchByLicenseNumberResponseDto.md)
+ - [FetchCampaignResponseDto](docs/FetchCampaignResponseDto.md)
+ - [FetchCampaignWithCreditUsedResponseDto](docs/FetchCampaignWithCreditUsedResponseDto.md)
+ - [FetchCampaignsWithCreditUsedResponseDto](docs/FetchCampaignsWithCreditUsedResponseDto.md)
+ - [FetchCartResponseDto](docs/FetchCartResponseDto.md)
+ - [FetchChatDashboardDialogueResponseDto](docs/FetchChatDashboardDialogueResponseDto.md)
+ - [FetchChatGroupResponseDto](docs/FetchChatGroupResponseDto.md)
+ - [FetchChatProfileResponseDto](docs/FetchChatProfileResponseDto.md)
+ - [FetchClientAdminResponseDto](docs/FetchClientAdminResponseDto.md)
+ - [FetchClientRelationsAsSellerDto](docs/FetchClientRelationsAsSellerDto.md)
+ - [FetchClientRelationsAsStoreDto](docs/FetchClientRelationsAsStoreDto.md)
+ - [FetchClientResponseDto](docs/FetchClientResponseDto.md)
+ - [FetchCreditUsedSumResponseDto](docs/FetchCreditUsedSumResponseDto.md)
+ - [FetchCustomerDialogueCountResponseDto](docs/FetchCustomerDialogueCountResponseDto.md)
+ - [FetchExchangeRateResponseDto](docs/FetchExchangeRateResponseDto.md)
+ - [FetchManyAdGroupsOfStoreResponseDto](docs/FetchManyAdGroupsOfStoreResponseDto.md)
  - [FetchManyBannersResponseDto](docs/FetchManyBannersResponseDto.md)
+ - [FetchManyCampaignsResponseDto](docs/FetchManyCampaignsResponseDto.md)
+ - [FetchManyCategoriesResponseDto](docs/FetchManyCategoriesResponseDto.md)
  - [FetchManyPlacementsResponseDto](docs/FetchManyPlacementsResponseDto.md)
+ - [FetchManySellerCreditDecreaseRequestResponseDto](docs/FetchManySellerCreditDecreaseRequestResponseDto.md)
+ - [FetchManySellerCreditInfoResponseDto](docs/FetchManySellerCreditInfoResponseDto.md)
+ - [FetchManySellersResponseDto](docs/FetchManySellersResponseDto.md)
+ - [FetchManyWidgetsResponseDto](docs/FetchManyWidgetsResponseDto.md)
+ - [FetchMetricsOnDashboardResponseDto](docs/FetchMetricsOnDashboardResponseDto.md)
+ - [FetchMetricsOnSellerAdGroupDashboardResponseDto](docs/FetchMetricsOnSellerAdGroupDashboardResponseDto.md)
  - [FetchPageClientDto](docs/FetchPageClientDto.md)
+ - [FetchPageResponseDto](docs/FetchPageResponseDto.md)
  - [FetchPlacementResponseDto](docs/FetchPlacementResponseDto.md)
+ - [FetchProductNamesResponseDto](docs/FetchProductNamesResponseDto.md)
  - [FetchProductResponseDto](docs/FetchProductResponseDto.md)
+ - [FetchSellerCreditDecreaseRequestCountResponseDto](docs/FetchSellerCreditDecreaseRequestCountResponseDto.md)
+ - [FetchSellerCreditUpdateHistoryResponseDto](docs/FetchSellerCreditUpdateHistoryResponseDto.md)
+ - [FetchSellerResponseDto](docs/FetchSellerResponseDto.md)
+ - [FetchTransactionResponseDto](docs/FetchTransactionResponseDto.md)
+ - [FetchWishlistResponseDto](docs/FetchWishlistResponseDto.md)
+ - [Figure](docs/Figure.md)
+ - [FigureMetric](docs/FigureMetric.md)
+ - [GenerateUploadLinkResponseDto](docs/GenerateUploadLinkResponseDto.md)
+ - [GetMeResponseDto](docs/GetMeResponseDto.md)
+ - [GetMeUserDto](docs/GetMeUserDto.md)
+ - [GetRedirectResponseDto](docs/GetRedirectResponseDto.md)
  - [GridInjector](docs/GridInjector.md)
  - [GridInjectorDto](docs/GridInjectorDto.md)
+ - [IamportPaymentParams](docs/IamportPaymentParams.md)
+ - [IamportPaymentResult](docs/IamportPaymentResult.md)
+ - [IamportPaymentVBank](docs/IamportPaymentVBank.md)
+ - [IdentifyDto](docs/IdentifyDto.md)
  - [ImpressionObserver](docs/ImpressionObserver.md)
+ - [IncreaseSellerCreditDto](docs/IncreaseSellerCreditDto.md)
  - [Injector](docs/Injector.md)
+ - [InviteSellerDto](docs/InviteSellerDto.md)
+ - [InviteSellerResponseDto](docs/InviteSellerResponseDto.md)
  - [LogOptionsDto](docs/LogOptionsDto.md)
+ - [LoginDto](docs/LoginDto.md)
+ - [Metric](docs/Metric.md)
  - [NestJSErrorSchema](docs/NestJSErrorSchema.md)
+ - [NotionNotice](docs/NotionNotice.md)
+ - [NotionNoticeListDto](docs/NotionNoticeListDto.md)
  - [Observer](docs/Observer.md)
+ - [Order](docs/Order.md)
+ - [Page](docs/Page.md)
+ - [PageControllerFetchManyPage200Response](docs/PageControllerFetchManyPage200Response.md)
+ - [PaymentCard](docs/PaymentCard.md)
  - [Placement](docs/Placement.md)
  - [PlacementControllerFetchMany200Response](docs/PlacementControllerFetchMany200Response.md)
  - [PlacementFormat](docs/PlacementFormat.md)
  - [PlacementInjectorDto](docs/PlacementInjectorDto.md)
+ - [PlacementTitle](docs/PlacementTitle.md)
+ - [ProcessAdGroupReviewDto](docs/ProcessAdGroupReviewDto.md)
+ - [ProcessAdGroupReviewResponseDto](docs/ProcessAdGroupReviewResponseDto.md)
+ - [ProcessSellerCreditDecreaseRequestDto](docs/ProcessSellerCreditDecreaseRequestDto.md)
  - [Product](docs/Product.md)
+ - [ProductColumnMappingDto](docs/ProductColumnMappingDto.md)
+ - [ProductControllerFetchAdGroupCandidateProducts200Response](docs/ProductControllerFetchAdGroupCandidateProducts200Response.md)
  - [ProductControllerFetchMany200Response](docs/ProductControllerFetchMany200Response.md)
  - [ProductDetailDto](docs/ProductDetailDto.md)
  - [ProductFilterOperationDto](docs/ProductFilterOperationDto.md)
@@ -104,23 +427,72 @@ Class | Method | HTTP request | Description
  - [ProductSuggestionRequestDto](docs/ProductSuggestionRequestDto.md)
  - [ProductSuggestionResponseDto](docs/ProductSuggestionResponseDto.md)
  - [ProductWithSeller](docs/ProductWithSeller.md)
+ - [RegisterDto](docs/RegisterDto.md)
  - [RemoveProductFromPlacementResponseDto](docs/RemoveProductFromPlacementResponseDto.md)
+ - [RequestAdGroupReviewResponseDto](docs/RequestAdGroupReviewResponseDto.md)
  - [Retriever](docs/Retriever.md)
+ - [Revenue](docs/Revenue.md)
+ - [SearchSellersResponseDto](docs/SearchSellersResponseDto.md)
+ - [SellerInvitation](docs/SellerInvitation.md)
+ - [SellerInvitationExistenceResponseDto](docs/SellerInvitationExistenceResponseDto.md)
+ - [SellerInvitationFlatDto](docs/SellerInvitationFlatDto.md)
+ - [SetupDto](docs/SetupDto.md)
+ - [StartVerificationDto](docs/StartVerificationDto.md)
+ - [Store](docs/Store.md)
+ - [StoreResponseDto](docs/StoreResponseDto.md)
+ - [StoreSeller](docs/StoreSeller.md)
+ - [StoreSellerWithInvitation](docs/StoreSellerWithInvitation.md)
+ - [SubscriptionPlan](docs/SubscriptionPlan.md)
+ - [SubscriptionPlanResponseDto](docs/SubscriptionPlanResponseDto.md)
+ - [SubscriptionPlanType](docs/SubscriptionPlanType.md)
  - [SuggestionMetadata](docs/SuggestionMetadata.md)
  - [SuggestionRequestTarget](docs/SuggestionRequestTarget.md)
  - [SuggestionResponsePlacementType](docs/SuggestionResponsePlacementType.md)
+ - [SystemSetting](docs/SystemSetting.md)
+ - [TimeSeriesAdMetric](docs/TimeSeriesAdMetric.md)
+ - [Token](docs/Token.md)
+ - [Transaction](docs/Transaction.md)
+ - [TransactionControllerFetchMany200Response](docs/TransactionControllerFetchMany200Response.md)
+ - [TransactionPaymentCard](docs/TransactionPaymentCard.md)
+ - [TransactionType](docs/TransactionType.md)
+ - [Tutorial](docs/Tutorial.md)
+ - [TutorialRequestDto](docs/TutorialRequestDto.md)
+ - [UpdateAdGroupDto](docs/UpdateAdGroupDto.md)
  - [UpdateBannerDto](docs/UpdateBannerDto.md)
+ - [UpdateCampaignDto](docs/UpdateCampaignDto.md)
+ - [UpdateCategoryColumnMappingDto](docs/UpdateCategoryColumnMappingDto.md)
+ - [UpdateChatProfileDto](docs/UpdateChatProfileDto.md)
+ - [UpdateClientDto](docs/UpdateClientDto.md)
+ - [UpdateMeDto](docs/UpdateMeDto.md)
+ - [UpdatePasswordDto](docs/UpdatePasswordDto.md)
  - [UpdatePlacementDto](docs/UpdatePlacementDto.md)
  - [UpdatePlacementResponseDto](docs/UpdatePlacementResponseDto.md)
+ - [UpdateProductColumnMappingDto](docs/UpdateProductColumnMappingDto.md)
  - [UpdateProductDto](docs/UpdateProductDto.md)
+ - [UpdateUsedBudgetDto](docs/UpdateUsedBudgetDto.md)
+ - [UpdateUserDto](docs/UpdateUserDto.md)
+ - [UploadImageResponseDto](docs/UploadImageResponseDto.md)
+ - [UpsertCategoryDto](docs/UpsertCategoryDto.md)
+ - [UpsertCategoryFailedRow](docs/UpsertCategoryFailedRow.md)
  - [UpsertCreativeDto](docs/UpsertCreativeDto.md)
+ - [UpsertManyCategoriesResponseDto](docs/UpsertManyCategoriesResponseDto.md)
+ - [UpsertManyCategoryDto](docs/UpsertManyCategoryDto.md)
  - [UpsertManyProductDto](docs/UpsertManyProductDto.md)
  - [UpsertManyProductResponseDto](docs/UpsertManyProductResponseDto.md)
+ - [UpsertPaymentCardDto](docs/UpsertPaymentCardDto.md)
  - [UpsertProductDto](docs/UpsertProductDto.md)
  - [UpsertProductFailedRow](docs/UpsertProductFailedRow.md)
+ - [UpsertSubscriptionPlanDto](docs/UpsertSubscriptionPlanDto.md)
+ - [User](docs/User.md)
+ - [Verification](docs/Verification.md)
+ - [VerifyCodeDto](docs/VerifyCodeDto.md)
+ - [VerifyUserDto](docs/VerifyUserDto.md)
+ - [VerifyUserResponseDto](docs/VerifyUserResponseDto.md)
  - [Widget](docs/Widget.md)
+ - [WidgetControllerFetchManyWidgets200Response](docs/WidgetControllerFetchManyWidgets200Response.md)
  - [WidgetInjector](docs/WidgetInjector.md)
  - [WidgetValue](docs/WidgetValue.md)
+ - [WithdrawClientDto](docs/WithdrawClientDto.md)
 
 
 <a id="documentation-for-authorization"></a>

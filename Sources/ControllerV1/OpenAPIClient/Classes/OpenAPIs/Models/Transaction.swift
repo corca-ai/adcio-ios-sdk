@@ -10,8 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-public class Transaction: Codable, JSONEncodable, Hashable {
-
+public struct Transaction: Codable, JSONEncodable, Hashable {
     public enum Currency: String, Codable, CaseIterable {
         case krw = "KRW"
         case usd = "USD"
@@ -45,7 +44,6 @@ public class Transaction: Codable, JSONEncodable, Hashable {
         case balanceInsufficient = "BALANCE_INSUFFICIENT"
         case etc = "ETC"
     }
-    
     public var id: String
     public var impUid: String?
     public var impVBank: IamportPaymentVBank?
@@ -60,9 +58,9 @@ public class Transaction: Codable, JSONEncodable, Hashable {
     public var category: Category
     public var type: ModelType
     public var failedReason: FailedReason?
-    public var creditHistory: CreditHistory?
+    public var creditHistoryId: String?  // creditHistory 참조 대신 ID로 변경
 
-    public init(id: String, impUid: String?, impVBank: IamportPaymentVBank?, paymentCard: TransactionPaymentCard, clientId: String, amount: Double, currency: Currency, paymentMethod: PaymentMethod, status: Status, createdAt: Date, paidAt: Date?, category: Category, type: ModelType, failedReason: FailedReason?, creditHistory: CreditHistory?) {
+    public init(id: String, impUid: String?, impVBank: IamportPaymentVBank?, paymentCard: TransactionPaymentCard, clientId: String, amount: Double, currency: Currency, paymentMethod: PaymentMethod, status: Status, createdAt: Date, paidAt: Date?, category: Category, type: ModelType, failedReason: FailedReason?, creditHistoryId: String?) {
         self.id = id
         self.impUid = impUid
         self.impVBank = impVBank
@@ -77,7 +75,7 @@ public class Transaction: Codable, JSONEncodable, Hashable {
         self.category = category
         self.type = type
         self.failedReason = failedReason
-        self.creditHistory = creditHistory
+        self.creditHistoryId = creditHistoryId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -95,10 +93,9 @@ public class Transaction: Codable, JSONEncodable, Hashable {
         case category
         case type
         case failedReason
-        case creditHistory
+        case creditHistoryId
     }
 
-    // Encodable protocol methods
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
@@ -115,17 +112,6 @@ public class Transaction: Codable, JSONEncodable, Hashable {
         try container.encode(category, forKey: .category)
         try container.encode(type, forKey: .type)
         try container.encode(failedReason, forKey: .failedReason)
-        try container.encode(creditHistory, forKey: .creditHistory)
-    }
-    
-    // Hashable protocol methods
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        // Add other properties as needed
-    }
-
-    public static func == (lhs: Transaction, rhs: Transaction) -> Bool {
-        return lhs.id == rhs.id
-        // Add other properties as needed
+        try container.encode(creditHistoryId, forKey: .creditHistoryId)
     }
 }

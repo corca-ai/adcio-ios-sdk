@@ -1,6 +1,6 @@
 # PlacementAPI
 
-All URIs are relative to *https://api.adcio.ai*
+All URIs are relative to *https://api-dev.adcio.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**placementControllerRemove**](PlacementAPI.md#placementcontrollerremove) | **DELETE** /placements/{id} | 
 [**placementControllerRemoveProduct**](PlacementAPI.md#placementcontrollerremoveproduct) | **DELETE** /placements/{id}/products/{productId} | 
 [**placementControllerUpdate**](PlacementAPI.md#placementcontrollerupdate) | **PATCH** /placements/{id} | 
+[**placementControllerUpdateScreenShot**](PlacementAPI.md#placementcontrollerupdatescreenshot) | **PUT** /placements/{id}/screenShot | 
 
 
 # **placementControllerConnectProducts**
@@ -362,6 +363,55 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **placementControllerUpdateScreenShot**
+```swift
+    open class func placementControllerUpdateScreenShot(id: String, screenShot: URL, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+```
+
+
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = "id_example" // String | 
+let screenShot = URL(string: "https://example.com")! // URL | 
+
+PlacementAPI.placementControllerUpdateScreenShot(id: id, screenShot: screenShot) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String** |  | 
+ **screenShot** | **URL** |  | 
+
+### Return type
+
+Void (empty response body)
+
+### Authorization
+
+[api-key](../README.md#api-key)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

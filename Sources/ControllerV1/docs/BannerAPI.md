@@ -1,6 +1,6 @@
 # BannerAPI
 
-All URIs are relative to *https://api.adcio.ai*
+All URIs are relative to *https://api-dev.adcio.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,7 +8,9 @@ Method | HTTP request | Description
 [**bannerControllerDelete**](BannerAPI.md#bannercontrollerdelete) | **DELETE** /banners/{id} | 
 [**bannerControllerFetchMany**](BannerAPI.md#bannercontrollerfetchmany) | **GET** /banners | 
 [**bannerControllerFetchOne**](BannerAPI.md#bannercontrollerfetchone) | **GET** /banners/{id} | 
+[**bannerControllerRestore**](BannerAPI.md#bannercontrollerrestore) | **PUT** /banners/{id}/restore | 
 [**bannerControllerUpdate**](BannerAPI.md#bannercontrollerupdate) | **PUT** /banners/{id} | 
+[**bannerControllerUploadImage**](BannerAPI.md#bannercontrolleruploadimage) | **POST** /banners/image | 
 
 
 # **bannerControllerCreate**
@@ -217,6 +219,53 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **bannerControllerRestore**
+```swift
+    open class func bannerControllerRestore(id: String, completion: @escaping (_ data: Banner?, _ error: Error?) -> Void)
+```
+
+
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = "id_example" // String | 
+
+BannerAPI.bannerControllerRestore(id: id) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String** |  | 
+
+### Return type
+
+[**Banner**](Banner.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **bannerControllerUpdate**
 ```swift
     open class func bannerControllerUpdate(id: String, updateBannerDto: UpdateBannerDto, completion: @escaping (_ data: Banner?, _ error: Error?) -> Void)
@@ -262,6 +311,53 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **bannerControllerUploadImage**
+```swift
+    open class func bannerControllerUploadImage(image: URL, completion: @escaping (_ data: UploadImageResponseDto?, _ error: Error?) -> Void)
+```
+
+
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let image = URL(string: "https://example.com")! // URL | 
+
+BannerAPI.bannerControllerUploadImage(image: image) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **image** | **URL** |  | 
+
+### Return type
+
+[**UploadImageResponseDto**](UploadImageResponseDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
