@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **cartId** | **String** | Unique identifier of the cart to prevent duplicate cart tracking. | [optional] 
 **quantity** | **Double** | Quantity of the product. | [optional] 
 **userAgent** | **String** |  | [optional] 
+**appVersion** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

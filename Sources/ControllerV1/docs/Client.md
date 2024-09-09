@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **currency** | **String** |  | 
 **timezone** | **String** |  | 
-**credit** | **Double** |  | 
 **paidCredit** | **Double** |  | 
 **freeCredit** | **Double** |  | 
 **type** | **String** |  | 

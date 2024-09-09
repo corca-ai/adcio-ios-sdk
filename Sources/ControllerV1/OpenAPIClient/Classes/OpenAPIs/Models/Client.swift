@@ -39,7 +39,6 @@ public struct Client: Codable, JSONEncodable, Hashable {
     public var name: String
     public var currency: Currency
     public var timezone: Timezone
-    public var credit: Double
     public var paidCredit: Double
     public var freeCredit: Double
     public var type: ModelType
@@ -50,12 +49,11 @@ public struct Client: Codable, JSONEncodable, Hashable {
     public var isSeller: Bool
     public var createdAt: Date
 
-    public init(id: String, name: String, currency: Currency, timezone: Timezone, credit: Double, paidCredit: Double, freeCredit: Double, type: ModelType, deletedAt: Date?, paymentCardId: String?, storeId: String?, businessLicenseId: String?, isSeller: Bool, createdAt: Date) {
+    public init(id: String, name: String, currency: Currency, timezone: Timezone, paidCredit: Double, freeCredit: Double, type: ModelType, deletedAt: Date?, paymentCardId: String?, storeId: String?, businessLicenseId: String?, isSeller: Bool, createdAt: Date) {
         self.id = id
         self.name = name
         self.currency = currency
         self.timezone = timezone
-        self.credit = credit
         self.paidCredit = paidCredit
         self.freeCredit = freeCredit
         self.type = type
@@ -72,7 +70,6 @@ public struct Client: Codable, JSONEncodable, Hashable {
         case name
         case currency
         case timezone
-        case credit
         case paidCredit
         case freeCredit
         case type
@@ -92,7 +89,6 @@ public struct Client: Codable, JSONEncodable, Hashable {
         try container.encode(name, forKey: .name)
         try container.encode(currency, forKey: .currency)
         try container.encode(timezone, forKey: .timezone)
-        try container.encode(credit, forKey: .credit)
         try container.encode(paidCredit, forKey: .paidCredit)
         try container.encode(freeCredit, forKey: .freeCredit)
         try container.encode(type, forKey: .type)

@@ -62,15 +62,18 @@ public struct SuggestionResponsePlacementType: Codable, JSONEncodable, Hashable 
     public var property: Property?
     public var placementFormat: PlacementFormat?
     public var displayPositions: [Double]?
+    public var fixedProductIds: [String]?
     public var tableSize: [Double]?
     public var widgetValue: WidgetValue?
     public var widgetValueId: String?
     public var productDetailDataColumns: [String]?
+    public var includingCategoryIds: [String]?
+    public var excludingCategoryIds: [String]?
     public var createdAt: Date
     public var updatedAt: Date
     public var deletedAt: Date?
 
-    public init(placementFormatRatio: String?, id: String, title: String, type: ModelType, suggestionType: SuggestionType, bannerPlacementType: BannerPlacementType?, supportEnvironment: SupportEnvironment, developEnvironment: DevelopEnvironment, displayCount: Double?, minDisplayCount: Double, maxDisplayCount: Double, activated: Bool, pageName: String, clientId: String, injector: Injector?, screenShot: String, displayFormatWidth: Double?, displayFormatHeight: Double?, property: Property?, placementFormat: PlacementFormat?, displayPositions: [Double]?, tableSize: [Double]?, widgetValue: WidgetValue? = nil, widgetValueId: String?, productDetailDataColumns: [String]?, createdAt: Date, updatedAt: Date, deletedAt: Date?) {
+    public init(placementFormatRatio: String?, id: String, title: String, type: ModelType, suggestionType: SuggestionType, bannerPlacementType: BannerPlacementType?, supportEnvironment: SupportEnvironment, developEnvironment: DevelopEnvironment, displayCount: Double?, minDisplayCount: Double, maxDisplayCount: Double, activated: Bool, pageName: String, clientId: String, injector: Injector?, screenShot: String, displayFormatWidth: Double?, displayFormatHeight: Double?, property: Property?, placementFormat: PlacementFormat?, displayPositions: [Double]?, fixedProductIds: [String]?, tableSize: [Double]?, widgetValue: WidgetValue? = nil, widgetValueId: String?, productDetailDataColumns: [String]?, includingCategoryIds: [String]?, excludingCategoryIds: [String]?, createdAt: Date, updatedAt: Date, deletedAt: Date?) {
         self.placementFormatRatio = placementFormatRatio
         self.id = id
         self.title = title
@@ -92,10 +95,13 @@ public struct SuggestionResponsePlacementType: Codable, JSONEncodable, Hashable 
         self.property = property
         self.placementFormat = placementFormat
         self.displayPositions = displayPositions
+        self.fixedProductIds = fixedProductIds
         self.tableSize = tableSize
         self.widgetValue = widgetValue
         self.widgetValueId = widgetValueId
         self.productDetailDataColumns = productDetailDataColumns
+        self.includingCategoryIds = includingCategoryIds
+        self.excludingCategoryIds = excludingCategoryIds
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.deletedAt = deletedAt
@@ -123,10 +129,13 @@ public struct SuggestionResponsePlacementType: Codable, JSONEncodable, Hashable 
         case property
         case placementFormat
         case displayPositions
+        case fixedProductIds
         case tableSize
         case widgetValue
         case widgetValueId
         case productDetailDataColumns
+        case includingCategoryIds
+        case excludingCategoryIds
         case createdAt
         case updatedAt
         case deletedAt
@@ -157,10 +166,13 @@ public struct SuggestionResponsePlacementType: Codable, JSONEncodable, Hashable 
         try container.encode(property, forKey: .property)
         try container.encode(placementFormat, forKey: .placementFormat)
         try container.encode(displayPositions, forKey: .displayPositions)
+        try container.encode(fixedProductIds, forKey: .fixedProductIds)
         try container.encode(tableSize, forKey: .tableSize)
         try container.encodeIfPresent(widgetValue, forKey: .widgetValue)
         try container.encode(widgetValueId, forKey: .widgetValueId)
         try container.encode(productDetailDataColumns, forKey: .productDetailDataColumns)
+        try container.encode(includingCategoryIds, forKey: .includingCategoryIds)
+        try container.encode(excludingCategoryIds, forKey: .excludingCategoryIds)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(deletedAt, forKey: .deletedAt)

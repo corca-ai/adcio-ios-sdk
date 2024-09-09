@@ -5,9 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
 **title** | **String** |  | 
-**client** | [**Client**](Client.md) |  | 
 **clientId** | **String** |  | 
-**adGroups** | [AdGroup] |  | 
 **clickLookbackWindowDays** | **Double** |  | 
 **impressionLookbackWindowDays** | **Double** |  | 
 **createdAt** | **Date** |  | 

@@ -28,13 +28,14 @@ public struct FetchProductResponseDto: Codable, JSONEncodable, Hashable {
     public var caption: String?
     public var additionalImages: [String]?
     public var decorationImages: [String]?
+    public var iconImages: [ProductIconImage]?
     public var createdAt: Date
     public var updatedAt: Date
     public var deletedAt: Date?
     public var store: Client
     public var seller: Client
 
-    public init(id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Double, discountPrice: Double?, additionalInformation: [AnyCodable]?, summary: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, additionalImages: [String]?, decorationImages: [String]?, createdAt: Date, updatedAt: Date, deletedAt: Date?, store: Client, seller: Client) {
+    public init(id: String, idOnStore: String, storeId: String, sellerId: String, name: String, price: Double, discountPrice: Double?, additionalInformation: [AnyCodable]?, summary: String, image: String, includeInRecommendation: Bool, url: String?, deepLink: String?, caption: String?, additionalImages: [String]?, decorationImages: [String]?, iconImages: [ProductIconImage]?, createdAt: Date, updatedAt: Date, deletedAt: Date?, store: Client, seller: Client) {
         self.id = id
         self.idOnStore = idOnStore
         self.storeId = storeId
@@ -51,6 +52,7 @@ public struct FetchProductResponseDto: Codable, JSONEncodable, Hashable {
         self.caption = caption
         self.additionalImages = additionalImages
         self.decorationImages = decorationImages
+        self.iconImages = iconImages
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.deletedAt = deletedAt
@@ -75,6 +77,7 @@ public struct FetchProductResponseDto: Codable, JSONEncodable, Hashable {
         case caption
         case additionalImages
         case decorationImages
+        case iconImages
         case createdAt
         case updatedAt
         case deletedAt
@@ -102,6 +105,7 @@ public struct FetchProductResponseDto: Codable, JSONEncodable, Hashable {
         try container.encode(caption, forKey: .caption)
         try container.encode(additionalImages, forKey: .additionalImages)
         try container.encode(decorationImages, forKey: .decorationImages)
+        try container.encode(iconImages, forKey: .iconImages)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(deletedAt, forKey: .deletedAt)

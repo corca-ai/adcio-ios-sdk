@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **caption** | **String** |  | 
 **additionalImages** | **[String]** |  | 
 **decorationImages** | **[String]** |  | 
+**iconImages** | [ProductIconImage] |  | 
 **createdAt** | **Date** |  | 
 **updatedAt** | **Date** |  | 
 **deletedAt** | **Date** |  | 

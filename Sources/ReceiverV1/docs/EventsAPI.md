@@ -25,7 +25,7 @@ Log when the customer adds a product to the cart.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let trackAddToCartRequestDto = TrackAddToCartRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", categoryIdOnStore: "categoryIdOnStore_example", cartId: "cartId_example", quantity: 123, userAgent: "userAgent_example") // TrackAddToCartRequestDto | 
+let trackAddToCartRequestDto = TrackAddToCartRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", categoryIdOnStore: "categoryIdOnStore_example", cartId: "cartId_example", quantity: 123, userAgent: "userAgent_example", appVersion: "appVersion_example") // TrackAddToCartRequestDto | 
 
 // 
 EventsAPI.eventsControllerOnAddToCart(trackAddToCartRequestDto: trackAddToCartRequestDto) { (response, error) in
@@ -75,7 +75,7 @@ Log a click.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let trackClickRequestDto = TrackClickRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", userAgent: "userAgent_example") // TrackClickRequestDto | 
+let trackClickRequestDto = TrackClickRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", userAgent: "userAgent_example", appVersion: "appVersion_example") // TrackClickRequestDto | 
 
 // 
 EventsAPI.eventsControllerOnClick(trackClickRequestDto: trackClickRequestDto) { (response, error) in
@@ -125,7 +125,7 @@ Log an impression.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let trackImpressionRequestDto = TrackImpressionRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", userAgent: "userAgent_example") // TrackImpressionRequestDto | 
+let trackImpressionRequestDto = TrackImpressionRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", userAgent: "userAgent_example", appVersion: "appVersion_example") // TrackImpressionRequestDto | 
 
 // 
 EventsAPI.eventsControllerOnImpression(trackImpressionRequestDto: trackImpressionRequestDto) { (response, error) in
@@ -175,7 +175,7 @@ Log when the customer views a specific product / category page.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let trackPageViewRequestDto = TrackPageViewRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", categoryIdOnStore: "categoryIdOnStore_example", userAgent: "userAgent_example") // TrackPageViewRequestDto | 
+let trackPageViewRequestDto = TrackPageViewRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", categoryIdOnStore: "categoryIdOnStore_example", userAgent: "userAgent_example", appVersion: "appVersion_example") // TrackPageViewRequestDto | 
 
 // 
 EventsAPI.eventsControllerOnPageView(trackPageViewRequestDto: trackPageViewRequestDto) { (response, error) in
@@ -225,7 +225,7 @@ Log when the customer purchases a product.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let trackPurchaseRequestDto = TrackPurchaseRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", categoryIdOnStore: "categoryIdOnStore_example", orderId: "orderId_example", quantity: 123, amount: 123, userAgent: "userAgent_example") // TrackPurchaseRequestDto | 
+let trackPurchaseRequestDto = TrackPurchaseRequestDto(storeId: "storeId_example", sessionId: "sessionId_example", deviceId: "deviceId_example", customerId: "customerId_example", sdkVersion: "sdkVersion_example", requestId: "requestId_example", productIdOnStore: "productIdOnStore_example", adsetId: "adsetId_example", categoryIdOnStore: "categoryIdOnStore_example", orderId: "orderId_example", quantity: 123, amount: 123, userAgent: "userAgent_example", appVersion: "appVersion_example") // TrackPurchaseRequestDto | 
 
 // 
 EventsAPI.eventsControllerOnPurchase(trackPurchaseRequestDto: trackPurchaseRequestDto) { (response, error) in

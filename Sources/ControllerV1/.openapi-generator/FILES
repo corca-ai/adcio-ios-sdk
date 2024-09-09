@@ -15,7 +15,6 @@ OpenAPIClient/Classes/OpenAPIs/Extensions.swift
 OpenAPIClient/Classes/OpenAPIs/JSONDataEncoding.swift
 OpenAPIClient/Classes/OpenAPIs/JSONEncodingHelper.swift
 OpenAPIClient/Classes/OpenAPIs/Models.swift
-OpenAPIClient/Classes/OpenAPIs/Models/AdGroup.swift
 OpenAPIClient/Classes/OpenAPIs/Models/AdGroupTargetKey.swift
 OpenAPIClient/Classes/OpenAPIs/Models/AdGroupTargetKeyValueResponse.swift
 OpenAPIClient/Classes/OpenAPIs/Models/AdGroupTargetValue.swift
@@ -60,6 +59,7 @@ OpenAPIClient/Classes/OpenAPIs/Models/Product.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ProductControllerFetchMany200Response.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ProductDetailDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ProductFilterOperationDto.swift
+OpenAPIClient/Classes/OpenAPIs/Models/ProductIconImage.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ProductSuggestionDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ProductSuggestionRequestDto.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ProductSuggestionResponseDto.swift
@@ -87,7 +87,6 @@ OpenAPIClient/Classes/OpenAPIs/URLSessionImplementations.swift
 OpenAPIClient/Classes/OpenAPIs/Validation.swift
 Package.swift
 README.md
-docs/AdGroup.md
 docs/AdGroupTargetKey.md
 docs/AdGroupTargetKeyValueResponse.md
 docs/AdGroupTargetValue.md
@@ -136,6 +135,7 @@ docs/ProductAPI.md
 docs/ProductControllerFetchMany200Response.md
 docs/ProductDetailDto.md
 docs/ProductFilterOperationDto.md
+docs/ProductIconImage.md
 docs/ProductSuggestionDto.md
 docs/ProductSuggestionRequestDto.md
 docs/ProductSuggestionResponseDto.md

@@ -26,9 +26,12 @@ Name | Type | Description | Notes
 **displayFormatHeight** | **Double** |  | 
 **property** | **String** |  | 
 **displayPositions** | **[Double]** |  | 
+**fixedProductIds** | **[String]** |  | 
 **tableSize** | **[Double]** |  | 
 **widgetValueId** | **String** |  | 
 **productDetailDataColumns** | **[String]** |  | 
+**includingCategoryIds** | **[String]** |  | 
+**excludingCategoryIds** | **[String]** |  | 
 **createdAt** | **Date** |  | 
 **updatedAt** | **Date** |  | 
 **deletedAt** | **Date** |  | 

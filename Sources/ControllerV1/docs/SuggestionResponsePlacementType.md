@@ -24,10 +24,13 @@ Name | Type | Description | Notes
 **property** | **String** |  | 
 **placementFormat** | [**PlacementFormat**](PlacementFormat.md) |  | 
 **displayPositions** | **[Double]** |  | 
+**fixedProductIds** | **[String]** |  | 
 **tableSize** | **[Double]** |  | 
 **widgetValue** | [**WidgetValue**](WidgetValue.md) |  | [optional] 
 **widgetValueId** | **String** |  | 
 **productDetailDataColumns** | **[String]** |  | 
+**includingCategoryIds** | **[String]** |  | 
+**excludingCategoryIds** | **[String]** |  | 
 **createdAt** | **Date** |  | 
 **updatedAt** | **Date** |  | 
 **deletedAt** | **Date** |  | 

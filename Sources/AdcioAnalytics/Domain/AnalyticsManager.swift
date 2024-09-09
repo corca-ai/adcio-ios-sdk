@@ -9,17 +9,17 @@ import Foundation
 import ReceiverV1
 
 public protocol AnalyticsProductManageable {
-    func onView(customerID: String?, productIDOnStore: String, requestID: String?, adsetID: String?, categoryIDOnStore: String?, userAgent: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
-    func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Double?, productIDOnStore: String, amount: Double, userAgent: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
-    func onAddToCart(cartID: String?, customerID: String?, productIDOnStore: String?, requestID: String?, adsetID: String?, categoryIdOnStore: String?, quantity: Double?, userAgent: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
+    func onAddToCart(cartID: String?, customerID: String?, productIDOnStore: String?, requestID: String?, adsetID: String?, categoryIdOnStore: String?, quantity: Double?, userAgent: String?, appVersion: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
+    func onView(customerID: String?, productIDOnStore: String, requestID: String?, adsetID: String?, categoryIDOnStore: String?, userAgent: String?, appVersion: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
+    func onPurchase(orderID: String, customerID: String?, requestID: String?, adsetID: String?, categoryIDOnStore: String?, quantity: Double?, productIDOnStore: String, amount: Double, userAgent: String?, appVersion: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
     
     var sessionID: String { get }
     var deviceID: String { get }
 }
 
 public protocol AnalyticsViewManageable {
-    func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, userAgent: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
-    func onClick(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, userAgent: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
+    func onImpression(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, userAgent: String?, appVersion: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
+    func onClick(option: AdcioLogOption, customerID: String?, productIDOnStore: String?, userAgent: String?, appVersion: String?, completion: @escaping (TrackResponseDto?, Error?) -> Void)
 }
 
 public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewManageable {
@@ -28,7 +28,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
     public private(set) var deviceID: String
     private var clientID: String
     private var userAgent: String
-    private let sdkVersion = "iOS 1.3.0"
+    private let sdkVersion = "iOS 1.3.1"
     
     public init(clientID: String) {
         self.client = AnalyticsClient(clientID: clientID)
@@ -38,7 +38,7 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
         self.clientID = clientID
     }
     
-    public func onAddToCart(cartID: String? = nil, customerID: String? = nil, productIDOnStore: String? = nil, requestID: String? = nil, adsetID: String? = nil, categoryIdOnStore: String? = nil, quantity: Double? = nil, userAgent: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
+    public func onAddToCart(cartID: String? = nil, customerID: String? = nil, productIDOnStore: String? = nil, requestID: String? = nil, adsetID: String? = nil, categoryIdOnStore: String? = nil, quantity: Double? = nil, userAgent: String? = nil, appVersion: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         client.onAddToCart(
             TrackAddToCartRequestDto(
                 storeId: clientID,
@@ -52,11 +52,13 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
                 categoryIdOnStore: categoryIdOnStore,
                 cartId: cartID,
                 quantity: quantity,
-                userAgent: userAgent == nil ? self.userAgent : userAgent),
+                userAgent: userAgent == nil ? self.userAgent : userAgent,
+                appVersion: appVersion
+            ),
             completion: completion)
     }
     
-    public func onView(customerID: String? = nil, productIDOnStore: String, requestID: String? = nil, adsetID: String? = nil, categoryIDOnStore: String? = nil, userAgent: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
+    public func onView(customerID: String? = nil, productIDOnStore: String, requestID: String? = nil, adsetID: String? = nil, categoryIDOnStore: String? = nil, userAgent: String? = nil, appVersion: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         client.onView(
             TrackPageViewRequestDto(
                 storeId: clientID,
@@ -68,11 +70,13 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
                 productIdOnStore: productIDOnStore,
                 adsetId: adsetID,
                 categoryIdOnStore: categoryIDOnStore,
-                userAgent: userAgent == nil ? self.userAgent : userAgent),
+                userAgent: userAgent == nil ? self.userAgent : userAgent,
+                appVersion: appVersion
+            ),
             completion: completion)
     }
     
-    public func onImpression(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, userAgent: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
+    public func onImpression(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, userAgent: String? = nil, appVersion: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         client.onImpression(
             TrackImpressionRequestDto(
                 storeId: clientID,
@@ -83,11 +87,13 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
                 requestId: option.requestID,
                 productIdOnStore: productIDOnStore,
                 adsetId: option.adsetID,
-                userAgent: userAgent),
+                userAgent: userAgent == nil ? self.userAgent : userAgent,
+                appVersion: appVersion
+            ),
             completion: completion)
     }
     
-    public func onPurchase(orderID: String, customerID: String? = nil, requestID: String? = nil, adsetID: String? = nil, categoryIDOnStore: String? = nil, quantity: Double? = nil, productIDOnStore: String, amount: Double, userAgent: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
+    public func onPurchase(orderID: String, customerID: String? = nil, requestID: String? = nil, adsetID: String? = nil, categoryIDOnStore: String? = nil, quantity: Double? = nil, productIDOnStore: String, amount: Double, userAgent: String? = nil, appVersion: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         client.onPurchase(
             TrackPurchaseRequestDto(
                 storeId: clientID,
@@ -102,11 +108,13 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
                 orderId: orderID,
                 quantity: quantity,
                 amount: amount,
-                userAgent: userAgent),
+                userAgent: userAgent == nil ? self.userAgent : userAgent,
+                appVersion: appVersion
+            ),
             completion: completion)
     }
     
-    public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, userAgent: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
+    public func onClick(option: AdcioLogOption, customerID: String? = nil, productIDOnStore: String? = nil, userAgent: String? = nil, appVersion: String? = nil, completion: @escaping (TrackResponseDto?, Error?) -> Void) {
         client.onClick(
             TrackClickRequestDto(
                 storeId: clientID,
@@ -117,7 +125,9 @@ public final class AnalyticsManager: AnalyticsProductManageable, AnalyticsViewMa
                 requestId: option.requestID,
                 productIdOnStore: productIDOnStore,
                 adsetId: option.adsetID,
-                userAgent: userAgent),
+                userAgent: userAgent == nil ? self.userAgent : userAgent,
+                appVersion: appVersion
+            ),
             completion: completion)
     }
 }

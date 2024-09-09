@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **filters** | [[String: ProductFilterOperationDto]] | Product filters for filtering adsets. | [optional] 
 **targets** | [SuggestionRequestTarget] |  | [optional] 
 **userAgent** | **String** |  | [optional] 
+**appVersion** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
